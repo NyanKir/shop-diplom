@@ -3,17 +3,17 @@
     <nav v-show="showMenu" class="mobile_menu mobile_menu__inner">
       <font-awesome-icon :icon="['fas', 'times']" size="lg" class="indent" @click="$emit('handler')" />
       <ul class="menu_list">
-        <Link v-for="(item,index) in links" :key="index" :item="item" />
+        <DropDownItem v-for="(item,index) in links" :key="index" :item="item" />
       </ul>
     </nav>
   </transition>
 </template>
 
 <script>
-import Link from '@/components/Header/Mobile/Link'
+import DropDownItem from '@/components/Header/MobileMenu/DropDownItem'
 export default {
   name: 'MobileMenu',
-  components: { Link },
+  components: { DropDownItem },
   props: ['showMenu'],
   data () {
     return {
@@ -29,7 +29,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
   .indent{
     margin: 15px;
   }
