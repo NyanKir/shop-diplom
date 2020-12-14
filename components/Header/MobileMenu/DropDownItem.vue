@@ -6,17 +6,17 @@
     <font-awesome-icon v-if="(item.child)" :icon="['fas', 'chevron-down']" size="sm" class="right-side" @click="drop=!drop" />
     <transition name="dropDown">
       <ul v-if="(item.child && drop)" class="menu_list">
-        <DropDown v-for="link in item.child" :key="link.name" :link="link" />
+        <Link v-for="(link,index) in item.child" :key="index" :item="link" />
       </ul>
     </transition>
   </li>
 </template>
 
 <script>
-import DropDown from '@/components/Header/MobileMenu/DropDown'
+import Link from '@/components/Header/MobileMenu/DropDownItem'
 export default {
   name: 'Link',
-  components: { DropDown },
+  components: { Link },
   props: ['item'],
   data () {
     return {
@@ -28,7 +28,6 @@ export default {
 
 <style scoped>
 .menu_link{
-  font-weight: 600;
+  font-weight: 400;
 }
-
 </style>
