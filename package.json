@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@nuxt/http": "latest",
     "@nuxtjs/style-resources": "^1.0.0",
+    "firebase": "^8.2.0",
     "nuxt": "latest"
   },
   "devDependencies": {
