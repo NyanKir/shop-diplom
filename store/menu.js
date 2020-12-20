@@ -28,20 +28,121 @@ export const state = () => ({
         },
         1: {
           name: 'Carbon',
-          href: 'shop/refractory'
+          href: 'shop/refractory',
+          child: {
+            0: {
 
+              name: 'Silicon Carbide',
+              href: 'shop/1'
+
+            },
+            1: {
+              name: 'Titanium Carbide',
+              href: 'shop/2'
+
+            },
+            2: {
+              name: 'Tungsten Carbide',
+              href: 'shop/3'
+
+            }
+          }
         },
         2: {
           name: 'Silicon',
-          href: 'shop/refractory'
+          href: 'shop/refractory',
+          child: {
+            0: {
 
+              name: 'Silicon Carbide',
+              href: 'shop/1'
+
+            },
+            1: {
+              name: 'Titanium Carbide',
+              href: 'shop/2'
+
+            },
+            2: {
+              name: 'Tungsten Carbide',
+              href: 'shop/3'
+
+            }
+          }
         }
       }
     },
     1: {
       name: 'Refractory',
-      href: 'shop/refractory'
+      href: 'shop/refractory',
+      child: {
+        0: {
+          name: 'Fired Bricks',
+          href: 'shop/refractory',
+          child: {
+            0: {
 
+              name: 'Silicon Carbide',
+              href: 'shop/1'
+
+            },
+            1: {
+              name: 'Titanium Carbide',
+              href: 'shop/2'
+
+            },
+            2: {
+              name: 'Tungsten Carbide',
+              href: 'shop/3'
+
+            }
+          }
+        },
+        1: {
+          name: 'Carbon',
+          href: 'shop/refractory',
+          child: {
+            0: {
+
+              name: 'Silicon Carbide',
+              href: 'shop/1'
+
+            },
+            1: {
+              name: 'Titanium Carbide',
+              href: 'shop/2'
+
+            },
+            2: {
+              name: 'Tungsten Carbide',
+              href: 'shop/3'
+
+            }
+          }
+        },
+        2: {
+          name: 'Silicon',
+          href: 'shop/refractory',
+          child: {
+            0: {
+
+              name: 'Silicon Carbide',
+              href: 'shop/1'
+
+            },
+            1: {
+              name: 'Titanium Carbide',
+              href: 'shop/2'
+
+            },
+            2: {
+              name: 'Tungsten Carbide',
+              href: 'shop/3'
+
+            }
+          }
+        }
+      }
     },
     2: {
       name: 'Electrical',

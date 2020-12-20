@@ -20,9 +20,9 @@
 
 <script>
 import logo from 'static/store-logo.jpg'
-import Menu from '@/components/Header/Menu'
+import Menu from '@/components/Header/Menu/Menu'
 import Panel from '@/components/Header/Panel'
-import MobileMenu from '@/components/Header/Mobile/MobileMenu'
+import MobileMenu from '@/components/Header/MobileMenu/MobileMenu'
 
 export default {
   name: 'Header',
@@ -48,7 +48,7 @@ export default {
   display: none;
 }
 
- .header_navigation, .header_nav, .header_nav-right{
+ .header_navigation, .header_nav, .header_nav-right,.menu_list, .dropdown{
   display: flex;
 }
 
@@ -84,6 +84,10 @@ export default {
   bottom: 0;
 }
 
+.menu{
+  position: relative;
+}
+
 .menu_link {
   color: $black;
   font-size: 13px;
@@ -92,17 +96,52 @@ export default {
   font-weight: 500;
   line-height: 15px;
 }
+
 .menu_list,  .menu_link>ul{
-  background: white;
+  height: auto;
   width: 100%;
+  overflow: hidden;
+  background: white;
   list-style: none;
-  padding-left: 15px;
+  padding-left: 0;
 }
+
 .menu_link:hover span{
   color: $main;
 }
 
+.menu_list-item{
+  margin: 0 13px;
+}
+
+.dropdown{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 40px;
+  justify-content: space-between;
+
+  a{
+    text-decoration: none;
+  }
+}
+.dropdown_header{
+  color:$main;
+}
+
+.rm-indents{
+  list-style: none;
+  padding: 0;
+}
+
+.fnt-weg-400{
+  font-weight: 400;
+}
 @media (max-width: 992px) {
+  .menu_list{
+    flex-direction: column;
+  }
   .mobile_menu{
     display: flex;
   }
@@ -112,9 +151,11 @@ export default {
   .burger-menu{
     display: block;
   }
+
   .menu_list-item{
     padding: 6px 0;
   }
+
   .right-side{
     float: right;
     margin-right: 5px;
@@ -131,17 +172,34 @@ export default {
     width: 125px;
   }
 }
+
 .dropDown-enter-active,
 .dropDown-leave-active {
-  transition: all .3s ease-out;
+  transition: all 0.4s ease;
+}
+.dropDown-enter-to,
+.dropDown-leave {
+    max-height: 500px;
+}
+.dropDown-enter,
+.dropDown-leave-to {
+  max-height: 0;
 }
 
-.dropDown-leave-to,
-.dropDown-enter{
-  opacity: 0;
+.backInTop-enter-active,
+.backInTop-leave-active {
+  transform-origin: top;
+  transition: all .5s ease-out;
 }
-.dropDown-enter-to{
+.backInTop-leave-to,
+.backInTop-enter{
+  opacity: 0;
+  transform: rotateX(-90deg);
+}
+.backInTop-leave,
+.backInTop-enter-to{
   opacity: 1;
+  transform: rotateX(0deg);
 }
 
 </style>
