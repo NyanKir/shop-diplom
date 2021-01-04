@@ -86,6 +86,8 @@ export default {
 
 .menu{
   position: relative;
+  z-index: 1;
+
 }
 
 .menu_link {
@@ -115,6 +117,7 @@ export default {
 }
 
 .dropdown{
+  background: white;
   position: absolute;
   width: 100%;
   left: 0;
@@ -143,6 +146,7 @@ export default {
     flex-direction: column;
   }
   .mobile_menu{
+    z-index: 1;
     display: flex;
   }
   .menu{
@@ -171,19 +175,6 @@ export default {
   .logo_img{
     width: 125px;
   }
-}
-
-.dropDown-enter-active,
-.dropDown-leave-active {
-  transition: all 0.4s ease;
-}
-.dropDown-enter-to,
-.dropDown-leave {
-    max-height: 500px;
-}
-.dropDown-enter,
-.dropDown-leave-to {
-  max-height: 0;
 }
 
 .backInTop-enter-active,

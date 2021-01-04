@@ -1,3 +1,4 @@
+
 export const state = () => ({
   links: {
     0: {

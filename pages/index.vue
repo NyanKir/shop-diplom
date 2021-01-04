@@ -1,6 +1,10 @@
-<template />
+<template>
+  <Slider />
+</template>
 <script>
+import Slider from '@/components/Main/Main'
 export default {
+  components: { Slider },
   data () {
     return {
       home: 'Home'
@@ -10,9 +14,5 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: gray;
-
-}
 
 </style>

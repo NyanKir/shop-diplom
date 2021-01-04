@@ -15,7 +15,11 @@ export default {
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
-
+  vue: {
+    config: {
+      devtools: true
+    }
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [

@@ -30,4 +30,18 @@ export default {
 .menu_link{
   font-weight: 400;
 }
+
+.dropDown-enter-active,
+.dropDown-leave-active {
+  transition: all 0.4s ease;
+}
+.dropDown-enter-to,
+.dropDown-leave {
+  max-height: 500px;
+}
+.dropDown-enter,
+.dropDown-leave-to {
+  max-height: 0;
+}
+
 </style>
