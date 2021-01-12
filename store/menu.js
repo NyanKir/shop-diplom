@@ -2,70 +2,70 @@ export const state = () => ({
   links: {
     0: {
       name: 'Structural',
-      href: 'shop/structural',
+      href: '/shop/structural',
       child: {
         0: {
           name: 'Fired Bricks',
-          href: 'shop/refractory',
+          href: '/shop/refractory',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: 'shop/1'
+              href: '/shop/1'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: 'shop/2'
+              href: '/shop/2'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: 'shop/3'
+              href: '/shop/3'
 
             }
           }
         },
         1: {
           name: 'Carbon',
-          href: 'shop/refractory',
+          href: '/shop/refractory',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: 'shop/1'
+              href: '/shop/1'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: 'shop/2'
+              href: '/shop/2'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: 'shop/3'
+              href: '/shop/3'
 
             }
           }
         },
         2: {
           name: 'Silicon',
-          href: 'shop/refractory',
+          href: '/shop/refractory',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: 'shop/1'
+              href: '/shop/1'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: 'shop/2'
+              href: '/shop/2'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: 'shop/3'
+              href: '/shop/3'
 
             }
           }
@@ -74,70 +74,70 @@ export const state = () => ({
     },
     1: {
       name: 'Refractory',
-      href: 'shop/refractory',
+      href: '/shop/refractory',
       child: {
         0: {
           name: 'Fired Bricks',
-          href: 'shop/refractory',
+          href: '/shop/refractory',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: 'shop/1'
+              href: '/shop/1'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: 'shop/2'
+              href: '/shop/2'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: 'shop/3'
+              href: '/shop/3'
 
             }
           }
         },
         1: {
           name: 'Carbon',
-          href: 'shop/refractory',
+          href: '/shop/refractory',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: 'shop/1'
+              href: '/shop/1'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: 'shop/2'
+              href: '/shop/2'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: 'shop/3'
+              href: '/shop/3'
 
             }
           }
         },
         2: {
           name: 'Silicon',
-          href: 'shop/refractory',
+          href: '/shop/refractory',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: 'shop/1'
+              href: '/shop/1'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: 'shop/2'
+              href: '/shop/2'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: 'shop/3'
+              href: '/shop/3'
 
             }
           }
@@ -146,17 +146,17 @@ export const state = () => ({
     },
     2: {
       name: 'Electrical',
-      href: 'shop/electrical'
+      href: '/shop/electrical'
 
     },
     3: {
       name: 'Magnetic',
-      href: 'shop/magnetic'
+      href: '/shop/magnetic'
 
     },
     4: {
       name: 'Abrasives',
-      href: 'shop/abrasives'
+      href: '/shop/abrasives'
     }
   }
 })

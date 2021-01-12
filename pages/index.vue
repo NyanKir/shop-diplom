@@ -1,4 +1,6 @@
-<template />
+<template>
+  <h1>Home</h1>
+</template>
 <script>
 export default {
   data () {
@@ -10,9 +12,5 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: gray;
-
-}
 
 </style>

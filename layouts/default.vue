@@ -23,6 +23,25 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: .5rem;
+}
+.h3, .h4, .h1{
+  color: #000;
+  text-transform: capitalize;
+  background: #f2f2f2;
+  margin-bottom: 0;
+  clear: both;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  line-height: 18px;
+}
+.h1{
+  font-size: 16px;
+}
 .container{
   margin: 0 auto;
   max-width: $pc-size;

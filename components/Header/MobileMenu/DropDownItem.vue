@@ -30,4 +30,7 @@ export default {
 .menu_link{
   font-weight: 400;
 }
+.menu_list{
+  flex-direction: column;
+}
 </style>
