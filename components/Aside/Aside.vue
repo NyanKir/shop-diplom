@@ -25,7 +25,7 @@ export default {
 <style scoped>
   .h4{
     background: #e2e0e0;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
   }
   .menu_list{
     flex-direction: column;

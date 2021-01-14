@@ -48,7 +48,7 @@ export default {
   display: none;
 }
 .header{
-  margin-bottom: 10px;
+  margin-bottom: 50px;
 }
  .header_navigation, .header_nav, .header_nav-right,.menu_list, .dropdown{
   display: flex;

@@ -6,7 +6,7 @@
 </template>
 
 <style lang="scss">
-html {
+html,[type='text'],[type='email'],[type='password'] {
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
   word-spacing: 1px;
@@ -16,7 +16,9 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-
+[type='text'],[type='email'],[type='password']{
+  font-size: 13px;
+}
 *,
 *::before,
 *::after {
@@ -69,6 +71,7 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 100%;
     margin: 0 10px;
   }
+
 }
 
 </style>

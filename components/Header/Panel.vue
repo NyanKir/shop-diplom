@@ -8,7 +8,7 @@
       <transition name="backInTop">
         <ul v-show="on" class="dropdown rm-indents">
           <li>
-            <NuxtLink to="/auth/sigin" class="menu_link fnt-weg-400">
+            <NuxtLink to="/auth/signin" class="menu_link fnt-weg-400">
               <span>
                 <font-awesome-icon :icon="['fas', 'unlock-alt']" size="lg" class="dropdown_link-svg" />
                 Sign in
