@@ -72,8 +72,12 @@ export default {
   modules: [
     // Doc: https://http.nuxtjs.org
     '@nuxtjs/style-resources',
-    '@nuxt/http'
+    '@nuxt/http',
+    '@nuxtjs/axios'
   ],
+  axios: {
+    proxy: true
+  },
   styleResources: {
     scss: ['./assets/*.scss']
   },

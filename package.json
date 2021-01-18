@@ -16,8 +16,11 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@nuxt/http": "latest",
+    "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/style-resources": "^1.0.0",
-    "firebase": "^8.2.0",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.12",
     "nuxt": "latest"
   },
   "devDependencies": {
