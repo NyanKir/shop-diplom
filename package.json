@@ -18,7 +18,9 @@
     "@nuxt/http": "latest",
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/style-resources": "^1.0.0",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
+    "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12",
     "nuxt": "latest"

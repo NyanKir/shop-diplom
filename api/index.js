@@ -9,6 +9,8 @@ app.use(require('./routes/user.routes'))
 
 const port = process.env.PORT || 3002
 
+module.exports = app
+
 async function start () {
   await mongoose.connect(`mongodb+srv://diplom:${process.env.DB_PASS}@cluster.sksna.mongodb.net/${process.env.DB_USER}?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
@@ -17,10 +19,12 @@ async function start () {
     useCreateIndex: true
   }).catch(err => console.error(err.reason))
 
-  app.listen(port, () => {
-    console.info(mongoose.connection.readyState ? 'Database was connected' : 'Database didn`t connected')
-    console.info(`API server listening on port ${port}`)
-  })
+  if (require.main === module) {
+    app.listen(port, () => {
+      console.info(`API server listening on port ${port}`)
+    })
+  }
+  console.info(mongoose.connection.readyState ? 'Database was connected' : "Database didn't connected")
 }
 
 start()
