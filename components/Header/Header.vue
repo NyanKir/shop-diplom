@@ -47,7 +47,9 @@ export default {
 .mobile-menu{
   display: none;
 }
-
+.header{
+  margin-bottom: 50px;
+}
  .header_navigation, .header_nav, .header_nav-right,.menu_list, .dropdown{
   display: flex;
 }
@@ -115,6 +117,7 @@ export default {
 }
 
 .dropdown{
+  background: white;
   position: absolute;
   width: 100%;
   left: 0;
@@ -138,11 +141,19 @@ export default {
 .fnt-weg-400{
   font-weight: 400;
 }
+.right-side{
+  float: right;
+}
+
+.menu_list-item{
+  padding: 6px 0;
+}
 @media (max-width: 992px) {
   .menu_list{
     flex-direction: column;
   }
   .mobile_menu{
+    z-index: 1;
     display: flex;
   }
   .menu{
@@ -152,12 +163,7 @@ export default {
     display: block;
   }
 
-  .menu_list-item{
-    padding: 6px 0;
-  }
-
   .right-side{
-    float: right;
     margin-right: 5px;
     transform: translateY(5px);
   }
@@ -188,18 +194,17 @@ export default {
 
 .backInTop-enter-active,
 .backInTop-leave-active {
-  transform-origin: top;
-  transition: all .5s ease-out;
+  transition: all .3s ease-out;
 }
 .backInTop-leave-to,
 .backInTop-enter{
   opacity: 0;
-  transform: rotateX(-90deg);
+  transform: translateY(-20px);
 }
 .backInTop-leave,
 .backInTop-enter-to{
   opacity: 1;
-  transform: rotateX(0deg);
+  transform: translateY(0px);
 }
 
 </style>
