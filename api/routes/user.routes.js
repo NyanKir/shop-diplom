@@ -33,4 +33,7 @@ function (req, res) {
   res.status(201).end()
 })
 
-  .module.exports = router
+router.post('/signup', function (req, res) {
+  res.status(200).end()
+})
+module.exports = router
