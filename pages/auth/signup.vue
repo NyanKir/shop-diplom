@@ -9,32 +9,46 @@
         <span>Social title <sup>*</sup></span>
         <div class="login-form_group">
           <label for="mr" class="login-form_group-label">
-            <input id="mr" v-model="radio" type="radio" value="mr" class="radiobutton">
+            <input
+              id="mr"
+              v-model="radio"
+              type="radio"
+              :value="true"
+              class="radiobutton"
+              :checked="radio"
+            >
             <span>Mr</span>
           </label>
           <label for="mrs" class="login-form_group-label">
-            <input id="mrs" v-model="radio" type="radio" value="mrs" class="radiobutton">
+            <input
+              id="mrs"
+              v-model="radio"
+              type="radio"
+              :value="false"
+              class="radiobutton"
+              :checked="!radio"
+            >
             <span>Mrs</span>
           </label>
         </div>
       </label>
       <label for="fname" class="login-form_label">
         <span>First name <sup>*</sup></span>
-        <input id="fname" v-model="fname" type="text" class="login-form_input">
+        <input id="fname" v-model="fname" type="text" class="input">
       </label>
       <label for="lname" class="login-form_label">
         <span>Last name <sup>*</sup></span>
-        <input id="lname" v-model="lname" type="text" class="login-form_input">
+        <input id="lname" v-model="lname" type="text" class="input">
       </label>
       <label for="email" class="login-form_label">
         <span>Email <sup>*</sup></span>
-        <input id="email" v-model="email" type="email" class="login-form_input">
+        <input id="email" v-model="email" type="email" class="input">
       </label>
 
       <label for="pass" class="login-form_label">
         <span>Password <sup>*</sup></span>
-        <input id="pass" v-model="password" :type="showPassword" class="login-form_input">
-        <button type="button" class="login-form_show-btn" :class="(visiblePassword)?'active':''" @click="visiblePassword=!visiblePassword">
+        <input id="pass" v-model="password" :type="showPassword" class="input">
+        <button type="button" class="btn btn__show-pass" :class="(visiblePassword)?'active':''" @click="visiblePassword=!visiblePassword">
           <font-awesome-icon v-if="!visiblePassword" :icon="['far', 'eye']" size="sm" />
           <font-awesome-icon v-else :icon="['far', 'eye-slash']" size="sm" />
         </button>
@@ -42,10 +56,10 @@
 
       <label for="bdate" class="login-form_label">
         <span>Birthdate</span>
-        <input id="bdate" v-model.number="bdate" type="text" class="login-form_input" placeholder="MM/DD/YYYY">
+        <input id="bdate" v-model.number="bdate" type="text" class="input" placeholder="MM/DD/YYYY">
       </label>
 
-      <button type="submit" class="login-form_submit">
+      <button type="submit" class="btn">
         Sig in
       </button>
       <h3 class="h3">
@@ -70,7 +84,7 @@ export default {
       fname: '',
       lname: '',
       bdate: '',
-      radio: '',
+      radio: true,
       visiblePassword: false
     }
   },

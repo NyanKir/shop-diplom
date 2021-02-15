@@ -16,7 +16,7 @@ export default {
     async fetchData () {
       const respone = await this.$axios.$post('api/user', JSON.stringify({
         gender: 'Mr',
-        firstName: 'Kirill  ',
+        firstName: 'Kirill',
         lastName: 'Sytnyanskiy',
         birthDate: '21.10.2001',
         email: 'mAr@gmail.com',

@@ -6,12 +6,12 @@
     <form class="login-form">
       <label for="email" class="login-form_label">
         <span>Email <sup>*</sup></span>
-        <input id="email" v-model="email" type="email" class="login-form_input">
+        <input id="email" v-model="email" type="email" class="input">
       </label>
       <label for="pass" class="login-form_label">
         <span>Password <sup>*</sup></span>
-        <input id="pass" v-model="password" :type="showPassword" class="login-form_input">
-        <button type="button" class="login-form_show-btn" :class="(visiblePassword)?'active':''" @click="visiblePassword=!visiblePassword">
+        <input id="pass" v-model="password" :type="showPassword" class="input">
+        <button type="button" class="btn btn__show-pass" :class="(visiblePassword)?'active':''" @click="visiblePassword=!visiblePassword">
           <font-awesome-icon v-if="!visiblePassword" :icon="['far', 'eye']" size="sm" />
           <font-awesome-icon v-else :icon="['far', 'eye-slash']" size="sm" />
         </button>
@@ -21,7 +21,7 @@
           Forgot your password?
         </span>
       </a>
-      <button type="submit" class="login-form_submit">
+      <button type="submit" class="btn">
         Sig in
       </button>
     </form>
