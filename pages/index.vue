@@ -14,21 +14,21 @@ export default {
   },
   methods: {
     async fetchData () {
-      const respone = await this.$axios.$post('api/user', JSON.stringify({
-        gender: 'Mr',
-        firstName: 'Kirill',
-        lastName: 'Sytnyanskiy',
-        birthDate: '21.10.2001',
-        email: 'mAr@gmail.com',
-        password: 'Aa12331'
+      try {
+        const respone = await this.$axios.$post('api/signin', JSON.stringify({
 
-      }), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+          email: 'mAr@gmail.com',
+          password: 'Aa12331'
 
-      console.log(respone)
+        }), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        localStorage.setItem('token', respone.token)
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

@@ -10,8 +10,10 @@
 </template>
 
 <script>
+import DropDownItem from './DropDownItem'
 export default {
   name: 'DropDown',
+  components: { DropDownItem },
   props: ['link'],
   data () {
     return {

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import DropDownItem from '@/components/Header/MobileMenu/DropDownItem'
+import DropDownItem from './DropDownItem'
 export default {
   name: 'MobileMenu',
   components: { DropDownItem },

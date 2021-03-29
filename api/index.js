@@ -12,12 +12,12 @@ const port = process.env.PORT || 3002
 module.exports = app
 
 async function start () {
-  await mongoose.connect(`mongodb+srv://diplom:${process.env.DB_PASS}@cluster.sksna.mongodb.net/${process.env.DB_USER}?retryWrites=true&w=majority`, {
+  await mongoose.connect(`mongodb+srv://diplom:${process.env.DB_PASS}@cluster.sksna.mongodb.net/shop-diplom?retryWrites=true&w=majority`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
     useCreateIndex: true
-  }).catch(err => console.error(err.reason))
+  }).catch(err => console.error(err))
 
   if (require.main === module) {
     app.listen(port, () => {
