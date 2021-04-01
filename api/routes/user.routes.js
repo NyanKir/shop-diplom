@@ -57,6 +57,16 @@ async function (req, res) {
   }
 
   const token = jwt.sign({ userID: user[0]._id }, process.env.JWTKEY, { expiresIn: '1h' })
-  res.status(200).json({ token }).end()
+
+  res.cookie('jwt', token, { maxAge: 1000 * 60 * 60, httpOnly: true })
+
+  res.status(200).end()
+})
+
+router.get('/isauth', function (req, res) {
+  if (req.cookies.jwt) {
+    res.status(403)
+  }
+  res.end()
 })
 module.exports = router

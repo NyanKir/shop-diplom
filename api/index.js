@@ -1,16 +1,17 @@
 const express = require('express')
 const mongoose = require('mongoose')
-
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 
 const app = express()
 app.use(express.json({ extended: true }))
-app.use(require('./routes/user.routes'))
+app.use(cookieParser())
 
-const port = process.env.PORT || 3002
+app.use(require('./routes/user.routes'))
 
 module.exports = app
 
+const port = process.env.PORT
 async function start () {
   await mongoose.connect(`mongodb+srv://diplom:${process.env.DB_PASS}@cluster.sksna.mongodb.net/shop-diplom?retryWrites=true&w=majority`, {
     useNewUrlParser: true,

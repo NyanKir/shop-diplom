@@ -78,7 +78,9 @@ export default {
   styleResources: {
     scss: ['./assets/*.scss']
   },
-
+  server: {
+    port: 8000
+  },
   /*
   ** Server Middleware
   */

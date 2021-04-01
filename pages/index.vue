@@ -25,7 +25,7 @@ export default {
             'Content-Type': 'application/json'
           }
         })
-        localStorage.setItem('token', respone.token)
+        console.log(respone)
       } catch (e) {
         console.log(e)
       }

@@ -36,6 +36,7 @@
 <script>
 export default {
   name: 'Signin',
+  middleware: 'authenticated',
   data () {
     return {
       email: '',
