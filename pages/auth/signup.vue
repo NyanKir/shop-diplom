@@ -4,7 +4,7 @@
       Log in to your account
     </h1>
 
-    <form action="" class="login-form">
+    <form class="login-form" @submit.prevent="fetchData">
       <label for="fname" class="login-form_label">
         <span>Social title <sup>*</sup></span>
         <div class="login-form_group">
@@ -34,11 +34,11 @@
       </label>
       <label for="fname" class="login-form_label">
         <span>First name <sup>*</sup></span>
-        <input id="fname" v-model="fname" type="text" class="input">
+        <input id="fname" v-model="firstName" type="text" class="input">
       </label>
       <label for="lname" class="login-form_label">
         <span>Last name <sup>*</sup></span>
-        <input id="lname" v-model="lname" type="text" class="input">
+        <input id="lname" v-model="lastName" type="text" class="input">
       </label>
       <label for="email" class="login-form_label">
         <span>Email <sup>*</sup></span>
@@ -56,7 +56,7 @@
 
       <label for="bdate" class="login-form_label">
         <span>Birthdate</span>
-        <input id="bdate" v-model.number="bdate" type="text" class="input" placeholder="MM/DD/YYYY">
+        <input id="bdate" v-model="birthDate" type="text" class="input" placeholder="MM/DD/YYYY">
       </label>
 
       <button type="submit" class="btn">
@@ -84,9 +84,9 @@ export default {
     return {
       email: '',
       password: '',
-      fname: '',
-      lname: '',
-      bdate: '',
+      firstName: '',
+      lastName: '',
+      birthDate: '',
       radio: true,
       visiblePassword: false
     }
@@ -94,6 +94,25 @@ export default {
   computed: {
     showPassword () {
       return (this.visiblePassword) ? 'text' : 'password'
+    }
+  },
+  methods: {
+    async fetchData () {
+      try {
+        await this.$axios.$post('api/user', JSON.stringify({
+          email: this.email,
+          password: this.password,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          birthDate: this.birthDate
+        }), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   layout: 'shop'

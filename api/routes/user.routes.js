@@ -3,6 +3,7 @@ const router = express.Router()
 const bcrypt = require('bcryptjs')
 const { check, validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 const User = require('../models/user.model')
 
 router.post('/user', [
@@ -63,10 +64,22 @@ async function (req, res) {
   res.status(200).end()
 })
 
-router.get('/isauth', function (req, res) {
+router.get('/isauth', async function (req, res) {
   if (req.cookies.jwt) {
-    res.status(403)
+    try {
+      const decode = jwt.verify(req.cookies.jwt, process.env.JWTKEY).userID
+
+      const count = await User.countDocuments({ _id: mongoose.Types.ObjectId(decode) })
+      console.log(count)
+      if (count === 1) {
+        return res.status(200).end()
+      }
+      return res.status(403).end()
+    } catch (err) {
+      res.cookie('jwt', '', { maxAge: 0 })
+      return res.status(500).json({ errors: err.message })
+    }
   }
-  res.end()
+  res.status(404).end()
 })
 module.exports = router

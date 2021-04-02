@@ -3,7 +3,7 @@
     <h1 class="h1">
       Log in to your account
     </h1>
-    <form class="login-form">
+    <form class="login-form" @submit.prevent="fetchData">
       <label for="email" class="login-form_label">
         <span>Email <sup>*</sup></span>
         <input id="email" v-model="email" type="email" class="input">
@@ -47,6 +47,22 @@ export default {
   computed: {
     showPassword () {
       return (this.visiblePassword) ? 'text' : 'password'
+    }
+  },
+  methods: {
+    async fetchData () {
+      try {
+        await this.$axios.$post('api/signin', JSON.stringify({
+          email: this.email,
+          password: this.password
+        }), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   layout: 'shop'

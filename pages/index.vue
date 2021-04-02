@@ -1,34 +1,11 @@
 <template>
-  <form action="" method="post" @submit.prevent="fetchData">
-    <button type="submit">
-      Go
-    </button>
-  </form>
+  <h1>Home</h1>
 </template>
 <script>
 export default {
   data () {
     return {
       home: 'Home'
-    }
-  },
-  methods: {
-    async fetchData () {
-      try {
-        const respone = await this.$axios.$post('api/signin', JSON.stringify({
-
-          email: 'mAr@gmail.com',
-          password: 'Aa12331'
-
-        }), {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        console.log(respone)
-      } catch (e) {
-        console.log(e)
-      }
     }
   }
 }

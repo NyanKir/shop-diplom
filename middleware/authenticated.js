@@ -1,11 +1,13 @@
-export default function (context) {
-  context.$axios({
+export default async function (context) {
+  await context.$axios({
     method: 'get',
     url: 'api/isauth',
     withCredentials: true
-  }).catch((e) => {
-    if (e.response.status === 403) {
-      return context.redirect('/')
-    }
   })
+    .then((r) => {
+      console.log(r.status)
+      if (r.status === 200) {
+        return context.redirect('/')
+      }
+    }).catch(r => r)
 }
