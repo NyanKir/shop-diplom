@@ -26,7 +26,9 @@ export default {
 
 <style scoped lang="scss">
   .dropdown{
-    padding: 10px;
+    z-index: 1;
+    border: 1px solid $gray;
+    padding: 15px;
   }
 
 </style>

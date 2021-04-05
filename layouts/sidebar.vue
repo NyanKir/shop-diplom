@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container container__screen">
     <Header />
     <section class="shop">
       <Aside />
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Shop'
+  name: 'Sidebar'
 }
 </script>
 

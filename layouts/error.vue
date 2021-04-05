@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section class="container container__screen">
     <div>
       <h1 class="title">
         {{ error.statusCode }}
@@ -7,7 +7,7 @@
       <h2 class="info">
         {{ error.message }}
       </h2>
-      <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
+      <nuxt-link v-if="error.statusCode === 404" class="button" to="/">
         Homepage
       </nuxt-link>
     </div>

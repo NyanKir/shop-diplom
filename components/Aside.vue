@@ -3,22 +3,16 @@
     <h4 class="h4">
       Shop By Category
     </h4>
-    <ul class="menu_list">
-      <DropDownItem v-for="(item,index) in links" :key="index" :item="item" />
-    </ul>
+    <CategorySelector />
   </aside>
 </template>
 
 <script>
-import DropDownItem from '@/components/Header/MobileMenu/DropDownItem'
+import CategorySelector from './Widgets/CategorySelector'
 export default {
   name: 'Aside',
-  components: { DropDownItem },
-  computed: {
-    links () {
-      return this.$store.state.menu.links
-    }
-  }
+  components: { CategorySelector }
+
 }
 </script>
 

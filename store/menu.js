@@ -2,70 +2,70 @@ export const state = () => ({
   links: {
     0: {
       name: 'Structural',
-      href: '/shop/structural',
+      href: '/category/structural',
       child: {
         0: {
           name: 'Fired Bricks',
-          href: '/shop/refractory',
+          href: '/category/structural/fired bricks',
           child: {
             0: {
 
               name: 'Silicon Carbide',
-              href: '/shop/1'
+              href: '/category/structural/fired bricks/silicon carbide'
 
             },
             1: {
               name: 'Titanium Carbide',
-              href: '/shop/2'
+              href: '/category/structural/fired bricks/titanium carbide'
 
             },
             2: {
               name: 'Tungsten Carbide',
-              href: '/shop/3'
+              href: '/category/structural/fired bricks/tungsten carbide'
 
             }
           }
         },
         1: {
           name: 'Carbon',
-          href: '/shop/refractory',
+          href: '/category/structural/Carbon',
           child: {
             0: {
 
-              name: 'Silicon Carbide',
-              href: '/shop/1'
+              name: 'Barium Titanate',
+              href: '/category/structural/Carbon/barium titanate'
 
             },
             1: {
-              name: 'Titanium Carbide',
-              href: '/shop/2'
+              name: 'Boron Carbide',
+              href: '/category/structural/Carbon/boron carbide'
 
             },
             2: {
-              name: 'Tungsten Carbide',
-              href: '/shop/3'
+              name: 'Bioceramic',
+              href: '/category/structural/Carbon/Bioceramic'
 
             }
           }
         },
         2: {
           name: 'Silicon',
-          href: '/shop/refractory',
+          href: '/category/structural/silicon',
           child: {
             0: {
 
-              name: 'Silicon Carbide',
-              href: '/shop/1'
+              name: 'Ceramic Matrix',
+              href: '/category/structural/silicon/Ceramic Matrix'
 
             },
             1: {
-              name: 'Titanium Carbide',
-              href: '/shop/2'
+              name: 'Ceramic Foam',
+              href: '/category/structural/silicon/Ceramic Foam'
 
             },
             2: {
-              name: 'Tungsten Carbide',
-              href: '/shop/3'
+              name: 'Ferrite Foam',
+              href: '/category/structural/silicon/Ferrite Foam'
 
             }
           }
@@ -74,75 +74,8 @@ export const state = () => ({
     },
     1: {
       name: 'Refractory',
-      href: '/shop/refractory',
-      child: {
-        0: {
-          name: 'Fired Bricks',
-          href: '/shop/refractory',
-          child: {
-            0: {
+      href: '/category/structural/refractory'
 
-              name: 'Silicon Carbide',
-              href: '/shop/1'
-
-            },
-            1: {
-              name: 'Titanium Carbide',
-              href: '/shop/2'
-
-            },
-            2: {
-              name: 'Tungsten Carbide',
-              href: '/shop/3'
-
-            }
-          }
-        },
-        1: {
-          name: 'Carbon',
-          href: '/shop/refractory',
-          child: {
-            0: {
-
-              name: 'Silicon Carbide',
-              href: '/shop/1'
-
-            },
-            1: {
-              name: 'Titanium Carbide',
-              href: '/shop/2'
-
-            },
-            2: {
-              name: 'Tungsten Carbide',
-              href: '/shop/3'
-
-            }
-          }
-        },
-        2: {
-          name: 'Silicon',
-          href: '/shop/refractory',
-          child: {
-            0: {
-
-              name: 'Silicon Carbide',
-              href: '/shop/1'
-
-            },
-            1: {
-              name: 'Titanium Carbide',
-              href: '/shop/2'
-
-            },
-            2: {
-              name: 'Tungsten Carbide',
-              href: '/shop/3'
-
-            }
-          }
-        }
-      }
     },
     2: {
       name: 'Electrical',
