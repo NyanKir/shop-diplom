@@ -9,11 +9,7 @@ import DropDownItem from '../Header/MobileMenu/DropDownItem'
 export default {
   name: 'CategorySelector',
   components: { DropDownItem },
-  computed: {
-    links () {
-      return this.$store.state.menu.links
-    }
-  }
+  props: ['links']
 }
 </script>
 

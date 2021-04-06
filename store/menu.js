@@ -28,22 +28,22 @@ export const state = () => ({
         },
         1: {
           name: 'Carbon',
-          href: '/category/structural/Carbon',
+          href: '/category/structural/carbon',
           child: {
             0: {
 
               name: 'Barium Titanate',
-              href: '/category/structural/Carbon/barium titanate'
+              href: '/category/structural/carbon/barium titanate'
 
             },
             1: {
               name: 'Boron Carbide',
-              href: '/category/structural/Carbon/boron carbide'
+              href: '/category/structural/carbon/boron carbide'
 
             },
             2: {
               name: 'Bioceramic',
-              href: '/category/structural/Carbon/Bioceramic'
+              href: '/category/structural/carbon/bioceramic'
 
             }
           }
@@ -55,17 +55,17 @@ export const state = () => ({
             0: {
 
               name: 'Ceramic Matrix',
-              href: '/category/structural/silicon/Ceramic Matrix'
+              href: '/category/structural/silicon/ceramic matrix'
 
             },
             1: {
               name: 'Ceramic Foam',
-              href: '/category/structural/silicon/Ceramic Foam'
+              href: '/category/structural/silicon/ceramic foam'
 
             },
             2: {
               name: 'Ferrite Foam',
-              href: '/category/structural/silicon/Ferrite Foam'
+              href: '/category/structural/silicon/ferrite foam'
 
             }
           }
@@ -74,22 +74,22 @@ export const state = () => ({
     },
     1: {
       name: 'Refractory',
-      href: '/category/structural/refractory'
+      href: '/category/refractory'
 
     },
     2: {
       name: 'Electrical',
-      href: '/shop/electrical'
+      href: '/category/electrical'
 
     },
     3: {
       name: 'Magnetic',
-      href: '/shop/magnetic'
+      href: '/category/magnetic'
 
     },
     4: {
       name: 'Abrasives',
-      href: '/shop/abrasives'
+      href: '/category/abrasives'
     }
   }
 })

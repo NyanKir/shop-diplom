@@ -78,6 +78,7 @@ export default {
 .mobile_menu{
   display: none;
   flex-direction: column;
+  border-right: 1px solid $gray;
   position: absolute;
   background: $white;
   width: 300px;
