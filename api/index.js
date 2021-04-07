@@ -8,6 +8,7 @@ app.use(express.json({ extended: true }))
 app.use(cookieParser())
 
 app.use(require('./routes/user.routes'))
+app.use(require('./routes/product.routes'))
 
 module.exports = app
 

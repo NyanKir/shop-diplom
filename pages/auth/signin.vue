@@ -52,7 +52,7 @@ export default {
   methods: {
     async fetchData () {
       try {
-        await this.$axios.$post('api/signin', JSON.stringify({
+        await this.$axios.$post('/api/signin', JSON.stringify({
           email: this.email,
           password: this.password
         }), {

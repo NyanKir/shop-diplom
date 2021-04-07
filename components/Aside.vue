@@ -1,17 +1,21 @@
 <template>
   <aside class="aside">
-    <h4 class="h4">
-      Shop By Category
-    </h4>
-    <CategorySelector :links="links" />
+    <WidgetWrap title="Category">
+      <CategorySelector :links="links" />
+    </WidgetWrap>
+    <WidgetWrap title="Price">
+      <PriceSlider />
+    </WidgetWrap>
   </aside>
 </template>
 
 <script>
 import CategorySelector from './Widgets/CategorySelector'
+import PriceSlider from './Widgets/PriceSlider'
+import WidgetWrap from './Widgets/WidgetWrap'
 export default {
   name: 'Aside',
-  components: { CategorySelector },
+  components: { WidgetWrap, PriceSlider, CategorySelector },
   data () {
     return {
       links: this.$store.state.menu.links
@@ -33,15 +37,11 @@ export default {
 </script>
 
 <style scoped>
-  .h4{
-    padding: 15px 0;
-    margin-left: 13px;
-  }
   .menu_list{
     flex-direction: column;
   }
   .aside{
-    margin-right: 10px;
+    margin-right: 20px;
     width: 25%;
     height: 100%;
   }

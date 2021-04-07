@@ -99,7 +99,7 @@ export default {
   methods: {
     async fetchData () {
       try {
-        await this.$axios.$post('api/user', JSON.stringify({
+        await this.$axios.$post('/api/user', JSON.stringify({
           email: this.email,
           password: this.password,
           firstName: this.firstName,

@@ -179,7 +179,7 @@ export default {
     width: 125px;
   }
 }
-
+//Animations
 .dropDown-enter-active,
 .dropDown-leave-active {
   transition: all 0.4s ease;
@@ -192,7 +192,7 @@ export default {
 .dropDown-leave-to {
   max-height: 0;
 }
-
+//
 .backInTop-enter-active,
 .backInTop-leave-active {
   transition: all .3s ease-out;
@@ -207,5 +207,17 @@ export default {
   opacity: 1;
   transform: translateY(0px);
 }
+//
+.backInLeft-enter-active,
+.backInLeft-leave-active {
+  transition: all .3s ease-out;
+}
+.backInLeft-leave-to,
+.backInLeft-enter{
+  transform: translateX(-300px);
+}
 
+.backInLeft-enter-to{
+  transform: translateX(0);
+}
 </style>

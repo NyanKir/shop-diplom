@@ -5,11 +5,12 @@ const productModel = new Schema({
   price: { type: Number, required: true },
   sale: { type: Number, required: true },
   description: { type: String, required: true, trim: true },
-  size: { type: [String] },
-  color: { type: [String] },
+  size: [String],
+  color: [String],
   review: [{
     rating: [String],
     reviewFrom: [String]
-  }]
+  }],
+  categories: [String]
 })
 module.exports = model('Product', productModel)

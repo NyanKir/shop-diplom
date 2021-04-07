@@ -30,20 +30,8 @@ export default {
 </script>
 
 <style scoped>
-
   .indent{
     margin: 15px;
   }
-  .backInLeft-enter-active,
-  .backInLeft-leave-active {
-    transition: all .3s ease-out;
-  }
-  .backInLeft-leave-to,
-  .backInLeft-enter{
-    transform: translateX(-300px);
-  }
 
-  .backInLeft-enter-to{
-    transform: translateX(0);
-  }
 </style>
