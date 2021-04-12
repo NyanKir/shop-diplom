@@ -1,6 +1,6 @@
 <template>
   <li class="menu_list-item" @mouseover="hover=true" @mouseleave="hover=false">
-    <NuxtLink :to="link.href" class="menu_link">
+    <NuxtLink :to="link.href" class="link">
       <span>{{ link.name }}</span>
     </NuxtLink>
     <transition name="backInTop">

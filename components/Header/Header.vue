@@ -91,26 +91,25 @@ export default {
   position: relative;
 }
 
-.menu_link {
+.link {
   color: $black;
   font-size: 13px;
   letter-spacing: 0.6px;
   text-decoration: none;
   font-weight: 500;
   line-height: 15px;
+  &:hover span{
+    color: $main;
+  }
 }
 
-.menu_list,  .menu_link>ul{
+.menu_list,  .menu_list>.link>ul{
   height: auto;
   width: 100%;
   overflow: hidden;
   background: white;
   list-style: none;
   padding-left: 0;
-}
-
-.menu_link:hover span{
-  color: $main;
 }
 
 .menu_list-item{

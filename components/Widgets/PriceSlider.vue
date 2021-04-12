@@ -10,6 +10,7 @@
         name="vol"
         min="0"
         max="50"
+        @change="changeValue"
       >
     </div>
   </form>
@@ -20,7 +21,12 @@ export default {
   name: 'PriceSlider',
   data () {
     return {
-      value: 0
+      value: (this.$route.query.price) ? this.$route.query.price : 0
+    }
+  },
+  methods: {
+    changeValue () {
+      this.$router.push({ path: this.$route.path, query: { price: this.value } })
     }
   }
 }

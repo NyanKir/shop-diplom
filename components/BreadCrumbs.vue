@@ -27,11 +27,10 @@ export default {
   name: 'BreadCrumbs',
   computed: {
     getNormalPaths () {
-      const keys = Object.keys(this.$route.params)
+      const keys = Object.keys(this.$route.params).filter(r => this.$route.params[r])
       const paths = this.$route.fullPath.split('/').filter(r => r).map((p, i, m) => {
         return m.slice(0, i + 1).join('/')
       })
-
       return keys.map((el, i) => {
         return { title: this.$route.params[el], path: '/' + paths[i + 1] }
       })

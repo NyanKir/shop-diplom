@@ -11,7 +11,7 @@
 import BreadCrumbs from '../../components/BreadCrumbs'
 import GalleryProducts from '../../components/Product/GalleryProducts'
 export default {
-  name: 'Index',
+  name: 'Category',
   components: { GalleryProducts, BreadCrumbs },
   layout: 'sidebar'
 }

@@ -1,6 +1,6 @@
 <template>
   <li class="menu_list-item">
-    <NuxtLink :to="item.href" class="menu_link">
+    <NuxtLink :to="item.href" class="link">
       <span>{{ item.name }}</span>
     </NuxtLink>
     <font-awesome-icon v-if="(item.child)" :icon="['fas', 'chevron-down']" size="sm" class="right-side" @click="drop=!drop" />

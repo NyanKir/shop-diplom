@@ -21,14 +21,13 @@ export default {
       links: this.$store.state.menu.links
     }
   },
-  watch: {
-    $route () {
-      const link = this.$store.state.menu.links
-      for (const index in link) {
-        if (this.$route.path.includes(link[index].href)) {
-          this.links = { 0: Object.entries(link).splice(index, 1)[0][1] }
-          return
-        }
+  // исправьить
+  created () {
+    const link = this.$store.state.menu.links
+    for (const index in link) {
+      if (this.$route.path.includes(link[index].href)) {
+        this.links = { 0: Object.entries(link).splice(index, 1)[0][1] }
+        return
       }
     }
   }
