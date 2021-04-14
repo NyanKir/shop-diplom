@@ -4,20 +4,7 @@
       {{ title }}
     </h2>
     <Rating :rating="rating" />
-    <div class="info_price">
-      <span v-if="!sale" class="info_current-price">{{ price.toFixed(2) }}</span>
-      <div v-else>
-        <span class="info_current-price">
-          ${{ Math.round(price-price%20).toFixed(2) }}
-        </span>
-
-        <span class="info_discount-price">save {{ sale }}%</span>
-
-        <span class="info_old-price">
-          ${{ price.toFixed(2) }}
-        </span>
-      </div>
-    </div>
+    <Price :price="price" :sale="sale" />
     <p class="info_description">
       {{ description }}
     </p>
@@ -34,9 +21,10 @@
 <script>
 import Rating from './Rating'
 import Quantity from './ProductOptions/Quantity'
+import Price from './Price'
 export default {
   name: 'Info',
-  components: { Quantity, Rating },
+  components: { Price, Quantity, Rating },
   props: ['title', 'price', 'description', 'review', 'sale'],
   data () {
     return {
@@ -57,7 +45,7 @@ export default {
       this.quantity -= 1
     },
     quantityChanged (now) {
-      this.quantity = parseInt(now)
+      if (+now) { this.quantity = parseInt(now) }
     }
   }
 }
@@ -72,25 +60,9 @@ export default {
   .info__indent{
     margin-left: 20px;
   }
-  .info_current-price{
-    font-size: 18px;
-  }
-  .info_old-price,.info_discount-price{
-    font-size: 13px;
-  }
-  .info_old-price{
-    text-decoration: line-through;
-    color: $gray;
-  }
-  .info_discount-price{
-    color:red;
-  }
   .info_description{
     font-size: 13px;
     margin-bottom: 10px;
-  }
-  .info_price{
-    margin-top: 5px;
   }
 
 </style>

@@ -20,23 +20,29 @@
       <NuxtLink :to="'/product/'+product.title+'?id='+product._id" class="link fnt-weg-400">
         <span>{{ product.title }}</span>
       </NuxtLink>
-      <p class="product_price">
-        ${{ product.price }}
-      </p>
+      <Price :price="product.price" :sale="product.sale" />
     </div>
   </div>
 </template>
 
 <script>
 import Rating from '../Rating'
+import Price from '../Price'
 export default {
   name: 'Product',
-  components: { Rating },
+  components: { Price, Rating },
   props: ['product']
 }
 </script>
 
 <style scoped lang="scss">
+  .product_info /deep/ .price_regular{
+    font-size: 14px;
+
+  }
+  .product_info /deep/ .price_discount{
+    font-size: 12px;
+  }
   .product_img-wrapper{
     overflow: hidden;
     position: relative;
@@ -107,8 +113,5 @@ export default {
       transition: 10ms;
       background: black;
     }
-  }
-  .product_price{
-    font-size: 14px;
   }
 </style>

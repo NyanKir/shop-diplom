@@ -10,7 +10,7 @@ router.post('/product', function (req, res) {
 })
 
 router.get('/products', async function (req, res) {
-  const data = (await Product.find({}).exec()).map((el) => {
+  const data = (await Product.find({ categories: { $in: decodeURI(req.query.select).toLowerCase() } }).exec()).map((el) => {
     return {
       _id: el._id,
       title: el.title,

@@ -1,8 +1,8 @@
 <template>
   <form class="form">
-    <label for="vol"><slot /></label>
-    <div>
-      <div><span>$0</span> - <span>${{ value }}</span></div>
+    <label for="vol">
+      <slot />
+      <span>$0</span> - <span>${{ value }}</span>
       <input
         id="vol"
         v-model="value"
@@ -12,7 +12,7 @@
         max="50"
         @change="changeValue"
       >
-    </div>
+    </label>
   </form>
 </template>
 

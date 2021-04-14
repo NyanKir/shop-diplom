@@ -138,9 +138,6 @@ export default {
   padding: 0;
 }
 
-.fnt-weg-400{
-  font-weight: 400;
-}
 .right-side{
   float: right;
 }

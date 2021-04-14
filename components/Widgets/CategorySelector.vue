@@ -14,5 +14,11 @@ export default {
 </script>
 
 <style scoped>
+  .menu_list{
+    flex-direction: column;
+  }
+  .menu_list >>> .link{
+    font-weight: 400;
+  }
 
 </style>

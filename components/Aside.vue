@@ -36,9 +36,7 @@ export default {
 </script>
 
 <style scoped>
-  .menu_list{
-    flex-direction: column;
-  }
+
   .aside{
     margin-right: 20px;
     width: 100%;

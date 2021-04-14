@@ -31,7 +31,8 @@ export default {
         method: 'get',
         url: '/api/products',
         params: {
-          query: this.$route.query
+          query: this.$route.query,
+          select: this.$route.path.split('/').slice(-1)[0]
         }
       })
       this.products = res.data
