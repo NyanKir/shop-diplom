@@ -16,7 +16,7 @@
           <font-awesome-icon v-else :icon="['far', 'eye-slash']" size="sm" />
         </button>
       </label>
-      <a href="" class="menu_link fnt-400">
+      <a href="" class="link fnt-400">
         <span>
           Forgot your password?
         </span>
@@ -25,7 +25,7 @@
         Sig in
       </button>
     </form>
-    <NuxtLink to="/auth/signup" class="menu_link">
+    <NuxtLink to="/auth/signup" class="link">
       <span>
         No account? Create one here
       </span>

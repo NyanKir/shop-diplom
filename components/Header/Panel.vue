@@ -4,11 +4,11 @@
       <font-awesome-icon :icon="['fas', 'search']" size="lg" class="panel_item-svg" />
     </div>
     <div class="panel_item">
-      <font-awesome-icon :icon="['far', 'user']" size="lg" class="panel_item-svg" @click="on=!on" />
+      <font-awesome-icon :icon="['fas', 'user']" size="lg" class="panel_item-svg" @click="on=!on" />
       <transition name="backInTop">
         <ul v-show="on" class="dropdown rm-indents">
           <li>
-            <NuxtLink to="/auth/signin" class="menu_link fnt-weg-400">
+            <NuxtLink to="/auth/signin" class="link fnt-weg-400">
               <span>
                 <font-awesome-icon :icon="['fas', 'unlock-alt']" size="lg" class="dropdown_link-svg" />
                 Sign in

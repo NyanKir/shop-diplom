@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3 class="h3">
+    <h3 v-show="hasDefaultSlot" class="h3">
       <slot />
     </h3>
     <ol class="breadcrumbs">
@@ -34,6 +34,9 @@ export default {
       return keys.map((el, i) => {
         return { title: this.$route.params[el], path: '/' + paths[i + 1] }
       })
+    },
+    hasDefaultSlot () {
+      return !!this.$slots.default
     }
   }
 }
@@ -50,9 +53,14 @@ export default {
   list-style: none;
   padding: 0;
 }
-.breadcrumbs_crumb{
+.breadcrumbs_crumb:not(:last-child,:first-child){
   margin: 0 8px;
-
+}
+.breadcrumbs_crumb:last-child{
+  margin-left: 8px;
+}
+.breadcrumbs_crumb:first-child{
+  margin-right: 8px;
 }
 .breadcrumbs_crumb:not(:last-child):after{
   content: '/';

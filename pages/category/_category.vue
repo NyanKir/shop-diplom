@@ -9,7 +9,7 @@
 
 <script>
 import BreadCrumbs from '../../components/BreadCrumbs'
-import GalleryProducts from '../../components/Product/GalleryProducts'
+import GalleryProducts from '../../components/Product/Gallery/GalleryProducts'
 export default {
   name: 'Category',
   components: { GalleryProducts, BreadCrumbs },

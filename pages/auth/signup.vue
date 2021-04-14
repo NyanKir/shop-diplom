@@ -64,7 +64,7 @@
       </button>
       <h3 class="h3">
         Already have an account?
-        <NuxtLink to="/auth/signin" class="menu_link">
+        <NuxtLink to="/auth/signin" class="link">
           <span>
             Log in instead!
           </span>

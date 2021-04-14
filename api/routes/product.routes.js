@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router({ mergeParams: true })
+const mongoose = require('mongoose')
 const Product = require('../models/product.model')
 
 router.post('/product', function (req, res) {
@@ -10,8 +11,20 @@ router.post('/product', function (req, res) {
 
 router.get('/products', async function (req, res) {
   const data = (await Product.find({}).exec()).map((el) => {
-    return { title: el.title, sale: el.sale, price: el.price, image: el.image, rating: el.review[0].rating }
+    return {
+      _id: el._id,
+      title: el.title,
+      sale: el.sale,
+      price: el.price,
+      gallery: el.gallery,
+      rating: el.review[0].rating
+    }
   })
+  res.json(data).end()
+})
+
+router.get('/product', async function (req, res) {
+  const data = (await Product.find({ _id: mongoose.Types.ObjectId(req.query.id) }).exec())
   res.json(data).end()
 })
 module.exports = router

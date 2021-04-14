@@ -1,6 +1,6 @@
 <template>
   <div class="container__gallery">
-    <Product v-for="product in products" :key="product.title" :product="product" />
+    <Product v-for="product in products" :key="product._id" :product="product" />
   </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
 
 </style>
