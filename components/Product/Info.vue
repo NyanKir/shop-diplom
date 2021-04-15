@@ -13,6 +13,7 @@
       <Quantity :quantity="quantity" @changeQuantity="quantityHandler" @quantityChanged="quantityChanged" />
     </div>
     <button type="submit" class="btn">
+      <font-awesome-icon :icon="['fas', 'cart-plus']" size="lg" />
       Add to car
     </button>
   </div>

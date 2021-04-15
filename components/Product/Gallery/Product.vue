@@ -1,6 +1,9 @@
 <template>
   <div class="product">
     <div class="product_img-wrapper">
+      <div v-if="product.sale" class="product_discount">
+        <span>{{ product.sale }}%</span>
+      </div>
       <NuxtLink :to="'/product/'+product.title+'?id='+product._id">
         <img :src="product.gallery[0]" :alt="product.title" class="product_img">
         <img :src="product.gallery[1]" :alt="product.title+'2'" class="product_img">
@@ -41,7 +44,7 @@ export default {
 
   }
   .product_info /deep/ .price_discount{
-    font-size: 12px;
+    display: none;
   }
   .product_img-wrapper{
     overflow: hidden;
@@ -113,5 +116,16 @@ export default {
       transition: 10ms;
       background: black;
     }
+  }
+
+  .product_discount{
+    z-index: 1;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: $main;
+    color: white;
+    padding: 0 5px;
+    font-size: 13px;
   }
 </style>
