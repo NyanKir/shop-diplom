@@ -13,7 +13,14 @@ import GalleryProducts from '../../components/Product/Gallery/GalleryProducts'
 export default {
   name: 'Category',
   components: { GalleryProducts, BreadCrumbs },
-  layout: 'sidebar'
+  layout: 'sidebar',
+  watch: {
+    $route () {
+      if (this.$route.query.page === undefined) {
+        this.$router.push({ path: this.$route.path, query: { page: '1' } })
+      }
+    }
+  }
 }
 </script>
 

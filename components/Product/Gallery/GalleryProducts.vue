@@ -1,20 +1,35 @@
 <template>
-  <div class="container__gallery">
-    <Product v-for="product in products" :key="product._id" :product="product" />
+  <div class="container container__flex">
+    <div class="gallery">
+      <Product v-for="product in productsOnPage" :key="product._id" :product="product" />
+    </div>
+    <Pagination :pages="countPages" />
   </div>
 </template>
 
 <script>
 import Product from './Product'
+import Pagination from './Pagination'
 export default {
   name: 'GalleryProducts',
-  components: { Product },
+  components: { Pagination, Product },
   loading: {
     continuous: true
   },
   data () {
     return {
-      products: []
+      products: [],
+      maxProducts: 6,
+      countPages: 0
+    }
+  },
+  computed: {
+    productsOnPage () {
+      function paginate (array, pageSize, pageNumber) {
+        return array.slice((pageNumber - 1) * pageSize, pageNumber * pageSize)
+      }
+
+      return paginate(this.products, this.maxProducts, this.$route.query.page)
     }
   },
   watch: {
@@ -36,14 +51,18 @@ export default {
         }
       })
       this.products = res.data
+      this.countPages = Math.ceil(res.data.length / this.maxProducts)
     }
-
   }
 }
 </script>
 
 <style scoped lang="scss">
-  .container__gallery{
+  .container__flex{
+    flex-direction: column;
+  }
+
+  .gallery{
     display: flex;
     flex-direction: row;
     justify-content: space-around;

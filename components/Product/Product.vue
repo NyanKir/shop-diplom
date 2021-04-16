@@ -50,6 +50,9 @@ export default {
 </script>
 
 <style scoped>
+  .product{
+    margin-top: 20px;
+  }
   .product_slider{
     min-width: 360px;
     height:auto;

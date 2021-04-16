@@ -48,8 +48,9 @@ export default {
   cursor: pointer;
 }
 .dropdown{
+  border: 1px solid $gray;
   flex-direction: column;
-  padding: 10px 5px;
+  padding: 10px ;
 }
 .dropdown_link-svg{
   margin-right: 5px;
