@@ -7,6 +7,7 @@ html,[type='text'],[type='email'],[type='password'] {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
+
 [type='text'],[type='email'],[type='password']{
   font-size: 13px;
 }
@@ -48,8 +49,11 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   cursor: pointer;
   transition: .3s;
+  outline: none;
 
-  &:hover{
+
+  &:hover, &:active{
+    outline: none;
     background: $black;
     transition: .3s;
   }
@@ -124,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
   padding: 0 6px;
   transition: .3s;
-  border: 1px solid #8f8e8e;
+  border: 1px solid $gray;
 
   &:focus{
     border: 1px solid $main;

@@ -13,6 +13,7 @@ const productModel = new Schema({
     reviewFrom: String,
     description: String
   }],
-  categories: [String]
+  categories: [String],
+  details: [Object]
 })
 module.exports = model('Product', productModel)

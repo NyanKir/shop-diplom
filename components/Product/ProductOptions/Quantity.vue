@@ -53,6 +53,12 @@ export default {
   justify-content: center;
   height: 19px;
   width: 20px;
+  outline: none;
+
+  &:active, :focus{
+    outline: none;
+  }
+
   &:first-child{
     margin-bottom: 2px;
   }

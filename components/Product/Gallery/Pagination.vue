@@ -1,7 +1,7 @@
 <template>
-  <div v-if="pages " class="pagination">
+  <div v-if="pages" class="pagination">
     <ul class="pagination_elements">
-      <NuxtLink :to="'?page='+parseInt(this.$route.query.page)-1">
+      <NuxtLink :to="'?page='+(parseInt(this.$route.query.page)-1)">
         <li v-if="parseInt(this.$route.query.page) !== 1" class="pagination_element">
           <font-awesome-icon :icon="['fas', 'chevron-left']" size="xs" />
         </li>
