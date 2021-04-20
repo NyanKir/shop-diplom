@@ -50,6 +50,9 @@ export default {
           select: this.$route.path.split('/').slice(-1)[0]
         }
       })
+      if (!res.data.length) {
+        return this.$nuxt.error({ statusCode: 404, message: 'Sorry, but there are no products on this page.' })
+      }
       this.products = res.data
       this.countPages = Math.ceil(res.data.length / this.maxProducts)
     }

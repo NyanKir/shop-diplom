@@ -44,6 +44,11 @@ export default {
       this.currentImage = img.path[0].currentSrc
     }
   },
+  head () {
+    return {
+      title: this.$route.params.index
+    }
+  },
   layout: 'sidebar'
 }
 </script>

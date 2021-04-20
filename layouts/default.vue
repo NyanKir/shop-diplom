@@ -1,7 +1,10 @@
 <template>
-  <div class="container container__screen">
-    <Header />
-    <Nuxt />
+  <div>
+    <div class="container container__screen">
+      <Header />
+      <Nuxt />
+    </div>
+    <Footer />
   </div>
 </template>
 
@@ -45,8 +48,9 @@
 </style>
 <script>
 import Header from '@/components/Header/Header'
+import Footer from '../components/Footer/Footer'
 
 export default {
-  components: { Header }
+  components: { Footer, Header }
 }
 </script>
