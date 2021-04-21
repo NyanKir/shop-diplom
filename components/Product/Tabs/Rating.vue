@@ -100,8 +100,5 @@ export default {
       background: $white;
     }
 
-    .p{
-
-    }
   }
 </style>

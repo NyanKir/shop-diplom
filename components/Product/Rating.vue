@@ -30,6 +30,6 @@ export default {
   margin: 0 1px;
 }
 .rating_star__checked{
-  color: #FFC43B;
+  color: $yellow-star;
 }
 </style>

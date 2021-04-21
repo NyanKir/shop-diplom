@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container container__screen">
+    <div class="container">
       <Header />
       <Nuxt />
     </div>
@@ -15,33 +15,31 @@
   box-sizing: border-box;
   margin: 0;
 }
-
-.container__screen{
+.container{
+  width: 100%;
   margin: 0 auto;
-  max-width: $pc-size;
 }
 
 @media (min-width: 768px) {
-  .container__screen {
+  .container {
     max-width: 720px;
   }
 }
 
 @media (min-width: 992px) {
-  .container__screen{
+  .container{
     max-width: 940px;
   }
 }
 @media (min-width: 1250px){
-  .container__screen {
+  .container {
     max-width: $pc-size;
   }
 }
 
 @media (max-width: 767px){
-  .container__screen {
-    max-width: 100%;
-    margin: 0 10px;
+  .container {
+    padding: 0 10px;
   }
 
 }

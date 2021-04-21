@@ -50,7 +50,7 @@ export default {
 .tab_button {
   transition: none;
   margin: 0 2px;
-  color: black;
+  color: $black;
   cursor: pointer;
   background: transparent;
   padding: 10px 20px;

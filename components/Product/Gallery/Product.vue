@@ -50,9 +50,7 @@ export default {
     overflow: hidden;
     position: relative;
     width: 100%;
-    max-width: 245px;
-    height: 100%;
-    max-height: 300px;
+    height: auto;
 
     &:hover .product_img:nth-child(2){
       transform: rotateX(0deg);
@@ -64,14 +62,10 @@ export default {
       transition: .3s;
     }
   }
-
   .product{
-    flex: 1 1 30%;
-    margin: 10px;
-    height: fit-content;
-
+    width: 100%;
+    height: 100%;
   }
-
   .product_img{
     width: 100%;
     height: 100%;
@@ -119,15 +113,19 @@ export default {
       background: black;
     }
   }
-
   .product_discount{
     z-index: 1;
     position: absolute;
     top: 5px;
     left: 5px;
     background: $main;
-    color: white;
+    color: $white;
     padding: 0 5px;
     font-size: 13px;
+  }
+  @media (max-width: 992px) {
+    .product_img-wrapper{
+      max-width: 100%;
+    }
   }
 </style>

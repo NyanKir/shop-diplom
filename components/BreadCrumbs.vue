@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="breadcrumbs">
     <h3 v-show="hasDefaultSlot" class="h3">
       <slot />
     </h3>
-    <ol class="breadcrumbs">
+    <ol class="breadcrumbs_container">
       <li class="breadcrumbs_crumb">
         <NuxtLink to="/" class="breadcrumbs_link">
           <span class="breadcrumbs_text">
@@ -43,12 +43,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.container{
+.breadcrumbs{
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
-.breadcrumbs{
+.breadcrumbs_container{
   display: flex;
   list-style: none;
   padding: 0;
@@ -78,7 +78,7 @@ export default {
 }
 .breadcrumbs_text{
   text-transform: capitalize;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 300;
 }
 

@@ -34,7 +34,7 @@ export default {
   color: $gray;
 }
 .price_discount{
-  color:red;
+  color:$red;
 }
 .price{
   margin-top: 5px;

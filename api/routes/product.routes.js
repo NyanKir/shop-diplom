@@ -25,7 +25,7 @@ router.get('/products', async function (req, res) {
   }
   const data = (await Product.find({
     categories: { $in: decodeURI(req.query.select).toLowerCase() },
-    price: { $gt: 0, $lte: JSON.parse(req.query.query).price ? JSON.parse(req.query.query).price : -1 }
+    price: { $gt: 0, $lte: JSON.parse(req.query.query).price || -1 }
   }, null, sort).exec()).map((el) => {
     return {
       _id: el._id,

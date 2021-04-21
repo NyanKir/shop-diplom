@@ -125,7 +125,7 @@ export default {
 <style scoped lang="scss">
 
   .information{
-    background: #f2f2f2;
+    background: $gray-f2;
   }
   .menu_list{
     background: transparent;
@@ -158,7 +158,7 @@ export default {
   }
   .information_block{
     flex: 1 1 auto;
-    margin: 0 10px;
+    padding: 0 10px;
   }
   .information_block-el{
     span{
@@ -208,6 +208,7 @@ export default {
     align-items: baseline;
   }
   @media (max-width: 992px){
+
     .information .show{
       display: flex;
     }

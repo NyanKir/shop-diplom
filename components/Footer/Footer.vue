@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer container">
+  <footer class="footer">
     <information />
     <Mailing />
     <Basement />

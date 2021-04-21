@@ -1,8 +1,9 @@
 <template>
-  <div class="container container__flex">
+  <div class="gallery">
     <div v-if="products!=null">
       <Sorting />
-      <div class="gallery">
+      <ActiveFilters v-if="haveQueries" />
+      <div class="gallery_container">
         <Product v-for="product in productsOnPage" :key="product._id" :product="product" />
       </div>
       <Pagination :pages="countPages" />
@@ -16,9 +17,10 @@ import Error from '../../../layouts/error'
 import Product from './Product'
 import Pagination from './Pagination'
 import Sorting from './Sorting'
+import ActiveFilters from './ActiveFilters'
 export default {
   name: 'GalleryProducts',
-  components: { Error, Sorting, Pagination, Product },
+  components: { ActiveFilters, Error, Sorting, Pagination, Product },
   loading: {
     continuous: true
   },
@@ -26,8 +28,8 @@ export default {
     return {
       products: [],
       maxProducts: 6,
-      countPages: 0
-
+      countPages: 0,
+      forbiddenQueries: ['sort', 'page', 'price']
     }
   },
   computed: {
@@ -37,6 +39,9 @@ export default {
       }
 
       return paginate(this.products, this.maxProducts, this.$route.query.page)
+    },
+    haveQueries () {
+      return Object.keys(this.$route.query).some(el => !this.forbiddenQueries.includes(el))
     }
   },
   watch: {
@@ -69,15 +74,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .container__flex{
-    flex-direction: column;
+  .gallery{
+    width: 100%;
+  }
+  .gallery_container{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
   }
 
-  .gallery{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
+  @media (max-width: 580px) {
+    .gallery_container {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
 </style>

@@ -1,16 +1,14 @@
 <template>
   <div class="mailing">
     <label for="mailing" class="mailing_label">
-      <h1 class="h1">
-        <font-awesome-icon :icon="['far', 'envelope']" size="lg" />
-
-        Get latest update & news
-      </h1>
-      <input id="mailing" type="email" class="input mailing_input" placeholder="Your Email Addres">
+      <h1 class="h1"><font-awesome-icon :icon="['far', 'envelope']" size="lg" /> Get latest update & news</h1>
     </label>
-    <button class="btn mailing_btn" type="submit">
-      <font-awesome-icon :icon="['far', 'paper-plane']" size="lg" />
-    </button>
+    <form action="" class="mailing_form">
+      <input id="mailing" type="email" class="input mailing_input" placeholder="Your Email Addres">
+      <button class="btn mailing_btn" type="submit">
+        <font-awesome-icon :icon="['far', 'paper-plane']" size="lg" />
+      </button>
+    </form>
   </div>
 </template>
 
@@ -21,17 +19,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .mailing{
+  .mailing,.mailing_form{
     display: flex;
+  }
+
+  .mailing{
     align-items: center;
     justify-content: center;
-
     padding: 20px;
+  }
+  .mailing_form{
+    align-items: flex-end;
   }
   .mailing_input{
     border: 1px solid transparent;
-    background: #f2f2f2;
-    color: #858585;
+    background: $gray-f2;
+    color: $gray-85;
     padding: 8px 15px;
   }
   .mailing_btn{
@@ -44,20 +47,23 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    .h1{
-      margin-right: 30px;
-    }
   }
 
+  .h1{
+    margin-right: 30px;
+  }
   @media (max-width: 992px){
-    .mailing {
-      align-items: flex-end;
+    .h1{
+      margin-right: 0;
     }
-    .mailing_label{
+    .mailing {
       flex-direction: column;
     }
+
     .mailing_input{
       margin-top: 10px;
+      width: 100%;
+      max-width: 350px;
     }
   }
 </style>

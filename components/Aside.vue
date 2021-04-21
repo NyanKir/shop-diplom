@@ -49,4 +49,9 @@ export default {
       max-width: 180px;
     }
   }
+  @media (max-width: 768px) {
+    .aside {
+      display: none;
+    }
+  }
 </style>

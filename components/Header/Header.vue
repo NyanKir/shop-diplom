@@ -107,7 +107,7 @@ export default {
   height: auto;
   width: 100%;
   overflow: hidden;
-  background: white;
+  background: $white;
   list-style: none;
   padding-left: 0;
 }
@@ -117,7 +117,7 @@ export default {
 }
 
 .dropdown{
-  background: white;
+  background: $white;
   position: absolute;
   width: 100%;
   left: 0;
@@ -150,7 +150,7 @@ export default {
     flex-direction: column;
   }
   .mobile_menu{
-    z-index: 1;
+    z-index: 2;
     display: flex;
   }
   .menu{

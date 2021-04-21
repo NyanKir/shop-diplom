@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <BreadCrumbs>
       {{ this.$route.params.category }}
     </Breadcrumbs>
@@ -24,6 +24,11 @@ export default {
   created () {
     if (this.$route.query.page === undefined) {
       this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: '1' } })
+    }
+  },
+  head () {
+    return {
+      title: this.$route.params.category.charAt(0).toUpperCase() + this.$route.params.category.slice(1)
     }
   }
 }

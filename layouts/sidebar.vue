@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="container container__screen">
+    <div class="container">
       <Header />
-      <section class="container container__flex">
+      <section class="container_section">
         <Aside />
         <Nuxt />
       </section>
@@ -19,5 +19,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.container_section{
+  display: flex;
+}
 </style>

@@ -64,6 +64,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    &:last-child{
+      margin: 0 0 0 5px;
+    }
+    &:first-child{
+      margin: 0 5px 0 0;
+    }
 
     &:hover{
       background: $black;

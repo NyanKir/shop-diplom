@@ -46,7 +46,7 @@ export default {
 }
 .quantity_option-handler-btn{
   cursor: pointer;
-  background: white;
+  background: $white;
   border: 1px solid $gray;
   display: flex;
   align-items: center;
