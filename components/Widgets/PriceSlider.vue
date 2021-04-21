@@ -9,7 +9,7 @@
         type="range"
         name="vol"
         min="0"
-        max="50"
+        :max="maxValue"
         @change="changeValue"
       >
     </label>
@@ -21,12 +21,13 @@ export default {
   name: 'PriceSlider',
   data () {
     return {
-      value: (this.$route.query.price) ? this.$route.query.price : 0
+      value: (this.$route.query.price) ? parseInt(this.$route.query.price) : 50,
+      maxValue: 50
     }
   },
   methods: {
     changeValue () {
-      this.$router.push({ path: this.$route.path, query: { price: this.value } })
+      this.$router.push({ path: this.$route.path, query: { ...this.$route.query, price: this.value } })
     }
   }
 }

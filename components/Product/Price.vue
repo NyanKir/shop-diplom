@@ -3,7 +3,7 @@
     <span v-if="!sale" class="price_regular">{{ price.toFixed(2) }}</span>
     <div v-else>
       <span class="price_regular">
-        ${{ Math.round(price-price%20).toFixed(2) }}
+        ${{ Math.round(price-(price/ 100 * 20)).toFixed(2) }}
       </span>
 
       <span class="price_discount">save {{ sale }}%</span>

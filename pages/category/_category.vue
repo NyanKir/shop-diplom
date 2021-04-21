@@ -17,13 +17,13 @@ export default {
   watch: {
     $route () {
       if (this.$route.query.page === undefined) {
-        this.$router.push({ path: this.$route.path, query: { page: '1' } })
+        this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: '1' } })
       }
     }
   },
   created () {
     if (this.$route.query.page === undefined) {
-      this.$router.push({ path: this.$route.path, query: { page: '1' } })
+      this.$router.push({ path: this.$route.path, query: { ...this.$route.query, page: '1' } })
     }
   }
 }

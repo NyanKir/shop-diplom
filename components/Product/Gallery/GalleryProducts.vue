@@ -1,18 +1,24 @@
 <template>
   <div class="container container__flex">
-    <div class="gallery">
-      <Product v-for="product in productsOnPage" :key="product._id" :product="product" />
+    <div v-if="products!=null">
+      <Sorting />
+      <div class="gallery">
+        <Product v-for="product in productsOnPage" :key="product._id" :product="product" />
+      </div>
+      <Pagination :pages="countPages" />
     </div>
-    <Pagination :pages="countPages" />
+    <Error v-else :error="{statusCode:'404',message: 'Sorry, but there are no products on this page.'}" />
   </div>
 </template>
 
 <script>
+import Error from '../../../layouts/error'
 import Product from './Product'
 import Pagination from './Pagination'
+import Sorting from './Sorting'
 export default {
   name: 'GalleryProducts',
-  components: { Pagination, Product },
+  components: { Error, Sorting, Pagination, Product },
   loading: {
     continuous: true
   },
@@ -21,6 +27,7 @@ export default {
       products: [],
       maxProducts: 6,
       countPages: 0
+
     }
   },
   computed: {
@@ -46,12 +53,13 @@ export default {
         method: 'get',
         url: '/api/products',
         params: {
-          query: this.$route.query,
+          query: { ...this.$route.query, price: (this.$route.query.price) ? this.$route.query.price : 50 },
           select: this.$route.path.split('/').slice(-1)[0]
         }
       })
       if (!res.data.length) {
-        return this.$nuxt.error({ statusCode: 404, message: 'Sorry, but there are no products on this page.' })
+        this.products = null
+        return
       }
       this.products = res.data
       this.countPages = Math.ceil(res.data.length / this.maxProducts)

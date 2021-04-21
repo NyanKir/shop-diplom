@@ -68,6 +68,8 @@ export default {
   .product{
     flex: 1 1 30%;
     margin: 10px;
+    height: fit-content;
+
   }
 
   .product_img{
@@ -75,7 +77,6 @@ export default {
     height: 100%;
 
     &:nth-child(2){
-      background: red;
       right: 0;
       top: 0;
       bottom: 0;
@@ -83,6 +84,7 @@ export default {
       position: absolute;
       opacity: 0;
       transition: .3s;
+      height: auto;
       transform: rotateX(90deg);
     }
   }

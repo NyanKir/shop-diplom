@@ -10,7 +10,23 @@ router.post('/product', function (req, res) {
 })
 
 router.get('/products', async function (req, res) {
-  const data = (await Product.find({ categories: { $in: decodeURI(req.query.select).toLowerCase() } }).exec()).map((el) => {
+  let sort = null
+  const typeSort = JSON.parse(req.query.query).sort
+
+  if (typeSort) {
+    switch (typeSort) {
+      case 'high':
+        sort = { sort: { price: -1 } }
+        break
+      case 'low':
+        sort = { sort: { price: 1 } }
+        break
+    }
+  }
+  const data = (await Product.find({
+    categories: { $in: decodeURI(req.query.select).toLowerCase() },
+    price: { $gt: 0, $lte: JSON.parse(req.query.query).price ? JSON.parse(req.query.query).price : -1 }
+  }, null, sort).exec()).map((el) => {
     return {
       _id: el._id,
       title: el.title,

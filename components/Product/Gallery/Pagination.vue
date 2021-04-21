@@ -1,27 +1,18 @@
 <template>
-  <div v-if="pages" class="pagination">
+  <div v-if="pages " class="pagination">
     <ul class="pagination_elements">
-      <NuxtLink :to="'?page='+(parseInt(this.$route.query.page)-1)">
+      <NuxtLink :to="{query:{...this.$route.query,page: parseInt(this.$route.query.page)-1 }}">
         <li v-if="parseInt(this.$route.query.page) !== 1" class="pagination_element">
           <font-awesome-icon :icon="['fas', 'chevron-left']" size="xs" />
         </li>
       </NuxtLink>
 
-      <NuxtLink
-        v-for="page in pages"
-        :key="page"
-        :to="'?page='+page"
-        class="link"
-      >
-        <li
-
-          class="pagination_element"
-          :class="setDisabledPage(page)"
-        >
+      <NuxtLink v-for="page in pages" :key="page" :to="getNormalPath(page)" class="link">
+        <li class="pagination_element" :class="setDisabledPage(page)">
           {{ page }}
         </li>
       </NuxtLink>
-      <NuxtLink :to="'?page='+(parseInt(this.$route.query.page)+1)">
+      <NuxtLink :to="{query:{...this.$route.query,page: parseInt(this.$route.query.page)+1 }}">
         <li v-if="parseInt(this.$route.query.page)!==pages" class="pagination_element">
           <font-awesome-icon :icon="['fas', 'chevron-right']" size="xs" />
         </li>
@@ -40,6 +31,9 @@ export default {
         return { pagination_element__disabled: true }
       }
       return { pagination_element__disabled: page === parseInt(this.$route.query.page) }
+    },
+    getNormalPath (page) {
+      return { query: { ...this.$route.query, page } }
     }
 
   }

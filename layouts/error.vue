@@ -1,6 +1,5 @@
 <template>
   <section class="error">
-    <BreadCrumbs />
     <div>
       <h1 class="title">
         {{ error.statusCode }}
@@ -12,12 +11,9 @@
   </section>
 </template>
 <script>
-import BreadCrumbs from '../components/BreadCrumbs'
 export default {
-  components: { BreadCrumbs },
   props: ['error'],
   head () {
-    console.log(this)
     return {
       title: this.error.statusCode + ' - ' + this.error.message
     }
@@ -27,6 +23,10 @@ export default {
 
 <style scoped>
 .error{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0;
   width: 100%;
 }
 .title {
