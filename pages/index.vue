@@ -19,7 +19,7 @@ export default {
     createProduct () {
       this.$axios.$post('/api/product', JSON.stringify({
         title: 'Burabitur Dolor Nunc',
-        price: 11.40,
+        price: 51.40,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula.',
         filters: {
           size: { sx: 3, m: 10 },

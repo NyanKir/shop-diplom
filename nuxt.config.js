@@ -79,7 +79,7 @@ export default {
     scss: ['./assets/*.scss']
   },
   server: {
-    port: 8000
+    port: 9000
   },
   /*
   ** Server Middleware

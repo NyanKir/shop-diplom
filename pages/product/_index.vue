@@ -45,8 +45,7 @@ export default {
     return {
       title: this.$route.params.index
     }
-  },
-  layout: 'sidebar'
+  }
 }
 </script>
 

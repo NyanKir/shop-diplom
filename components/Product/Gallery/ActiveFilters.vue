@@ -4,10 +4,10 @@
       <h3 class="active-filters_title h3">
         Active Filters
       </h3>
-      <li v-for="filter in getAllFilters" :key="filter.index" class="active-filters_item">
+      <li v-for="(filter,index) in getAllFilters" :key="index" class="active-filters_item">
         <span class="active-filters_item-text">{{ filter.type }} : {{ filter.data }}</span>
         <button type="button" class="active-filters_item-btn">
-          <font-awesome-icon :icon="['fas', 'times']" size="xs" @click="removeQuery(filter.type)" />
+          <font-awesome-icon :icon="['fas', 'times']" size="xs" @click="removeQuery(filter.type,filter.data)" />
         </button>
       </li>
     </ul>
@@ -25,19 +25,37 @@ export default {
   computed: {
     getAllFilters () {
       const keys = Object.keys(this.$route.query).filter(r => !this.forbiddenValues.includes(r))
-        .map((el, i) => {
+        .map((el) => {
+          const element = this.$route.query[el]
+          if (Array.isArray(element)) {
+            return Object.keys(element).map((ind) => {
+              return {
+                type: el,
+                data: element[ind]
+              }
+            })
+          }
           return {
-            index: i,
             type: el,
-            data: this.$route.query[el]
+            data: element
           }
         })
-      return keys
+      return keys.flat(Infinity)
     }
   },
   methods: {
-    removeQuery (type) {
+    removeQuery (type, data) {
       const query = Object.assign({}, this.$route.query)
+
+      if (Array.isArray(query[type])) {
+        const res = query[type].filter(r => r !== data)
+        this.$router.push({
+          path: this.$route.path,
+          query: { ...this.$route.query, [type]: res }
+        })
+        return
+      }
+
       delete query[type]
       this.$router.replace({ query })
     }

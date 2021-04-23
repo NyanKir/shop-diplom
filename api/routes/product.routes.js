@@ -10,7 +10,6 @@ router.post('/product', function (req, res) {
 })
 
 router.get('/products', async function (req, res) {
-  console.log('herre')
   let sort = { _id: 1 }
   const typeSort = JSON.parse(req.query.query).sort
   if (typeSort) {
@@ -57,28 +56,40 @@ router.get('/product', async function (req, res) {
 })
 
 router.get('/getMaxPrice', async function (req, res) {
-  // maxPrice: { $max: '$price' },
-  console.log('hey')
-  const maxPrice = await Product.find({}).sort({ price: -1 }).limit(1)
-  res.status(200).json({ price: maxPrice[0].price }).end()
+  const doc = await Product.aggregate([
+    {
+      $match: {
+        $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        maxPrice: { $max: '$price' }
+      }
+    }
+  ])
+  res.status(200).json({ price: doc[0].maxPrice }).end()
 })
 
 router.get('/getCategories', async function (req, res) {
-  const doc = await Product.aggregate([{
-    $match: {
-      $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+  const doc = await Product.aggregate([
+    {
+      $match: {
+        $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        allFilters: { $push: { item: '$filters' } }
+      }
     }
-  },
-  {
-    $group: {
-      _id: null,
-      allFilters: { $push: { item: '$filters' } }
-    }
-  }
   ])
   doc[0].allFilters = doc[0].allFilters.map((el) => {
     return { ...el.item }
   })
   res.status(200).json(doc[0]).end()
 })
+
 module.exports = router
