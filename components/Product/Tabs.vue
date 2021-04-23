@@ -15,15 +15,14 @@
 <script>
 import TabDescription from './Tabs/Description'
 import TabRating from './Tabs/Rating'
-import TabDetails from './Tabs/Details'
 export default {
   name: 'Tabs',
-  components: { TabRating, TabDescription, TabDetails },
-  props: ['description', 'rating', 'details'],
+  components: { TabRating, TabDescription },
+  props: ['description', 'rating'],
   data () {
     return {
       currentTab: 'Description',
-      tabs: ['Description', 'Details', 'Rating']
+      tabs: ['Description', 'Rating']
     }
   },
   computed: {

@@ -54,20 +54,24 @@ export default {
   },
   methods: {
     async fetchData () {
-      const res = await this.$axios({
-        method: 'get',
-        url: '/api/products',
-        params: {
-          query: { ...this.$route.query, price: (this.$route.query.price) ? this.$route.query.price : 50 },
-          select: this.$route.path.split('/').slice(-1)[0]
+      try {
+        const res = await this.$axios({
+          method: 'get',
+          url: '/api/products',
+          params: {
+            query: { ...this.$route.query, price: (this.$route.query.price) ? this.$route.query.price : 100000 },
+            select: this.$route.path.split('/').slice(-1)[0]
+          }
+        })
+        if (!res.data.length) {
+          this.products = null
+          return
         }
-      })
-      if (!res.data.length) {
-        this.products = null
-        return
+        this.products = res.data
+        this.countPages = Math.ceil(res.data.length / this.maxProducts)
+      } catch (e) {
+        console.log(e)
       }
-      this.products = res.data
-      this.countPages = Math.ceil(res.data.length / this.maxProducts)
     }
   }
 }

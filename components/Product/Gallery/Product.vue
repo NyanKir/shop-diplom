@@ -1,8 +1,8 @@
 <template>
   <div class="product">
     <div class="product_img-wrapper">
-      <div v-if="product.sale" class="product_discount">
-        <span>{{ product.sale }}%</span>
+      <div v-if="product.discountPrice" class="product_discount">
+        <span>{{ Math.trunc(((product.price-product.discountPrice)/product.price)*100) }}%</span>
       </div>
       <NuxtLink :to="'/product/'+product.title+'?id='+product._id">
         <img :src="product.gallery[0]" :alt="product.title" class="product_img">
@@ -23,7 +23,7 @@
       <NuxtLink :to="'/product/'+product.title+'?id='+product._id" class="link fnt-weg-400">
         <span>{{ product.title }}</span>
       </NuxtLink>
-      <Price :price="product.price" :sale="product.sale" />
+      <Price :price="product.price" :discount="product.discountPrice" />
     </div>
   </div>
 </template>

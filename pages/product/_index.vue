@@ -3,7 +3,7 @@
     <BreadCrumbs />
     <div class="container">
       <Product :product="product" :current-image="currentImage" :change-image="changeImage" />
-      <Tabs :description="product.description" :rating="product.review" details="nothing" />
+      <Tabs :description="product.description" :rating="product.review" />
     </div>
   </div>
 </template>
@@ -15,9 +15,6 @@ import Tabs from '../../components/Product/Tabs'
 export default {
   name: 'Index',
   components: { Tabs, Product, BreadCrumbs },
-  loading: {
-    continuous: true
-  },
   data () {
     return {
       product: [],

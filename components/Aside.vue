@@ -18,10 +18,50 @@ export default {
   components: { WidgetWrap, PriceSlider, CategorySelector },
   data () {
     return {
-      links: this.$store.state.modules.menu.links
+      links: this.$store.state.modules.menu.links,
+      WidgetFilters: undefined
     }
   },
-  // исправьить
+  // async mounted () {
+  //   try {
+  //     const res = await this.$axios({
+  //       method: 'get',
+  //       url: '/api/getCategories',
+  //       params: {
+  //         select: this.$route.path.split('/').slice(-1)[0]
+  //       }
+  //     })
+  //
+  //     this.WidgetFilters = res.data.allFilters.reduce((acc, el, i) => {
+  //       let myObj = {}
+  //
+  //       for (const name in el) {
+  //         if (Object.prototype.hasOwnProperty.call(acc, name)) {
+  //           for (const childName in el[name]) {
+  //             if (Object.prototype.hasOwnProperty.call(acc[name], childName)) {
+  //               if (!myObj[name]) {
+  //                 myObj = { ...myObj, [name]: acc[name] }
+  //               }
+  //               myObj[name][childName] = acc[name][childName] + el[name][childName]
+  //             } else {
+  //               if (!myObj[name]) {
+  //                 myObj = { ...myObj, [name]: acc[name] }
+  //               }
+  //
+  //               myObj[name][childName] = el[name][childName]
+  //             }
+  //           }
+  //         } else {
+  //           myObj[name] = el[name]
+  //         }
+  //       }
+  //       return { ...myObj }
+  //     }, {})
+  //   } catch (e) {
+  //     console.error(e)
+  //   }
+  // },
+  // исправить
   created () {
     const link = this.$store.state.modules.menu.links
     for (const index in link) {

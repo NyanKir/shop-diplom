@@ -9,7 +9,7 @@
       :title="product.title"
       :price="product.price"
       :description="product.description"
-      :sale="product.sale"
+      :discount="product.discountPrice"
     />
   </div>
 </template>

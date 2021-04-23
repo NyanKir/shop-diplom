@@ -49,6 +49,9 @@ import Header from '@/components/Header/Header'
 import Footer from '../components/Footer/Footer'
 
 export default {
-  components: { Footer, Header }
+  components: { Footer, Header },
+  loading: {
+    continuous: true
+  }
 }
 </script>

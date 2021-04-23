@@ -4,7 +4,7 @@
       {{ title }}
     </h2>
     <Rating :rating="rating" />
-    <Price :price="price" :sale="sale" />
+    <Price :price="price" :discount="discount" />
     <p class="info_description">
       {{ description }}
     </p>
@@ -26,7 +26,7 @@ import Price from './Price'
 export default {
   name: 'Info',
   components: { Price, Quantity, Rating },
-  props: ['title', 'price', 'description', 'review', 'sale'],
+  props: ['title', 'price', 'description', 'review', 'discount'],
   data () {
     return {
       quantity: 0

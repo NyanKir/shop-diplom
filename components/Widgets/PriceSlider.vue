@@ -19,10 +19,30 @@
 <script>
 export default {
   name: 'PriceSlider',
+  async fetch () {
+    try {
+      const res = await this.$axios({
+        method: 'get',
+        url: '/api/getMaxPrice',
+        params: {
+          select: this.$route.path.split('/').slice(-1)[0]
+        }
+      })
+      if (!this.$route.path.price) {
+        await this.$router.push({ path: this.$route.path, query: { ...this.$route.query, price: res.data.price } })
+        this.value = res.data.price
+        return
+      }
+      this.maxValue = res.data.price
+      this.value = this.$route.query.price
+    } catch (e) {
+      console.error(e)
+    }
+  },
   data () {
     return {
-      value: (this.$route.query.price) ? parseInt(this.$route.query.price) : 50,
-      maxValue: 50
+      maxValue: null,
+      value: null
     }
   },
   methods: {

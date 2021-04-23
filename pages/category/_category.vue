@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <BreadCrumbs>
       {{ this.$route.params.category }}
     </Breadcrumbs>
