@@ -9,10 +9,11 @@
           v-for="(item, filterVar) in filter"
           :key="filterVar"
           :what="name"
+          :item="item"
           :name="filterVar"
           class="filters_filter-item filters_filter-text filters_filter-text__weight-400"
         >
-          <span>({{ item }})</span>
+          <span>({{ item.count }})</span>
         </ListFilter>
       </ul>
     </section>
@@ -29,6 +30,9 @@ export default {
 </script>
 
 <style  lang="scss">
+  .filters_filter{
+    margin-top: 8px;
+  }
   .filters_filter-text{
     font-size: 14px;
     line-height: 20px;
@@ -41,9 +45,10 @@ export default {
   }
 
   .filters_filter-list{
+    margin-top: 4px;
     width: 100%;
     list-style: none;
-    padding: 0 0 0 13px;
+    padding: 0;
   }
   .filters_filter-item{
     display: flex;

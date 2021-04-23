@@ -22,12 +22,26 @@ export default {
         price: 51.40,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula.',
         filters: {
-          size: { sx: 3, m: 10 },
-          color: { pink: 1, yellow: 10 }
+          size: { xl: { value: 'xl', count: 2 }, m: { value: 'm', count: 3 } },
+          color: { white: { value: '#ffffff', count: 1 }, yellow: { value: '#eaa20d', count: 1 } }
         },
         categories: ['silicon carbide'],
         review: [
           {
+            rating: 4,
+            reviewFrom: 'Notel',
+            description: 'Very Good'
+          },
+          {
+            rating: 5,
+            reviewFrom: 'Notel',
+            description: 'Very Good'
+          },
+          {
+            rating: 3,
+            reviewFrom: 'Notel',
+            description: 'Very Good'
+          }, {
             rating: 4,
             reviewFrom: 'Notel',
             description: 'Very Good'

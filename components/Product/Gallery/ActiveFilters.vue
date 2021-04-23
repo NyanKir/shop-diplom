@@ -46,13 +46,18 @@ export default {
   methods: {
     removeQuery (type, data) {
       const query = Object.assign({}, this.$route.query)
-
       if (Array.isArray(query[type])) {
         const res = query[type].filter(r => r !== data)
         this.$router.push({
           path: this.$route.path,
           query: { ...this.$route.query, [type]: res }
         })
+
+        if (!res.length) {
+          const query = Object.assign({}, this.$route.query)
+          delete query[type]
+          this.$router.replace({ query })
+        }
         return
       }
 
@@ -105,5 +110,10 @@ export default {
     height: auto;
     cursor: pointer;
     font-size: 15px;
+    outline: none;
+
+    &:active, &:hover{
+      outline: none;
+    }
   }
 </style>

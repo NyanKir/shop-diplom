@@ -65,7 +65,7 @@ export default {
                   if (!myObj[name]) {
                     myObj = { ...myObj, [name]: acc[name] }
                   }
-                  myObj[name][childName] = acc[name][childName] + el[name][childName]
+                  myObj[name][childName].count = acc[name][childName].count + el[name][childName].count
                 } else {
                   if (!myObj[name]) {
                     myObj = { ...myObj, [name]: acc[name] }
@@ -97,7 +97,9 @@ export default {
     max-width: 250px;
     height: 100%;
   }
-
+  .aside >>> .menu_list-item{
+    margin: 0;
+  }
   @media (max-width: 992px ) {
     .aside {
       max-width: 180px;

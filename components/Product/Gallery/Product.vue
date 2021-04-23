@@ -18,8 +18,7 @@
       </div>
     </div>
     <div class="product_info">
-      <Rating :rating="product.rating" />
-
+      <Rating :rating="getRating" />
       <NuxtLink :to="'/product/'+product.title+'?id='+product._id" class="link fnt-weg-400">
         <span>{{ product.title }}</span>
       </NuxtLink>
@@ -34,7 +33,16 @@ import Price from '../Price'
 export default {
   name: 'Product',
   components: { Price, Rating },
-  props: ['product']
+  props: ['product'],
+  computed: {
+    getRating () {
+      const result = this.product.review.reduce((acc, el) => {
+        return acc + el.rating
+      }, 0)
+
+      return (Math.round(result / this.product.review.length) > 5) ? 5 : Math.round(result / this.product.review.length)
+    }
+  }
 }
 </script>
 

@@ -13,7 +13,7 @@
         :checked="checkChecked"
         type="checkbox"
         class="checkbox checkbox__color"
-        :style="{'--backColor': name}"
+        :style="{'--backColor': item.value}"
         @change="changeQuery(name,what,$event)"
       >
       <span class="span">
@@ -27,7 +27,7 @@
 <script>
 export default {
   name: 'ListFilter',
-  props: ['what', 'name'],
+  props: ['what', 'name', 'item'],
   data () {
     return {
       checked: false
@@ -104,6 +104,9 @@ export default {
     background: var(--backColor);
     display: inline-block;
     visibility: visible;
+    border: 1px solid $gray;
+    border-radius: 2px;
+
   }
 
   [type='checkbox'].checkbox__color:checked {

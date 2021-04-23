@@ -64,6 +64,5 @@ export default {
 <style scoped>
   .form{
     align-items: flex-start;
-    margin-left: 13px;
   }
 </style>
