@@ -15,16 +15,15 @@ export default {
       home: 'Home'
     }
   },
+
   methods: {
     createProduct () {
       this.$axios.$post('/api/product', JSON.stringify({
         title: 'Burabitur Dolor Nunc',
         price: 51.40,
+        discountPrice: 10,
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at ante. Mauris eleifend, quam a vulputate dictum, massa quam dapibus leo, eget vulputate orci purus ut lorem. In fringilla mi in ligula.',
-        filters: {
-          size: { xl: { value: 'xl', count: 2 }, m: { value: 'm', count: 3 } },
-          color: { white: { value: '#ffffff', count: 1 }, yellow: { value: '#eaa20d', count: 1 } }
-        },
+        quantity: 10,
         categories: ['silicon carbide'],
         review: [
           {

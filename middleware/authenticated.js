@@ -3,11 +3,10 @@ export default async function (context) {
     method: 'get',
     url: '/api/isauth',
     withCredentials: true
-  })
-    .then((r) => {
-      console.log(r.status)
-      if (r.status === 200) {
-        return context.redirect('/')
-      }
-    }).catch(r => r)
+  }).then((r) => {
+    if (r.status === 200) {
+      context.store.commit('user/changeAuthentication', true)
+      return context.redirect('/')
+    }
+  }).catch(r => r)
 }

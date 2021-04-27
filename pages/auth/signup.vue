@@ -77,9 +77,6 @@
 <script>
 export default {
   name: 'Signup',
-
-  middleware: 'authenticated',
-
   data () {
     return {
       email: '',

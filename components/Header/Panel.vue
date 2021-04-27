@@ -1,10 +1,14 @@
 <template>
   <div class="panel">
     <div class="panel_item">
-      <font-awesome-icon :icon="['fas', 'search']" size="lg" class="panel_item-svg" />
+      <span>
+        <font-awesome-icon :icon="['fas', 'search']" size="lg" class="panel_item-svg" />
+      </span>
     </div>
-    <div class="panel_item">
-      <font-awesome-icon :icon="['fas', 'user']" size="lg" class="panel_item-svg" @click="on=!on" />
+    <div class="panel_item ">
+      <span>
+        <font-awesome-icon :icon="['fas', 'user']" size="lg" class="panel_item-svg" @click="on=!on" />
+      </span>
       <transition name="backInTop">
         <ul v-show="on" class="dropdown rm-indents">
           <li>
@@ -15,11 +19,23 @@
               </span>
             </NuxtLink>
           </li>
+          <li>
+            <NuxtLink to="/wishlist" class="link fnt-weg-400">
+              <span>
+                <font-awesome-icon :icon="['fas', 'heart']" size="lg" class="dropdown_link-svg" />
+                Wishlist
+              </span>
+            </NuxtLink>
+          </li>
         </ul>
       </transition>
     </div>
     <div class="panel_item">
-      <font-awesome-icon :icon="['fas', 'shopping-cart']" size="lg" class="panel_item-svg" />
+      <NuxtLink to="/cart">
+        <span>
+          <font-awesome-icon :icon="['fas', 'shopping-cart']" size="lg" class="panel_item-svg" />
+        </span>
+      </NuxtLink>
     </div>
   </div>
 </template>
@@ -39,12 +55,14 @@ export default {
 .panel{
   display: flex;
   position: relative;
+  align-items: center;
 }
 
 .panel_item{
   margin: 0 13px;
 }
 .panel_item-svg{
+  color: $black;
   cursor: pointer;
 }
 .dropdown{

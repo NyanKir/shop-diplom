@@ -22,6 +22,6 @@ export default {
     flex-direction: column;
     width: 100%;
     height: auto;
-    margin-top: 10px
+    margin-top: 50px
   }
 </style>

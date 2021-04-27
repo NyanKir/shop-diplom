@@ -21,6 +21,9 @@ export default {
       currentImage: undefined
     }
   },
+  loading: {
+    continuous: true
+  },
   async mounted () {
     try {
       const res = await this.$axios({

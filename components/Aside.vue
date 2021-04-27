@@ -1,13 +1,16 @@
 <template>
   <aside class="aside">
-    <WidgetWrap title="Category">
+    <WidgetWrap v-if="onPage" title="Category">
       <CategorySelector :links="links" />
     </WidgetWrap>
-    <WidgetWrap title="Price">
+    <WidgetWrap v-if="onPage" title="Price">
       <PriceSlider />
     </WidgetWrap>
-    <WidgetWrap title="Filters">
+    <WidgetWrap v-if="onPage" title="Filters">
       <Filters :filters="WidgetFilters" />
+    </WidgetWrap>
+    <WidgetWrap>
+      <Banner />
     </WidgetWrap>
   </aside>
 </template>
@@ -17,13 +20,19 @@ import CategorySelector from './Widgets/CategorySelector'
 import PriceSlider from './Widgets/PriceSlider'
 import WidgetWrap from './Widgets/WidgetWrap'
 import Filters from './Widgets/Filters'
+import Banner from './Widgets/Banner'
 export default {
   name: 'Aside',
-  components: { Filters, WidgetWrap, PriceSlider, CategorySelector },
+  components: { Banner, WidgetWrap, Filters, PriceSlider, CategorySelector },
   data () {
     return {
-      links: this.$store.state.modules.menu.links,
+      links: this.$store.state.menu.links,
       WidgetFilters: undefined
+    }
+  },
+  computed: {
+    onPage () {
+      return this.$route.path.includes('category')
     }
   },
   watch: {
@@ -36,7 +45,7 @@ export default {
   },
   // исправить
   created () {
-    const link = this.$store.state.modules.menu.links
+    const link = this.$store.state.menu.links
     for (const index in link) {
       if (this.$route.path.includes(link[index].href)) {
         this.links = { 0: Object.entries(link).splice(index, 1)[0][1] }
@@ -47,39 +56,43 @@ export default {
   methods: {
     async fetchData () {
       try {
-        const res = await this.$axios({
-          method: 'get',
-          url: '/api/getCategories',
-          params: {
-            select: this.$route.path.split('/').slice(-1)[0]
-          }
-        })
-
-        this.WidgetFilters = res.data.allFilters.reduce((acc, el, i) => {
-          let myObj = {}
-
-          for (const name in el) {
-            if (Object.prototype.hasOwnProperty.call(acc, name)) {
-              for (const childName in el[name]) {
-                if (Object.prototype.hasOwnProperty.call(acc[name], childName)) {
-                  if (!myObj[name]) {
-                    myObj = { ...myObj, [name]: acc[name] }
-                  }
-                  myObj[name][childName].count = acc[name][childName].count + el[name][childName].count
-                } else {
-                  if (!myObj[name]) {
-                    myObj = { ...myObj, [name]: acc[name] }
-                  }
-
-                  myObj[name][childName] = el[name][childName]
-                }
-              }
-            } else {
-              myObj[name] = el[name]
+        if (this.$route.path.includes('category')) {
+          const res = await this.$axios({
+            method: 'get',
+            url: '/api/categories',
+            params: {
+              select: this.$route.path.split('/').slice(-1)[0]
             }
-          }
-          return { ...myObj }
-        }, {})
+          })
+          this.WidgetFilters = res.data.allFilters.reduce((acc, el, i) => {
+            let myObj = {}
+
+            for (const name in el) {
+              if (Object.prototype.hasOwnProperty.call(acc, name)) {
+                for (const childName in el[name]) {
+                  if (Object.prototype.hasOwnProperty.call(acc[name], childName)) {
+                    if (!myObj[name]) {
+                      myObj = { ...myObj, [name]: acc[name] }
+                    }
+                    myObj[name][childName].count = acc[name][childName].count + el[name][childName].count
+                  } else {
+                    if (!myObj[name]) {
+                      myObj = { ...myObj, [name]: acc[name] }
+                    }
+
+                    myObj[name][childName] = el[name][childName]
+                  }
+                }
+              } else {
+                myObj[name] = el[name]
+              }
+            }
+            if (Object.keys(myObj).length === 0) {
+              return acc
+            }
+            return { ...myObj }
+          }, {})
+        }
       } catch (e) {
         console.error(e)
       }
@@ -89,7 +102,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
   .aside{
     margin-right: 20px;

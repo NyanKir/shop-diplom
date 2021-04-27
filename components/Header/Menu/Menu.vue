@@ -13,7 +13,7 @@ export default {
   components: { DropDown },
   computed: {
     links () {
-      return this.$store.state.modules.menu.links
+      return this.$store.state.menu.links
     }
   }
 }

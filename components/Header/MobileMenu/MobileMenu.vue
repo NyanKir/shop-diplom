@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     links () {
-      return this.$store.state.modules.menu.links
+      return this.$store.state.menu.links
     }
   },
   emits: ['handler']

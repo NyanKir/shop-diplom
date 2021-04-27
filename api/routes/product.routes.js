@@ -51,11 +51,17 @@ router.get('/products', async function (req, res) {
 })
 
 router.get('/product', async function (req, res) {
+  if (Array.isArray(req.query.id)) {
+    const ids = req.query.id.map(el => mongoose.Types.ObjectId(JSON.parse(el).id))
+    const data = (await Product.find({ _id: { $in: ids } }).exec())
+    return res.status(201).json(data).end()
+  }
+
   const data = (await Product.find({ _id: mongoose.Types.ObjectId(req.query.id) }).exec())
   res.json(data).end()
 })
 
-router.get('/getMaxPrice', async function (req, res) {
+router.get('/maxPrice', async function (req, res) {
   const doc = await Product.aggregate([
     {
       $match: {
@@ -72,7 +78,7 @@ router.get('/getMaxPrice', async function (req, res) {
   res.status(200).json({ price: doc[0].maxPrice }).end()
 })
 
-router.get('/getCategories', async function (req, res) {
+router.get('/categories', async function (req, res) {
   const doc = await Product.aggregate([
     {
       $match: {

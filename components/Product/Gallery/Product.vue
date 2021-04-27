@@ -9,10 +9,20 @@
         <img :src="product.gallery[1]" :alt="product.title+'2'" class="product_img">
       </NuxtLink>
       <div class="product_img-panel">
-        <button class="product_img-panel-element">
+        <button
+          class="product_img-panel-element"
+          :class="{'product_img-panel-element__active':arrayOfCart.includes(product._id)}"
+          @click="arrayOfCart.includes(product._id)?removeFromCartList(product._id):addToCartList(product._id)"
+        >
           <font-awesome-icon :icon="['fas', 'cart-plus']" size="lg" />
         </button>
-        <button class="product_img-panel-element">
+        <button
+          class="product_img-panel-element"
+          :class="{'product_img-panel-element__active': arrayOfWish.includes(product._id)}"
+          @click="arrayOfWish.includes(product._id)?
+            removeFromWishList(product._id):
+            addToWishList(product._id)"
+        >
           <font-awesome-icon :icon="['fas', 'heart']" size="lg" />
         </button>
       </div>
@@ -41,6 +51,33 @@ export default {
       }, 0)
 
       return (Math.round(result / this.product.review.length) > 5) ? 5 : Math.round(result / this.product.review.length)
+    },
+    wishList () {
+      return this.$store.state.products.wish.wishes
+    },
+    cartList () {
+      return this.$store.state.products.cart.cart
+    },
+    arrayOfCart () {
+      return this.$store.state.products.cart.cart.map(el => el.id)
+    },
+    arrayOfWish () {
+      return this.$store.state.products.wish.wishes.map(el => el.id)
+    }
+
+  },
+  methods: {
+    addToWishList (id) {
+      this.$store.commit('products/wish/add', id)
+    },
+    removeFromWishList (id) {
+      this.$store.commit('products/wish/remove', id)
+    },
+    addToCartList (id) {
+      this.$store.commit('products/cart/add', id)
+    },
+    removeFromCartList (id) {
+      this.$store.commit('products/cart/remove', id)
     }
   }
 }
@@ -113,13 +150,12 @@ export default {
     &:hover {
       color: $white;
       transition: .3s;
-      background: $main;
+      background: $black;
     }
-
-    &:active{
-      transition: 10ms;
-      background: black;
-    }
+  }
+  .product_img-panel-element__active{
+    color: $white;
+    background: $black;
   }
   .product_discount{
     z-index: 1;

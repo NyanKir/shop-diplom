@@ -41,7 +41,7 @@ export default {
       try {
         const res = await this.$axios({
           method: 'get',
-          url: '/api/getMaxPrice',
+          url: '/api/maxPrice',
           params: {
             select: this.$route.path.split('/').slice(-1)[0]
           }

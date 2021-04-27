@@ -39,6 +39,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~/plugins/test.client.js'
   ],
 
   /*
@@ -79,11 +80,15 @@ export default {
     scss: ['./assets/*.scss']
   },
   server: {
-    port: 9000
+    port: 3000, // default: 3000
+    host: 'localhost' // default: localhost,
   },
   /*
   ** Server Middleware
   */
+  router: {
+    middleware: ['authenticated']
+  },
   serverMiddleware: {
     '/api': '~/api'
   },

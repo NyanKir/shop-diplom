@@ -5,7 +5,9 @@
         Active Filters
       </h3>
       <li v-for="(filter,index) in getAllFilters" :key="index" class="active-filters_item">
-        <span class="active-filters_item-text">{{ filter.type }} : {{ filter.data }}</span>
+        <span class="active-filters_item-text">
+          {{ filter.type.charAt(0).toUpperCase()+filter.type.slice(1) }} : {{ filter.type.charAt(0).toUpperCase()+filter.data.slice(1) }}
+        </span>
         <button type="button" class="active-filters_item-btn">
           <font-awesome-icon :icon="['fas', 'times']" size="xs" @click="removeQuery(filter.type,filter.data)" />
         </button>
@@ -95,6 +97,7 @@ export default {
   .active-filters_item-text{
     font-size: 13px;
     font-weight: 300;
+    line-height: 24px;
   }
   .active-filters_title{
     padding: 6px 10px;
