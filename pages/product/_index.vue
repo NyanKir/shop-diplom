@@ -15,6 +15,7 @@ import Tabs from '../../components/Product/Tabs'
 export default {
   name: 'Index',
   components: { Tabs, Product, BreadCrumbs },
+  layout: 'sidebar',
   data () {
     return {
       product: [],

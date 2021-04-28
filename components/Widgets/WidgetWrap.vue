@@ -1,6 +1,6 @@
 <template>
   <div class="widget_wrap">
-    <h4 class="h4">
+    <h4 v-if="title" class="h4">
       {{ title }}
     </h4>
     <slot />
@@ -14,9 +14,18 @@ export default {
 }
 </script>
 
-<style scoped>
-.h4{
-  padding: 5px 0;
-}
+<style scoped lang="scss">
+  .widget_wrap{
+    margin: 10px 0;
 
+    &:first-child{
+      margin: 0 0 10px 0;
+    }
+  }
+  .h4{
+    font-size: 16px;
+    background: $gray-f2;
+    padding: 15px;
+    margin-bottom: 10px;
+  }
 </style>

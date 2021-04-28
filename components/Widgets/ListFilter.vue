@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
   .checkbox{
     cursor: pointer;
     margin-right: 4px;
@@ -110,7 +110,7 @@ export default {
   }
 
   [type='checkbox'].checkbox__color:checked {
-    outline: 2px solid $main;
+    outline: 2px solid $black;
   }
 
 </style>

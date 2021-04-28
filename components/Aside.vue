@@ -12,6 +12,9 @@
     <WidgetWrap>
       <Banner />
     </WidgetWrap>
+    <WidgetWrap title="New Products">
+      <NewProducts />
+    </WidgetWrap>
   </aside>
 </template>
 
@@ -21,9 +24,11 @@ import PriceSlider from './Widgets/PriceSlider'
 import WidgetWrap from './Widgets/WidgetWrap'
 import Filters from './Widgets/Filters'
 import Banner from './Widgets/Banner'
+import NewProducts from './Widgets/NewProducts'
+
 export default {
   name: 'Aside',
-  components: { Banner, WidgetWrap, Filters, PriceSlider, CategorySelector },
+  components: { Banner, WidgetWrap, Filters, PriceSlider, CategorySelector, NewProducts },
   data () {
     return {
       links: this.$store.state.menu.links,

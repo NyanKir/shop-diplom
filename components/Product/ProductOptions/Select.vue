@@ -4,7 +4,7 @@
       id="quantity"
       :value="getDefaultCount.options.count"
       name="quantity"
-      class="quantity_select"
+      class="select"
       @change="selectHandle($event.target.value)"
     >
       <option v-for="i in 9" :key="i" :value="i">
@@ -32,15 +32,18 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
 .quantity{
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.quantity_select{
-  width: 50px;
+.select{
+  border-color: $gray-85;
+  height: 2.5em;
+  text-transform: capitalize;
+  width: 110px;
 }
 
 </style>

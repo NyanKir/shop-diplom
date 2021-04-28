@@ -62,6 +62,9 @@ export default {
       font-size: 14px;
     }
 
+    .list_item /deep/ .select{
+      width: 50px;
+    }
     .list_item{
       display: flex;
       align-items: center;

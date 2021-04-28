@@ -59,13 +59,16 @@ export default {
       margin: auto;
       background: transparent;
       border: none;
-      height: 20px;
-      width: 20px;
+
       display: flex;
       align-items: center;
       justify-content: center;
       transition: .3s;
 
+      svg,&{
+        width: 20px;
+        height: 20px;
+      }
       &:hover{
         color: $main;
         transition: .3s;

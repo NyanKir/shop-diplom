@@ -4,14 +4,7 @@
       <img :src="currentImage" :alt="product.title" class="product_img">
       <Slider :gallery="product.gallery" @changeImage="changeImage" />
     </div>
-    <Info
-      :id="product._id"
-      :rating="getRating"
-      :title="product.title"
-      :price="product.price"
-      :description="product.description"
-      :discount="product.discountPrice"
-    />
+    <Info :product="product" />
   </div>
 </template>
 
@@ -45,7 +38,6 @@ export default {
     height:auto;
   }
   .product_img{
-    max-width:100%;
     width: 100%;
     height:auto;
   }
@@ -53,6 +45,20 @@ export default {
   @media (max-width: 992px ) {
     .product_slider {
       min-width: 280px;
+    }
+  }
+  @media (max-width: 602px ) {
+    .product {
+      flex-direction: column;
+    }
+    .product_slider{
+      min-width: 0;
+      max-width: 350px;
+      width: 100%;
+      margin: 0 auto 20px auto;
+    }
+    .info__indent{
+      margin: 0;
     }
   }
 
