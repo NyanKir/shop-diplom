@@ -13,7 +13,7 @@
         <FilterSelect
           :name="filter"
           :data="data"
-          :options="(cartProduct.length===0) ? options:cartProduct[0].options"
+          :options="options"
           @changeOptions="changeOptions"
         />
       </WidgetWrap>
@@ -60,6 +60,9 @@ export default {
     }
   },
   computed: {
+    /* Здесь очень сильно напутано
+    нужно будет убрать cartProduct и
+    сделать код более читаемым */
     getRating () {
       const result = this.product.review.reduce((acc, el) => {
         return acc + el.rating
@@ -73,6 +76,9 @@ export default {
       return !Object.values(this.options).every(el => Object.values(this.cartProduct[0].options).includes(el))
     }
   },
+  mounted () {
+    this.options = this.$store.state.products.cart.cart.filter(el => el.id === this.product._id)[0]?.options || {}
+  },
   methods: {
     changeCountOption (count) {
       this.options.count = +count
@@ -81,25 +87,29 @@ export default {
       }
     },
     addToCartList (id) {
-      if (Object.keys(this.options).length === 1) {
-        alert('Choose something')
+      if (Object.keys(this.options).length === 1 || !Object.keys(this.options).length) {
+        this.$store.dispatch('user/showNotice', 'Choose something :)')
         return
       }
-      if (Object.keys(this.options).length === 0) {
-        alert('Choose something :)')
+      const res = Object.keys(this.product.filters).every((el) => {
+        return !!(this.options?.[el] || el === 'count')
+      })
+      if (!res) {
+        this.$store.dispatch('user/showNotice', 'Choose all filters :)')
         return
       }
-      const options = this.options
-
-      this.$store.commit('products/cart/add', { id, options })
+      this.$store.commit('products/cart/add', { id, options: this.options })
+      this.$store.dispatch('user/showNotice', 'Success, your product was added! :)')
     },
     removeFromCartList (id) {
       this.options = {}
       this.$store.commit('products/cart/remove', id)
+      this.$store.dispatch('user/showNotice', 'Success, your product was removed! :)')
     },
     updateCartList (id) {
       const options = this.options
       this.$store.commit('products/cart/update', { id, options })
+      this.$store.dispatch('user/showNotice', 'Success, your product was updated! :)')
     },
 
     changeOptions (option, value) {

@@ -2,6 +2,7 @@
   <div>
     <div class="container">
       <Header />
+      <Notice />
       <Nuxt />
     </div>
     <Footer />
