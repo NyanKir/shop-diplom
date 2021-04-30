@@ -7,7 +7,7 @@
       class="select"
       @change="$emit('changeOptions',name,$event.target.value)"
     >
-      <option selected disabled>
+      <option :selected="!Object.keys(options).length" disabled>
         Choose your {{ name }}
       </option>
       <option v-for="(value,item) in data" :key="item" :value="value.value" :selected="item===options[name]">

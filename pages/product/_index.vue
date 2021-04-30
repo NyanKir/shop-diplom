@@ -25,24 +25,32 @@ export default {
   loading: {
     continuous: true
   },
-  async mounted () {
-    try {
-      const res = await this.$axios({
-        method: 'get',
-        url: '/api/product',
-        params: {
-          id: this.$route.query.id
-        }
-      })
-      this.product = res.data[0]
-      this.currentImage = res.data[0].gallery[0]
-    } catch (e) {
-      console.error(e)
+  watch: {
+    $route () {
+      this.fetchData()
     }
+  },
+  mounted () {
+    this.fetchData()
   },
   methods: {
     changeImage (img) {
       this.currentImage = img.path[0].currentSrc
+    },
+    async fetchData () {
+      try {
+        const res = await this.$axios({
+          method: 'get',
+          url: '/api/product',
+          params: {
+            id: this.$route.query.id
+          }
+        })
+        this.product = res.data[0]
+        this.currentImage = res.data[0].gallery[0]
+      } catch (e) {
+        console.error(e)
+      }
     }
   },
   head () {

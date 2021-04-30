@@ -13,7 +13,7 @@ export const mutations = {
     }
     state.cart = JSON.parse(localStorage.getItem('cart'))
   },
-  add (state, { id, options }) {
+  add (state, { id, options = { count: 1 } }) {
     state.cart.push({ id, options })
     localStorage.setItem('cart', JSON.stringify(state.cart))
   },
@@ -23,5 +23,6 @@ export const mutations = {
   },
   update (state, { id, options }) {
     state.cart = state.cart.map(el => (el.id === id) ? { ...el, options } : el)
+    localStorage.setItem('cart', JSON.stringify(state.cart))
   }
 }

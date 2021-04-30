@@ -3,8 +3,8 @@
     <h2 class="h2">
       {{ product.title }}
     </h2>
-    <Rating :rating="product.rating" />
-    <Price :price="product.price" :discount="product.discount" />
+    <Rating :rating="getRating" />
+    <Price :price="product.price" :discount="product.discountPrice" />
     <p class="info_description">
       {{ product.description }}
     </p>
@@ -13,8 +13,17 @@
         <FilterSelect
           :name="filter"
           :data="data"
-          :options="options"
+          :options="(cartProduct.length===0) ? options:cartProduct[0].options"
           @changeOptions="changeOptions"
+        />
+      </WidgetWrap>
+    </div>
+    <div class="info_options">
+      <WidgetWrap title="Quantity">
+        <Select
+          :id="product._id"
+          :start="cartProduct[0]=== undefined ? -1 : + cartProduct[0].options.count"
+          @changeCountOption="changeCountOption"
         />
       </WidgetWrap>
     </div>
@@ -37,43 +46,55 @@
 <script>
 import WidgetWrap from '../Widgets/WidgetWrap'
 import Rating from './Rating'
-// import Quantity from './ProductOptions/Quantity'
 import Price from './Price'
 import FilterSelect from './ProductOptions/FilterSelect'
+import Select from './ProductOptions/Select'
 
 export default {
   name: 'Info',
-  components: { WidgetWrap, Price, Rating, FilterSelect },
+  components: { WidgetWrap, Price, Rating, FilterSelect, Select },
   props: ['product'],
   data () {
     return {
-      quantity: 0,
-      options: { count: 1 }
+      options: {}
     }
   },
   computed: {
+    getRating () {
+      const result = this.product.review.reduce((acc, el) => {
+        return acc + el.rating
+      }, 0)
+      return (Math.round(result / this.product.review.length) > 5) ? 5 : Math.round(result / this.product.review.length)
+    },
     cartProduct () {
-      const product = this.$store.state.products.cart.cart.filter(el => el.id === this.product._id)
-      if (product.length !== 0) {
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.options = product[0].options
-      }
-      return product
+      return this.$store.state.products.cart.cart.filter(el => el.id === this.product._id)
     },
     updateProduct () {
       return !Object.values(this.options).every(el => Object.values(this.cartProduct[0].options).includes(el))
     }
   },
   methods: {
+    changeCountOption (count) {
+      this.options.count = +count
+      if (this.cartProduct[0] !== undefined) {
+        this.$store.commit('products/cart/update', { ...this.cartProduct[0], options: { ...this.cartProduct[0].options, count } })
+      }
+    },
     addToCartList (id) {
       if (Object.keys(this.options).length === 1) {
         alert('Choose something')
         return
       }
+      if (Object.keys(this.options).length === 0) {
+        alert('Choose something :)')
+        return
+      }
       const options = this.options
+
       this.$store.commit('products/cart/add', { id, options })
     },
     removeFromCartList (id) {
+      this.options = {}
       this.$store.commit('products/cart/remove', id)
     },
     updateCartList (id) {
@@ -83,16 +104,6 @@ export default {
 
     changeOptions (option, value) {
       this.options = { ...this.options, [option]: value }
-    },
-    quantityHandler (whatToDo) {
-      if (whatToDo) {
-        this.quantity += 1
-        return
-      }
-      this.quantity -= 1
-    },
-    quantityChanged (now) {
-      if (+now) { this.quantity = parseInt(now) }
     }
   }
 }

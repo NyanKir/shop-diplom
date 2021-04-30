@@ -17,6 +17,7 @@ export default {
 <style scoped lang="scss">
   .widget_wrap{
     margin: 10px 0;
+    align-items: center;
 
     &:first-child{
       margin: 0 0 10px 0;

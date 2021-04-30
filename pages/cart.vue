@@ -1,11 +1,15 @@
 <template>
-  <div v-if="data !== undefined" class="container">
+  <div class="container">
     <BreadCrumbs>
       Wishlist
     </BreadCrumbs>
     <div class="container_body">
-      <List :data="data" />
-
+      <List v-if="data.length!==0" :data="data" :cart="cart" />
+      <div v-else class="container_nothing">
+        <span>
+          There are no more items in your cart
+        </span>
+      </div>
       <aside class="aside">
         <div class="aside_item">
           <span>{{ cartItems }} items</span>
@@ -34,7 +38,7 @@ export default {
   components: { List },
   data () {
     return {
-      data: undefined,
+      data: [],
       shipping: 7.00
     }
   },
@@ -87,6 +91,7 @@ export default {
 <style scoped lang="scss">
   .container_body{
     display: flex;
+    justify-content: space-between;
   }
 
   .aside{
@@ -104,6 +109,12 @@ export default {
     margin-top: 20px;
   }
   .aside_btn{
+    width: 100%;
+  }
+  .container_nothing{
+    padding: 10px;
+    border: 1px solid $gray-f2;
+    margin: 0 0 auto 0;
     width: 100%;
   }
 </style>

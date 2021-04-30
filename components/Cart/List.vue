@@ -12,7 +12,12 @@
         </NuxtLink>
         <Price :price="product.price" :discount="product.discountPrice" />
       </div>
-      <Select :id="product._id" />
+      <Select
+        :id="product._id"
+        :start="cart.filter(el => el.id === product._id)[0].options.count"
+        :options="cart.filter(el => el.id === product._id)[0].options"
+        @changeCountOption="changeCountOption"
+      />
       <span class="list_price">${{ (product.discountPrice||product.price).toFixed(2) }}</span>
       <button class="list_trash" @click="removeFromCart(product._id)">
         <font-awesome-icon :icon="['fas', 'trash']" size="lg" />
@@ -20,38 +25,34 @@
     </div>
   </section>
 </template>
-
 <script>
 import Price from '../Product/Price'
 import Select from '../Product/ProductOptions/Select'
 export default {
   name: 'List',
   components: { Select, Price },
-  props: ['data'],
+  props: ['data', 'cart'],
+
   methods: {
+    changeCountOption (count, options, id) {
+      this.$store.commit('products/cart/update', { id, options: { ...options, count } })
+    },
     removeFromCart (id) {
       this.$store.commit('products/cart/remove', id)
-    },
-    quantityHandler (whatToDo) {
-      if (whatToDo) {
-        this.quantity += 1
-        return
-      }
-      if (this.quantity !== 1) {
-        this.quantity -= 1
-      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
+
     .list{
       flex: 1;
       display: flex;
       flex-direction: column;
       padding: 15px;
       border: 1px solid $gray-f2;
+      margin: 0 0 auto;
     }
 
     .list /deep/ .quantity_option{
