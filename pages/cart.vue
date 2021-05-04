@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <BreadCrumbs>
-      Wishlist
+      Shopping Cart
     </BreadCrumbs>
     <div class="container_body">
       <List v-if="data.length!==0" :data="data" :cart="cart" />
@@ -17,11 +17,13 @@
         </div>
         <div class="aside_item">
           <span>Shipping</span>
-          <span>${{ shipping.toFixed(2) }}</span>
+          <span v-if="+bill">${{ shipping.toFixed(2) }}</span>
+          <span v-else>Free</span>
         </div>
         <div class="aside_item aside_item__total">
-          <span>Total (tax excl.)</span>
-          <span>${{ ((+bill)+shipping).toFixed(2) }}</span>
+          <span>Total <br> (tax excl.)</span>
+          <span v-if="+bill">${{ ((+bill)+shipping).toFixed(2) }}</span>
+          <span v-else>$0.00</span>
         </div>
         <button class="btn aside_btn">
           Checkout
@@ -90,6 +92,7 @@ export default {
 
 <style scoped lang="scss">
   .container_body{
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
   }
@@ -102,8 +105,12 @@ export default {
   .aside_item{
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
+    font-size: 13px;
     margin: 2px 0;
+
+    span:first-child{
+      margin-right: 10px;
+    }
   }
   .aside_item__total{
     margin-top: 20px;
@@ -116,5 +123,6 @@ export default {
     border: 1px solid $gray-f2;
     margin: 0 0 auto 0;
     width: 100%;
+    font-size: 13px;
   }
 </style>

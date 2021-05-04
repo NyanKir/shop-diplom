@@ -11,6 +11,16 @@
           </span>
         </NuxtLink>
         <Price :price="product.price" :discount="product.discountPrice" />
+        <!--        <ul class="list_options">-->
+        <!--          <li-->
+        <!--            v-for="(name,value) in getOptionsWithOutCount(product._id)"-->
+        <!--            :key="value"-->
+        <!--            class="list_options-item"-->
+        <!--          >-->
+        <!--            {{ value.charAt(0).toUpperCase()+value.slice(1) }}:-->
+        <!--            {{ name.charAt(0).toUpperCase()+name.slice(1) }}-->
+        <!--          </li>-->
+        <!--        </ul>-->
       </div>
       <Select
         :id="product._id"
@@ -32,7 +42,6 @@ export default {
   name: 'List',
   components: { Select, Price },
   props: ['data', 'cart'],
-
   methods: {
     changeCountOption (count, options, id) {
       this.$store.commit('products/cart/update', { id, options: { ...options, count } })
@@ -40,6 +49,14 @@ export default {
     removeFromCart (id) {
       this.$store.commit('products/cart/remove', id)
     }
+    // getOptionsWithOutCount (id) {
+    //   const keys = this.cart.filter(el => el.id === id)[0]
+    //   if (keys?.options) {
+    //     return []
+    //   }
+    //   return Object.keys(keys).filter(el => el !== 'count')
+    //     .map((el) => { return { [el]: this.cart.filter(el => el.id === id)[0].options[el] } }).reduce((obj, el) => Object.assign(obj, el), {})
+    // }
   }
 }
 </script>
@@ -62,7 +79,9 @@ export default {
     .list /deep/ .price_regular{
       font-size: 14px;
     }
-
+    .list /deep/ .price{
+      margin: 0;
+    }
     .list_item /deep/ .select{
       width: 50px;
     }
@@ -104,5 +123,13 @@ export default {
     }
     .list_price{
       margin: 0 8px;
+    }
+
+    .list_options{
+      list-style: none;
+      padding: 0;
+    }
+    .list_options-item{
+      font-size: 13px;
     }
 </style>
