@@ -34,29 +34,81 @@
       </label>
       <label for="fname" class="login-form_label">
         <span>First name <sup>*</sup></span>
-        <input id="fname" v-model="firstName" type="text" class="input">
+        <div class="login-form_field">
+          <input
+            id="fname"
+            v-model="firstName"
+            type="text"
+            class="input"
+            placeholder="First name"
+            :class="{'input__invalid':error.param==='firstName'}"
+          >
+
+          <span v-show="error.param === 'firstName'" class="login-form_field-error">{{ error.msg }}</span>
+        </div>
       </label>
       <label for="lname" class="login-form_label">
         <span>Last name <sup>*</sup></span>
-        <input id="lname" v-model="lastName" type="text" class="input">
+        <div class="login-form_field">
+          <input
+            id="lname"
+            v-model="lastName"
+            type="text"
+            class="input"
+            placeholder="Last name"
+            :class="{'input__invalid':error.param==='lastName'}"
+          >
+          <span v-show="error.param === 'lastName'" class="login-form_field-error">{{ error.msg }}</span>
+
+        </div>
       </label>
       <label for="email" class="login-form_label">
         <span>Email <sup>*</sup></span>
-        <input id="email" v-model="email" type="email" class="input">
+        <div class="login-form_field">
+          <input
+            id="email"
+            v-model="email"
+            type="email"
+            class="input"
+            placeholder="Email"
+            :class="{'input__invalid':error.param==='email'}"
+          >
+          <span v-show="error.param === 'email'" class="login-form_field-error">{{ error.msg }}</span>
+        </div>
       </label>
 
       <label for="pass" class="login-form_label">
         <span>Password <sup>*</sup></span>
-        <input id="pass" v-model="password" :type="showPassword" class="input">
-        <button type="button" class="btn btn__show-pass" :class="(visiblePassword)?'active':''" @click="visiblePassword=!visiblePassword">
-          <font-awesome-icon v-if="!visiblePassword" :icon="['far', 'eye']" size="sm" />
-          <font-awesome-icon v-else :icon="['far', 'eye-slash']" size="sm" />
-        </button>
+        <div class="login-form_field">
+          <input
+            id="pass"
+            v-model="password"
+            :type="showPassword"
+            class="input"
+            placeholder="Password"
+            :class="{'input__invalid':error.param==='password'}"
+          >
+          <span v-show="error.param === 'password'" class="login-form_field-error">{{ error.msg }}</span>
+        </div>
+        <!--        <button type="button" class="btn btn__show-pass" :class="(visiblePassword)?'active':''" @click="visiblePassword=!visiblePassword">-->
+        <!--          <font-awesome-icon v-if="!visiblePassword" :icon="['far', 'eye']" size="sm" />-->
+        <!--          <font-awesome-icon v-else :icon="['far', 'eye-slash']" size="sm" />-->
+        <!--        </button>-->
       </label>
 
       <label for="bdate" class="login-form_label">
         <span>Birthdate</span>
-        <input id="bdate" v-model="birthDate" type="text" class="input" placeholder="MM/DD/YYYY">
+        <div class="login-form_field">
+          <input
+            id="bdate"
+            v-model="birthDate"
+            type="text"
+            class="input"
+            placeholder="MM/DD/YYYY"
+            :class="{'input__invalid':error.param==='birthDate'}"
+          >
+          <span v-show="error.param === 'birthDate'" class="login-form_field-error">{{ error.msg }}</span>
+        </div>
       </label>
 
       <button type="submit" class="btn">
@@ -85,7 +137,8 @@ export default {
       lastName: '',
       birthDate: '',
       radio: true,
-      visiblePassword: false
+      visiblePassword: false,
+      error: {}
     }
   },
   computed: {
@@ -96,19 +149,27 @@ export default {
   methods: {
     async fetchData () {
       try {
-        await this.$axios.$post('/api/user', JSON.stringify({
-          email: this.email,
-          password: this.password,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          birthDate: this.birthDate
-        }), {
+        const result = await this.$axios({
+          method: 'post',
+          url: '/api/user',
+          data: {
+            email: this.email,
+            password: this.password,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            birthDate: this.birthDate
+          },
           headers: {
             'Content-Type': 'application/json'
           }
         })
+
+        if (result.status === 201) {
+          await this.$router.push('/auth/signin')
+          await this.$store.dispatch('user/showNotice', 'Success! :)')
+        }
       } catch (e) {
-        console.log(e)
+        this.error = { ...e.response.data.errors }
       }
     }
   },
@@ -117,6 +178,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.login-form_field{
+  display: flex;
+  flex-direction: column;
+}
+.login-form_field-error{
+  font-size: 13px;
+  color: #fa1414;
+}
+.input__invalid{
+  box-shadow: 0 0 1px red;
+  border-color:red;
+}
+
 .h1{
   text-align: left;
   width: 100%;

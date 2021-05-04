@@ -9,8 +9,7 @@ const User = require('../models/user.model')
 router.post('/user', [
   check('firstName').not().isEmpty().trim().escape().isLength({ min: 2, max: 24 }),
   check('lastName').not().isEmpty().trim().escape().isLength({ min: 2, max: 24 }),
-  check('birthDate').not().isEmpty().trim().isLength({ min: 10, max: 10 }),
-  check('email').isEmail().normalizeEmail().custom(async (value) => {
+  check('email').isEmail().normalizeEmail({ gmail_remove_dots: false }).custom(async (value) => {
     const user = await User.findOne({ email: value }).exec()
     if (user) {
       throw new Error('This is email exist')
@@ -22,7 +21,7 @@ router.post('/user', [
 function (req, res) {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() })
+    return res.status(400).json({ errors: errors.array()[0] })
   }
   const salt = bcrypt.genSaltSync(10)
   const hashPassword = bcrypt.hashSync(req.body.password, salt)
@@ -35,26 +34,18 @@ function (req, res) {
   res.status(201).end()
 })
 
-router.post('/signin', [
-  check('email').isEmail().normalizeEmail(),
-  check('password').isLength({ min: 5, max: 24 }).matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/).withMessage('Password should contain at least one uppercase, lowercase and one special character')
-],
-async function (req, res) {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() })
-  }
+router.post('/signin', async function (req, res) {
   const data = req.body
   const user = await User.find({ email: data.email }).exec()
 
   if (user.length <= 0) {
-    res.status(400).send('This email does`t exists')
+    return res.status(400).json({ msg: 'This email does`t exists', type: 'email' })
   }
 
   const result = bcrypt.compareSync(data.password, user[0].password)
 
   if (!result) {
-    res.status(400).send('This password is incorrect')
+    return res.status(400).json({ msg: 'This password is incorrect', type: 'password' })
   }
 
   const token = jwt.sign({ userID: user[0]._id }, process.env.JWTKEY, { expiresIn: '1h' })
@@ -70,16 +61,20 @@ router.get('/isauth', async function (req, res) {
       const decode = jwt.verify(req.cookies.jwt, process.env.JWTKEY).userID
 
       const count = await User.countDocuments({ _id: mongoose.Types.ObjectId(decode) })
-      console.log(count)
       if (count === 1) {
         return res.status(200).end()
       }
-      return res.status(403).end()
+      return res.status(404).end()
     } catch (err) {
       res.cookie('jwt', '', { maxAge: 0 })
       return res.status(500).json({ errors: err.message })
     }
   }
   res.status(404).end()
+})
+
+router.post('/logout', function (req, res) {
+  res.cookie('jwt', '', { maxAge: 0 })
+  res.status(200).end()
 })
 module.exports = router

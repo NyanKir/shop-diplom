@@ -27,6 +27,7 @@ import MobileMenu from '@/components/Header/MobileMenu/MobileMenu'
 export default {
   name: 'Header',
   components: { MobileMenu, Panel, Menu },
+
   data () {
     return {
       logo,
@@ -38,7 +39,6 @@ export default {
       this.showMenu = false
     }
   }
-
 }
 </script>
 

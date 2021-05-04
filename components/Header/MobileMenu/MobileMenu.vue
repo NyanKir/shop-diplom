@@ -1,7 +1,12 @@
 <template>
   <transition name="backInLeft">
     <nav v-show="showMenu" class="mobile_menu">
-      <font-awesome-icon :icon="['fas', 'times']" size="lg" class="indent" @click="$emit('handler')" />
+      <font-awesome-icon
+        :icon="['fas', 'times']"
+        size="lg"
+        class="indent"
+        @click="$emit('handler')"
+      />
       <ul class="menu_list">
         <DropDownItem v-for="(item,index) in links" :key="index" :item="item" />
       </ul>
@@ -29,7 +34,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .indent{
     margin: 15px;
   }

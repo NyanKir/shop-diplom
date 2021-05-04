@@ -6,6 +6,7 @@ const user = new Schema({
   lastName: String,
   email: String,
   birthDate: String,
-  password: String
+  password: String,
+  isAdmin: Boolean
 })
 module.exports = model('User', user)

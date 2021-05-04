@@ -44,6 +44,7 @@ export default {
 
 <style scoped lang="scss">
 .breadcrumbs{
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: baseline;

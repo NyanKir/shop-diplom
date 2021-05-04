@@ -27,12 +27,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 18px;
 }
+
 .h1{
   font-size: 16px;
 }
 
 
-.btn ,.btn__show-pass{
+.btn{
   min-width: 100px;
   border: none;
   margin: 20px 0 0 0;
@@ -55,13 +56,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn__show-pass{
-  position: absolute;
+  //position: absolute;
   min-width: 50px;
   height: 100%;
   padding: 0;
   margin: 0;
-  right: -50px;
-  background: $main;
+  //right: -50px;
+  //background: $main;
 }
 .form{
   width: 100%;
@@ -70,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .login-form{
-  width: 100%;
+  width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,10 +79,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login-form_label{
-  position: relative;
+  //position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   min-width: 450px;
   margin-bottom: 20px;
 }
@@ -120,6 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .input{
   width: 300px;
+  height: 2.5em;
   outline: none;
   padding: 0 6px;
   transition: .3s;

@@ -1,11 +1,15 @@
 export const state = () => ({
   isAuth: false,
+  isAdmin: false,
   showNotice: false,
   titleNotice: ''
 })
 export const mutations = {
   changeAuthentication (state, bool = false) {
     state.isAuth = bool
+  },
+  changeAdmin (state, bool = false) {
+    state.isAdmin = bool
   },
   changeNotice (state, { show, title = '' }) {
     state.showNotice = show

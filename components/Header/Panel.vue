@@ -11,11 +11,19 @@
       </span>
       <transition name="backInTop">
         <ul v-show="on" class="dropdown rm-indents">
-          <li>
+          <li v-if="!this.$store.state.user.isAuth">
             <NuxtLink to="/auth/signin" class="link fnt-weg-400">
               <span>
                 <font-awesome-icon :icon="['fas', 'unlock-alt']" size="lg" class="dropdown_link-svg" />
                 Sign in
+              </span>
+            </NuxtLink>
+          </li>
+          <li v-else>
+            <NuxtLink to="/user/" class="link fnt-weg-400">
+              <span>
+                <font-awesome-icon :icon="['fas', 'user-circle']" size="lg" class="dropdown_link-svg" />
+                Profile
               </span>
             </NuxtLink>
           </li>
@@ -26,6 +34,14 @@
                 Wishlist
               </span>
             </NuxtLink>
+          </li>
+          <li v-if="this.$store.state.user.isAuth">
+            <span class="link fnt-weg-400 link__logout">
+              <span @click="deleteCookie">
+                <font-awesome-icon :icon="['fas', 'sign-out-alt']" size="lg" class="dropdown_link-svg" />
+                Log out
+              </span>
+            </span>
           </li>
         </ul>
       </transition>
@@ -46,6 +62,23 @@ export default {
   data () {
     return {
       on: false
+    }
+  },
+  watch: {
+    $route () {
+      this.on = false
+    }
+  },
+  methods: {
+    async deleteCookie () {
+      await this.$axios({
+        method: 'post',
+        url: '/api/logout',
+        withCredentials: true
+      })
+      this.$store.commit('user/changeAuthentication')
+      await this.$store.dispatch('user/showNotice', 'Success, you are log out! :)')
+      await this.$router.push('/')
     }
   }
 }
@@ -72,5 +105,11 @@ export default {
 }
 .dropdown_link-svg{
   margin-right: 5px;
+}
+.link svg{
+  width: 15px;
+}
+.link__logout{
+  cursor: pointer;
 }
 </style>
