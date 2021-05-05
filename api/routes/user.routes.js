@@ -7,8 +7,8 @@ const mongoose = require('mongoose')
 const User = require('../models/user.model')
 
 router.post('/user', [
-  check('firstName').not().isEmpty().trim().escape().isLength({ min: 2, max: 24 }),
-  check('lastName').not().isEmpty().trim().escape().isLength({ min: 2, max: 24 }),
+  check('firstName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Name must be alphabetic.'),
+  check('lastName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your last name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your last name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
   check('email').isEmail().normalizeEmail({ gmail_remove_dots: false }).custom(async (value) => {
     const user = await User.findOne({ email: value }).exec()
     if (user) {
@@ -55,7 +55,7 @@ router.post('/signin', async function (req, res) {
   res.status(200).end()
 })
 
-router.post('/isauth', async function (req, res) {
+router.get('/isauth', async function (req, res) {
   if (req.cookies.jwt) {
     try {
       const decode = jwt.verify(req.cookies.jwt, process.env.JWTKEY).userID
@@ -76,6 +76,31 @@ router.post('/isauth', async function (req, res) {
 
 router.post('/logout', function (req, res) {
   res.cookie('jwt', '', { maxAge: 0 })
+  res.status(200).end()
+})
+router.get('/user', async function (req, res) {
+  const user = await User.findOne({ _id: mongoose.Types.ObjectId(req.query.id) })
+  res.status(200).json(user).end()
+})
+router.patch('/user', [
+  check('firstName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Name must be alphabetic.'),
+  check('lastName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your last name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your last name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
+  check('email').isEmail().normalizeEmail({ gmail_remove_dots: false })],
+async function (req, res) {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array()[0] })
+  }
+  await User.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body._id) }, {
+    $set:
+      {
+        email: req.body.email,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        birthDate: req.body.birthDate,
+        gender: req.body.gender
+      }
+  })
   res.status(200).end()
 })
 module.exports = router

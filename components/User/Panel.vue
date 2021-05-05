@@ -79,9 +79,8 @@ export default {
     margin: 10px 0;
   }
   .panel_block{
-    padding: 15px;
     border: 1px solid $gray-85;
-    background: $gray-f2;
+    background: #fdfdfd;
 
     &:hover .panel_item-svg{
       color: $main;
@@ -109,6 +108,8 @@ export default {
 
   }
   .panel_block-orient{
+    padding: 15px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

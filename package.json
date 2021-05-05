@@ -25,7 +25,8 @@
     "express-validator": "^6.9.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12",
-    "nuxt": "latest"
+    "nuxt": "latest",
+    "v-mask": "^2.2.4"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",

@@ -1,6 +1,6 @@
 export default async function (context) {
   await context.$axios({
-    method: 'post',
+    method: 'get',
     url: '/api/isauth',
     withCredentials: true
   }).then((r) => {
@@ -14,7 +14,7 @@ export default async function (context) {
     }
   }).catch((err) => {
     if (err.response.status) {
-      if (context.route.path === '/user/') {
+      if (context.route.path.includes('/user/')) {
         return context.redirect('/')
       }
     }

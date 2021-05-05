@@ -1,11 +1,11 @@
 <template>
   <section class="form">
     <h1 class="h1">
-      Log in to your account
+      Sign up
     </h1>
 
     <form class="login-form" @submit.prevent="fetchData">
-      <label for="fname" class="login-form_label">
+      <label class="login-form_label">
         <span>Social title <sup>*</sup></span>
         <div class="login-form_group">
           <label for="mr" class="login-form_group-label">
@@ -13,7 +13,7 @@
               id="mr"
               v-model="radio"
               type="radio"
-              :value="true"
+              :value="'Mr'"
               class="radiobutton"
               :checked="radio"
             >
@@ -24,7 +24,7 @@
               id="mrs"
               v-model="radio"
               type="radio"
-              :value="false"
+              :value="'Mrs'"
               class="radiobutton"
               :checked="!radio"
             >
@@ -102,6 +102,7 @@
           <input
             id="bdate"
             v-model="birthDate"
+            v-mask="'##/##/####'"
             type="text"
             class="input"
             placeholder="MM/DD/YYYY"
@@ -136,7 +137,7 @@ export default {
       firstName: '',
       lastName: '',
       birthDate: '',
-      radio: true,
+      radio: 'Mr',
       visiblePassword: false,
       error: {}
     }
@@ -157,7 +158,8 @@ export default {
             password: this.password,
             firstName: this.firstName,
             lastName: this.lastName,
-            birthDate: this.birthDate
+            birthDate: this.birthDate,
+            gender: this.radio
           },
           headers: {
             'Content-Type': 'application/json'
