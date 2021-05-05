@@ -18,7 +18,7 @@ export default {
 
   methods: {
     createProduct () {
-      this.$store.dispatch('user/showNotice', 'Good bye my friend')
+      console.log(this.$logOut())
       // this.$axios.$post('/api/product', JSON.stringify({
       //   title: 'Burabitur Dolor Nunc',
       //   price: 51.40,

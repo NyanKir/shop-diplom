@@ -1,4 +1,5 @@
 export const state = () => ({
+  userId: undefined,
   isAuth: false,
   isAdmin: false,
   showNotice: false,
@@ -7,6 +8,9 @@ export const state = () => ({
 export const mutations = {
   changeAuthentication (state, bool = false) {
     state.isAuth = bool
+  },
+  changeUserId (state, id = undefined) {
+    state.userId = id
   },
   changeAdmin (state, bool = false) {
     state.isAdmin = bool
@@ -23,5 +27,14 @@ export const actions = {
     setTimeout(() => {
       context.commit('changeNotice', { show: false })
     }, 3000)
+  },
+  logOut (context) {
+    this.$axios({
+      method: 'post',
+      url: '/api/logout',
+      withCredentials: true
+    })
+    context.commit('changeAuthentication')
+    context.commit('changeUserId')
   }
 }

@@ -39,7 +39,8 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/test.client.js'
+    '~/plugins/test.client.js',
+    '~/plugins/logout.client.js'
   ],
 
   /*

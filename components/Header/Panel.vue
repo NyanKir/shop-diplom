@@ -20,7 +20,7 @@
             </NuxtLink>
           </li>
           <li v-else>
-            <NuxtLink to="/user/" class="link fnt-weg-400">
+            <NuxtLink to="/user/panel" class="link fnt-weg-400">
               <span>
                 <font-awesome-icon :icon="['fas', 'user-circle']" size="lg" class="dropdown_link-svg" />
                 Profile
@@ -70,15 +70,8 @@ export default {
     }
   },
   methods: {
-    async deleteCookie () {
-      await this.$axios({
-        method: 'post',
-        url: '/api/logout',
-        withCredentials: true
-      })
-      this.$store.commit('user/changeAuthentication')
-      await this.$store.dispatch('user/showNotice', 'Success, you are log out! :)')
-      await this.$router.push('/')
+    deleteCookie () {
+      this.$logOut()
     }
   }
 }

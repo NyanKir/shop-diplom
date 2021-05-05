@@ -1,15 +1,16 @@
 export default async function (context) {
   await context.$axios({
-    method: 'get',
+    method: 'post',
     url: '/api/isauth',
     withCredentials: true
   }).then((r) => {
     if (r.status === 200) {
       context.store.commit('user/changeAuthentication', true)
+      context.store.commit('user/changeUserId', r.data.id)
       if (context.route.path === '/auth/signin' || context.route.path === '/auth/signup') {
         return context.redirect('/')
       }
-      return 1
+      return true
     }
   }).catch((err) => {
     if (err.response.status) {
