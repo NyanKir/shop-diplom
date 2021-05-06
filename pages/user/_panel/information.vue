@@ -97,6 +97,7 @@
 export default {
   name: 'Information',
   layout: 'sidebar',
+  css: ['~assets/forms/index.scss'],
   data () {
     return {
       info: undefined,
@@ -121,6 +122,7 @@ export default {
           gender: this.info.gender
         })
         await this.$store.dispatch('user/showNotice', 'Success! Your data was updated :)')
+        this.error = {}
       } catch (e) {
         this.error = { ...e.response.data.errors }
         console.log(e)
@@ -132,25 +134,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .information,.information_form{
-    width: 100%;
-  }
-  .information_form{
-    margin-top: 10px;
-    border: 1px solid $gray-f2;
-  }
-  .login-form_field{
-    display: flex;
-    flex-direction: column;
-  }
-  .login-form_field-error{
-    font-size: 13px;
-    color: #fa1414;
-  }
-  .input__invalid{
-    box-shadow: 0 0 1px red;
-    border-color:red;
-  }
   .login-form_label-text{
     font-size: 14px;
   }

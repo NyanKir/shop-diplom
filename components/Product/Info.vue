@@ -22,7 +22,7 @@
       <WidgetWrap title="Quantity">
         <Select
           :id="product._id"
-          :start="cartProduct[0]=== undefined ? -1 : + cartProduct[0].options.count"
+          :start="cartProduct[0]=== undefined ? -1 : count"
           @changeCountOption="changeCountOption"
         />
       </WidgetWrap>
@@ -56,7 +56,8 @@ export default {
   props: ['product'],
   data () {
     return {
-      options: {}
+      options: {},
+      count: 1
     }
   },
   computed: {
@@ -77,15 +78,19 @@ export default {
     }
   },
   mounted () {
-    this.options = this.$store.state.products.cart.cart.filter(el => el.id === this.product._id)[0]?.options || {}
+    const product = this.$store.state.products.cart.cart.filter(el => el.id === this.product._id)[0]
+    this.options = product?.options || {}
+    this.count = product?.count || 1
   },
   methods: {
     changeCountOption (count) {
-      this.options.count = +count
+      this.count = +count
       if (this.cartProduct[0] !== undefined) {
-        this.$store.commit('products/cart/update', { ...this.cartProduct[0], options: { ...this.cartProduct[0].options, count } })
+        this.$store.commit('products/cart/update',
+          { ...this.cartProduct[0], options: { ...this.cartProduct[0].options }, count })
       }
     },
+
     addToCartList (id) {
       if (Object.keys(this.options).length === 1 || !Object.keys(this.options).length) {
         this.$store.dispatch('user/showNotice', 'Choose something :)')
@@ -98,7 +103,7 @@ export default {
         this.$store.dispatch('user/showNotice', 'Choose all filters :)')
         return
       }
-      this.$store.commit('products/cart/add', { id, options: this.options })
+      this.$store.commit('products/cart/add', { id, options: this.options, count: this.options.count })
       this.$store.dispatch('user/showNotice', 'Success, your product was added! :)')
     },
     removeFromCartList (id) {
@@ -108,7 +113,7 @@ export default {
     },
     updateCartList (id) {
       const options = this.options
-      this.$store.commit('products/cart/update', { id, options })
+      this.$store.commit('products/cart/update', { id, options, count: this.count })
       this.$store.dispatch('user/showNotice', 'Success, your product was updated! :)')
     },
 

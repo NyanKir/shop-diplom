@@ -31,7 +31,8 @@ export default {
   css: [
     '~assets/_variables.scss',
     '~assets/_fonts.scss',
-    '~assets/global.scss'
+    '~assets/global.scss',
+    '~assets/forms/index.scss'
   ],
 
   /*

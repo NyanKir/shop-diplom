@@ -49,11 +49,11 @@ export default {
       return this.$store.state.products.cart.cart
     },
     cartItems () {
-      return this.cart.reduce((acc, el) => acc + el.options.count, 0)
+      return this.cart.reduce((acc, el) => acc + el.count, 0)
     },
     bill () {
       return this.data.reduce((acc, el) => {
-        const count = this.cart.reduce((acc, accEl) => (el._id === accEl.id) ? accEl.options.count : acc, 0)
+        const count = this.cart.reduce((acc, accEl) => (el._id === accEl.id) ? accEl.count : acc, 0)
         if (el.discountPrice) {
           return acc + el.discountPrice * count
         }

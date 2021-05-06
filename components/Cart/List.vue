@@ -24,7 +24,7 @@
       </div>
       <Select
         :id="product._id"
-        :start="cart.filter(el => el.id === product._id)[0].options.count"
+        :start="cart.filter(el => el.id === product._id)[0].count"
         :options="cart.filter(el => el.id === product._id)[0].options"
         @changeCountOption="changeCountOption"
       />
@@ -44,7 +44,7 @@ export default {
   props: ['data', 'cart'],
   methods: {
     changeCountOption (count, options, id) {
-      this.$store.commit('products/cart/update', { id, options: { ...options, count } })
+      this.$store.commit('products/cart/update', { id, options: { ...options }, count })
     },
     removeFromCart (id) {
       this.$store.commit('products/cart/remove', id)

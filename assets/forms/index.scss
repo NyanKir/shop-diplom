@@ -1,0 +1,19 @@
+.information,.information_form{
+  width: 100%;
+}
+.information_form{
+  margin: 10px auto 0 auto;
+  border: 1px solid $gray-f2;
+}
+.login-form_field{
+  display: flex;
+  flex-direction: column;
+}
+.login-form_field-error{
+  font-size: 13px;
+  color: #fa1414;
+}
+.input__invalid{
+  box-shadow: 0 0 1px red;
+  border-color:red;
+}

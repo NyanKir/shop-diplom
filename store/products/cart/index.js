@@ -13,16 +13,16 @@ export const mutations = {
     }
     state.cart = JSON.parse(localStorage.getItem('cart'))
   },
-  add (state, { id, options = { count: 1 } }) {
-    state.cart.push({ id, options })
+  add (state, { id, options, count = 1 }) {
+    state.cart.push({ id, options, count })
     localStorage.setItem('cart', JSON.stringify(state.cart))
   },
   remove (state, id) {
     state.cart = state.cart.filter(el => el.id !== id)
     localStorage.setItem('cart', JSON.stringify(state.cart))
   },
-  update (state, { id, options }) {
-    state.cart = state.cart.map(el => (el.id === id) ? { ...el, options } : el)
+  update (state, { id, options, count = 1 }) {
+    state.cart = state.cart.map(el => (el.id === id) ? { ...el, options, count } : el)
     localStorage.setItem('cart', JSON.stringify(state.cart))
   }
 }

@@ -78,10 +78,44 @@ router.post('/logout', function (req, res) {
   res.cookie('jwt', '', { maxAge: 0 })
   res.status(200).end()
 })
+
 router.get('/user', async function (req, res) {
   const user = await User.findOne({ _id: mongoose.Types.ObjectId(req.query.id) })
   res.status(200).json(user).end()
 })
+
+router.get('/address', async function (req, res) {
+  const user = await User.findOne({ _id: mongoose.Types.ObjectId(req.query.id) }).select({ address: 1 })
+  res.status(200).json(user).end()
+})
+router.patch('/address', [
+  check('city').not().isEmpty().trim().escape()
+    .isLength({ min: 2 }).withMessage('Your city must be more than 2 characters')
+    .matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
+  check('state').not().isEmpty().trim().escape()
+    .isLength({ min: 2 }).withMessage('Your state must be more than 2 characters')
+    .matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
+  check('code').not().isEmpty().trim().escape().isLength({ min: 6, max: 6 }).withMessage('Your code must contain 6 digits')
+],
+async function (req, res) {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array()[0] })
+  }
+
+  await User.findOneAndUpdate({ _id: mongoose.Types.ObjectId(req.body.id) }, {
+    $set: {
+      address: {
+        city: req.body.city,
+        country: req.body.country,
+        state: req.body.state,
+        code: req.body.code
+      }
+    }
+  })
+  res.status(200).end()
+})
+
 router.patch('/user', [
   check('firstName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Name must be alphabetic.'),
   check('lastName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your last name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your last name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
@@ -103,4 +137,5 @@ async function (req, res) {
   })
   res.status(200).end()
 })
+
 module.exports = router
