@@ -175,6 +175,12 @@ export default {
       }
     }
   },
+  head () {
+    return {
+      title: 'Sign up'
+
+    }
+  },
   layout: 'shop'
 }
 </script>

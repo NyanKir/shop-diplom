@@ -98,7 +98,7 @@ export default {
           }
         })
         if (result.status === 200) {
-          await this.$router.push('/')
+          await this.$router.push('/user/panel')
           await this.$store.commit('user/changeAuthentication', true)
           await this.$store.dispatch('user/showNotice', 'Success, you are log in! :)')
         }
@@ -107,6 +107,12 @@ export default {
           this.error = e.response.data
         }
       }
+    }
+  },
+  head () {
+    return {
+      title: 'Sign in'
+
     }
   },
   layout: 'shop'

@@ -51,7 +51,7 @@
       </NuxtLink>
     </div>
     <div class="panel_block">
-      <NuxtLink to="/" class="panel_link">
+      <NuxtLink to="/wishlist" class="panel_link">
         <div class="panel_block-orient">
           <font-awesome-icon :icon="['fas', 'heart']" size="lg" class="panel_item-svg" />
           <h3 class="h3 panel_h3">

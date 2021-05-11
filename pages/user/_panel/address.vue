@@ -13,7 +13,13 @@ import FormAddress from '@/components/User/FormAddress'
 export default {
   name: 'Address',
   layout: 'sidebar',
-  components: { FormAddress }
+  components: { FormAddress },
+  head () {
+    return {
+      title: 'My address'
+
+    }
+  }
 }
 </script>
 

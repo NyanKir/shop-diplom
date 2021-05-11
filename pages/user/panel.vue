@@ -20,6 +20,11 @@ export default {
     deleteCookie () {
       this.$logOut()
     }
+  },
+  head () {
+    return {
+      title: 'Panel'
+    }
   }
 }
 </script>

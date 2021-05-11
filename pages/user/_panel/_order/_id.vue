@@ -22,12 +22,12 @@
               Status
             </th>
           </tr>
-          <tr>
+          <tr v-for="(name,status) in order.status" :key="status">
             <td class="status_td">
-              {{ new Date(order.date).toLocaleDateString("en-US") }}
+              {{ status }}
             </td>
             <td class="status_td">
-              {{ order.status }}
+              {{ name }}
             </td>
           </tr>
         </table>
@@ -111,6 +111,9 @@
               </td>
             </tr>
           </table>
+          <h3 class="h3 total">
+            Total: ${{ order.price }}
+          </h3>
         </div>
       </div>
     </div>
@@ -126,11 +129,10 @@ export default {
   data () {
     return {
       order: undefined,
-      products: []
+      products: undefined
     }
   },
   async mounted () {
-    console.log(this.$route)
     const res = await this.$axios({
       method: 'get',
       url: '/api/order',
@@ -140,14 +142,20 @@ export default {
     })
     this.products = res.data.products
     this.order = res.data.order[0]
-
-    console.log(res)
+  },
+  head () {
+    return {
+      title: 'Order'
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-
+  .total{
+    text-align: right;
+    margin-top: 5px;
+  }
   .h3{
     font-size: 13px;
     color: $b-22;

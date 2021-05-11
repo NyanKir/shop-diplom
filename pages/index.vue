@@ -15,7 +15,6 @@ export default {
       home: 'Home'
     }
   },
-
   methods: {
     createProduct () {
       console.log(this.$logOut())
@@ -56,6 +55,12 @@ export default {
       //     'Content-Type': 'application/json'
       //   }
       // })
+    }
+  },
+  head () {
+    return {
+      title: 'Home'
+
     }
   }
 }

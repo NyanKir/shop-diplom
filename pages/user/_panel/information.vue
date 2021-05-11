@@ -128,6 +128,12 @@ export default {
         console.log(e)
       }
     }
+  },
+  head () {
+    return {
+      title: 'Information'
+
+    }
   }
 
 }

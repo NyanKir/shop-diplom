@@ -8,24 +8,24 @@
         <img :src="product.gallery[0]" :alt="product.title" class="product_img">
         <img :src="product.gallery[1]" :alt="product.title+'2'" class="product_img">
       </NuxtLink>
-      <!--      <div class="product_img-_panel">-->
-      <!--        <button-->
-      <!--          class="product_img-_panel-element"-->
-      <!--          :class="{'product_img-_panel-element__active':arrayOfCart.includes(product._id)}"-->
-      <!--          @click="arrayOfCart.includes(product._id)?removeFromCartList(product._id):addToCartList(product._id)"-->
-      <!--        >-->
-      <!--          <font-awesome-icon :icon="['fas', 'cart-plus']" size="lg" />-->
-      <!--        </button>-->
-      <!--        <button-->
-      <!--          class="product_img-_panel-element"-->
-      <!--          :class="{'product_img-_panel-element__active': arrayOfWish.includes(product._id)}"-->
-      <!--          @click="arrayOfWish.includes(product._id)?-->
-      <!--            removeFromWishList(product._id):-->
-      <!--            addToWishList(product._id)"-->
-      <!--        >-->
-      <!--          <font-awesome-icon :icon="['fas', 'heart']" size="lg" />-->
-      <!--        </button>-->
-      <!--      </div>-->
+      <div class="product_img-panel">
+        <!--              <button-->
+        <!--                class="product_img-panel-element"-->
+        <!--                :class="{'product_img-panel-element__active':arrayOfCart.includes(product._id)}"-->
+        <!--                @click="arrayOfCart.includes(product._id)?removeFromCartList(product._id):addToCartList(product._id)"-->
+        <!--              >-->
+        <!--                <font-awesome-icon :icon="['fas', 'cart-plus']" size="lg" />-->
+        <!--              </button>-->
+        <button
+          class="product_img-panel-element"
+          :class="{'product_img-panel-element__active': arrayOfWish.includes(product._id)}"
+          @click="arrayOfWish.includes(product._id)?
+            removeFromWishList(product._id):
+            addToWishList(product._id)"
+        >
+          <font-awesome-icon :icon="['fas', 'heart']" size="lg" />
+        </button>
+      </div>
     </div>
     <div class="product_info">
       <Rating :rating="getRating" />
@@ -69,9 +69,11 @@ export default {
   methods: {
     addToWishList (id) {
       this.$store.commit('products/wish/add', id)
+      this.$store.dispatch('user/showNotice', 'Success, you added product to wishlist')
     },
     removeFromWishList (id) {
       this.$store.commit('products/wish/remove', id)
+      this.$store.dispatch('user/showNotice', 'Success, you removed product from wishlist')
     },
     addToCartList (id) {
       this.$store.commit('products/cart/add', id)

@@ -24,7 +24,7 @@
         </tr>
         <tr v-for="order in data" :key="order._id" class="orders_table-tr">
           <td class="orders_table-td">
-            <NuxtLink :to="'order/'+order._id" class="link">
+            <NuxtLink :to="'/user/panel/order/'+order._id" class="link">
               <span>
                 {{ order._id }}
               </span>
@@ -37,7 +37,11 @@
             ${{ order.price }}
           </td>
           <td class="orders_table-td">
-            {{ order.status }}
+            <NuxtLink :to="'/user/panel/order/'+order._id" class="link">
+              <span>
+                Details
+              </span>
+            </NuxtLink>
           </td>
         </tr>
       </table>
@@ -63,7 +67,6 @@ export default {
       }
     })
     this.data = res.data.data
-    console.log(res)
   },
   head () {
     return {
