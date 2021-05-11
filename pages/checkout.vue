@@ -162,8 +162,8 @@ export default {
           }
         })
         if (res.status === 200) {
-          await this.$store.dispatch('user/showNotice', 'Success, your order was accept!')
-          await this.$router.push('/user/panel')
+          await this.$store.dispatch('user/showNotice', 'Success, your _order was accept!')
+          await this.$router.push('/user/order')
           this.$store.commit('products/cart/clear')
         }
       } catch (e) {

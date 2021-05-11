@@ -5,7 +5,8 @@ const orderModel = new Schema({
   cart: [
     {
       options: Object,
-      count: Number
+      count: Number,
+      id: Schema.Types.ObjectId
     }
   ],
   status: { type: String, default: 'pending' },
