@@ -44,6 +44,7 @@ export default {
   props: ['data', 'cart'],
   methods: {
     changeCountOption (count, options, id) {
+      console.log(count)
       this.$store.commit('products/cart/update', { id, options: { ...options }, count })
     },
     removeFromCart (id) {

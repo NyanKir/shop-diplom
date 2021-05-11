@@ -48,6 +48,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  margin-bottom: 10px;
 }
 .breadcrumbs_container{
   display: flex;
@@ -64,6 +65,7 @@ export default {
   margin-right: 8px;
 }
 .breadcrumbs_crumb:not(:last-child):after{
+  z-index: -1;
   content: '/';
   position: absolute;
   font-weight: 300;

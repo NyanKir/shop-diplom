@@ -14,7 +14,10 @@ export default async function (context) {
     }
   }).catch((err) => {
     if (err.response.status) {
-      if (context.route.path.includes('/user/')) {
+      const conditions = ['/user/', '/checkout']
+
+      if (conditions.some(el => context.route.path.includes(el))) {
+        context.store.dispatch('user/showNotice', 'Sorry, you need to log in :( ')
         return context.redirect('/')
       }
     }

@@ -3,7 +3,7 @@ export const state = () => ({
 })
 export const getters = {
   getCartId: (state) => {
-    return state.cart
+    return keyword => keyword
   }
 }
 export const mutations = {
@@ -23,6 +23,10 @@ export const mutations = {
   },
   update (state, { id, options, count = 1 }) {
     state.cart = state.cart.map(el => (el.id === id) ? { ...el, options, count } : el)
+    localStorage.setItem('cart', JSON.stringify(state.cart))
+  },
+  clear (state) {
+    state.cart = []
     localStorage.setItem('cart', JSON.stringify(state.cart))
   }
 }

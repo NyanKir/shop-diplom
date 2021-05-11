@@ -4,40 +4,32 @@
       Shopping Cart
     </BreadCrumbs>
     <div class="container_body">
-      <List v-if="data.length!==0" :data="data" :cart="cart" />
+      <List v-if="data.length!==0 && cart.length" :data="data" :cart="cart" />
       <div v-else class="container_nothing">
         <span>
           There are no more items in your cart
         </span>
       </div>
-      <aside class="aside">
-        <div class="aside_item">
-          <span>{{ cartItems }} items</span>
-          <span>${{ (+bill).toFixed(2) }}</span>
-        </div>
-        <div class="aside_item">
-          <span>Shipping</span>
-          <span v-if="+bill">${{ shipping.toFixed(2) }}</span>
-          <span v-else>Free</span>
-        </div>
-        <div class="aside_item aside_item__total">
-          <span>Total <br> (tax excl.)</span>
-          <span v-if="+bill">${{ ((+bill)+shipping).toFixed(2) }}</span>
-          <span v-else>$0.00</span>
-        </div>
+      <Bill :bill="bill" :cart-items="cartItems" :shipping="shipping">
         <button class="btn aside_btn">
-          Checkout
+          <NuxtLink v-if="+bill" to="/checkout" class="link">
+            Checkout
+          </NuxtLink>
+          <NuxtLink v-else to="/" class="link">
+            Go to shop
+          </NuxtLink>
         </button>
-      </aside>
+      </Bill>
     </div>
   </div>
 </template>
 
 <script>
+import Bill from '@/components/Cart/Bill'
 import List from '../components/Cart/List'
 export default {
   name: 'Cart',
-  components: { List },
+  components: { List, Bill },
   data () {
     return {
       data: [],
@@ -96,27 +88,8 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-
-  .aside{
-    padding: 15px;
-    margin: 0 0 0 10px;
-    border: 1px solid $gray-f2;
-  }
-  .aside_item{
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    margin: 2px 0;
-
-    span:first-child{
-      margin-right: 10px;
-    }
-  }
-  .aside_item__total{
-    margin-top: 20px;
-  }
   .aside_btn{
-    width: 100%;
+    margin: 10px auto 0 auto;
   }
   .container_nothing{
     padding: 10px;
@@ -124,5 +97,8 @@ export default {
     margin: 0 0 auto 0;
     width: 100%;
     font-size: 13px;
+  }
+  .link{
+    color: $white;
   }
 </style>
