@@ -13,7 +13,7 @@
       <Banner />
     </WidgetWrap>
     <WidgetWrap title="New Products">
-      <NewProducts />
+      <NewProducts :products-id="productsId" />
     </WidgetWrap>
   </aside>
 </template>
@@ -32,7 +32,8 @@ export default {
   data () {
     return {
       links: this.$store.state.menu.links,
-      WidgetFilters: undefined
+      WidgetFilters: undefined,
+      productsId: [{ id: '6086f2768726b5308c730e30' }, { id: '6082b7fd107a1c189c4dd47e' }]
     }
   },
   computed: {

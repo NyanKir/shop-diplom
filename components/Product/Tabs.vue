@@ -41,7 +41,6 @@ export default {
 .tabs {
   padding: 20px 0px;
   margin-top: 1em;
-  margin-bottom: 40px;
   user-select: none;
   overflow-x: auto;
 }

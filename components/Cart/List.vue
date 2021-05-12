@@ -22,6 +22,7 @@
         <!--          </li>-->
         <!--        </ul>-->
       </div>
+
       <Select
         :id="product._id"
         :start="cart.filter(el => el.id === product._id)[0].count"
@@ -44,8 +45,7 @@ export default {
   props: ['data', 'cart'],
   methods: {
     changeCountOption (count, options, id) {
-      console.log(count)
-      this.$store.commit('products/cart/update', { id, options: { ...options }, count })
+      this.$store.commit('products/cart/update', { id, options, count })
     },
     removeFromCart (id) {
       this.$store.commit('products/cart/remove', id)
@@ -56,7 +56,8 @@ export default {
     //     return []
     //   }
     //   return Object.keys(keys).filter(el => el !== 'count')
-    //     .map((el) => { return { [el]: this.cart.filter(el => el.id === id)[0].options[el] } }).reduce((obj, el) => Object.assign(obj, el), {})
+    //     .map((el) => { return { [el]: this.cart.filter(el => el.id === id)[0].options[el] } })
+    //     .reduce((obj, el) => Object.assign(obj, el), {})
     // }
   }
 }

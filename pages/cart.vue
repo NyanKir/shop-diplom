@@ -78,7 +78,12 @@ export default {
       }
     }
   },
-  layout: 'sidebar'
+  layout: 'sidebar',
+  head () {
+    return {
+      title: 'Cart'
+    }
+  }
 }
 </script>
 

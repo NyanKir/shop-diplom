@@ -23,6 +23,7 @@
         <Select
           :id="product._id"
           :start="cartProduct[0]=== undefined ? -1 : count"
+          :options="options"
           @changeCountOption="changeCountOption"
         />
       </WidgetWrap>
@@ -84,7 +85,7 @@ export default {
   },
   methods: {
     changeCountOption (count) {
-      this.count = +count
+      this.count = count
       if (this.cartProduct[0] !== undefined) {
         this.$store.commit('products/cart/update',
           { ...this.cartProduct[0], options: { ...this.cartProduct[0].options }, count })
@@ -103,7 +104,7 @@ export default {
         this.$store.dispatch('user/showNotice', 'Choose all filters :)')
         return
       }
-      this.$store.commit('products/cart/add', { id, options: this.options, count: this.options.count })
+      this.$store.commit('products/cart/add', { id, options: this.options, count: this.count })
       this.$store.dispatch('user/showNotice', 'Success, your product was added! :)')
     },
     removeFromCartList (id) {

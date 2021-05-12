@@ -45,6 +45,11 @@ export default {
         console.error(e)
       }
     }
+  },
+  head () {
+    return {
+      title: 'Wishlist'
+    }
   }
 }
 </script>

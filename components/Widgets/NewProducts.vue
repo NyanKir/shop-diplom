@@ -10,9 +10,9 @@ import Product from '~/components/Product/Gallery/Product'
 export default {
   name: 'NewProducts',
   components: { Product },
+  props: ['productsId'],
   data () {
     return {
-      productsId: [{ id: '6086f2768726b5308c730e30' }, { id: '6082b7fd107a1c189c4dd47e' }],
       products: []
     }
   },

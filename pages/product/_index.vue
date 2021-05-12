@@ -1,25 +1,33 @@
 <template>
-  <div class="container">
+  <div class="w100">
     <BreadCrumbs />
-    <div class="container">
+    <div>
       <Product :product="product" :current-image="currentImage" :change-image="changeImage" />
       <Tabs :description="product.description" :rating="product.review" />
+      <Carousel title="You Might Also Like" :products-id="productsId" />
+      <Carousel title="Other products in the same category" :products-id="productsId" />
     </div>
   </div>
 </template>
 
 <script>
+import Carousel from '@/components/Carousel'
 import BreadCrumbs from '../../components/BreadCrumbs'
 import Product from '../../components/Product/Product'
 import Tabs from '../../components/Product/Tabs'
+
 export default {
   name: 'Index',
-  components: { Tabs, Product, BreadCrumbs },
+  components: { Tabs, Product, BreadCrumbs, Carousel },
   layout: 'sidebar',
   data () {
     return {
       product: [],
-      currentImage: undefined
+      currentImage: undefined,
+      productsId: [{ id: '6086f2768726b5308c730e30' },
+        { id: '6082b7fd107a1c189c4dd47e' },
+        { id: '6082b7fb107a1c189c4dd47a' }, { id: '6082bdc7107a1c189c4dd480' },
+        { id: '6082b7fc107a1c189c4dd47c' }]
     }
   },
   loading: {
@@ -61,6 +69,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .w100{
+    width: 100% ;
+  }
 </style>
