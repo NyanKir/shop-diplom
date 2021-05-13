@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: 'Main',
+  name: 'Slider',
   data () {
     return {
       slideNow: 0,
