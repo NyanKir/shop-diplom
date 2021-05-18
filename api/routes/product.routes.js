@@ -10,6 +10,10 @@ router.post('/product', function (req, res) {
 })
 
 router.get('/products', async function (req, res) {
+  if (req.query.all) {
+    const data = await Product.find({})
+    return res.status(200).json({ data }).end()
+  }
   let sort = { _id: 1 }
   const typeSort = JSON.parse(req.query.query).sort
   if (typeSort) {

@@ -38,7 +38,7 @@ export default {
     '~assets/global.scss',
     '~assets/forms/index.scss'
   ],
-
+  // loading: '~/components/Loading.vue',
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
@@ -61,8 +61,16 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/fontawesome'
+    '@nuxtjs/fontawesome',
+    '@nuxtjs/vuetify'
   ],
+  vuetify: {
+    theme: {
+      dark: true
+    },
+    defaultAssets: { icons: 'fa' }
+  },
+
   fontawesome: {
     icons: {
       solid: true,

@@ -142,13 +142,13 @@ export default {
     margin: 15px 0;
 
   }
-  .info_options /deep/ .widget_wrap{
+  .info_options ::v-deep .widget_wrap{
     width: 250px;
     display: flex;
     justify-content: space-between;
 
   }
-  .info_options /deep/ .h4{
+  .info_options ::v-deep .h4{
     width: 75px;
     text-overflow: ellipsis;
     overflow: hidden;

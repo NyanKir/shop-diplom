@@ -16,7 +16,8 @@
 import Footer from '../components/Footer/Footer'
 export default {
   name: 'Sidebar',
-  components: { Footer }
+  components: { Footer },
+  loading: true
 }
 </script>
 

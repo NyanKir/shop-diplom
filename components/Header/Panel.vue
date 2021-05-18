@@ -27,6 +27,14 @@
               </span>
             </NuxtLink>
           </li>
+          <li v-if="this.$store.state.user.isAdmin">
+            <NuxtLink to="/admin/" class="link fnt-weg-400 link__logout">
+              <span>
+                <font-awesome-icon :icon="['fas', 'cog']" size="lg" class="dropdown_link-svg" />
+                Admin
+              </span>
+            </NuxtLink>
+          </li>
           <li>
             <NuxtLink to="/wishlist" class="link fnt-weg-400">
               <span>
@@ -92,6 +100,7 @@ export default {
   cursor: pointer;
 }
 .dropdown{
+  z-index: 1;
   border: 1px solid $gray;
   flex-direction: column;
   padding: 10px ;

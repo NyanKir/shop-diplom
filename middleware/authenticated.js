@@ -7,6 +7,8 @@ export default async function (context) {
     if (r.status === 200) {
       context.store.commit('user/changeAuthentication', true)
       context.store.commit('user/changeUserId', r.data.id)
+      context.store.commit('user/changeAdmin', r.data.isAdmin)
+
       if (context.route.path === '/auth/signin' || context.route.path === '/auth/signup') {
         return context.redirect('/')
       }

@@ -86,11 +86,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .product_info /deep/ .price_regular{
+  .product_info ::v-deep .price_regular{
     font-size: 14px;
 
   }
-  .product_info /deep/ .price_discount{
+  .product_info ::v-deep .price_discount{
     display: none;
   }
   .product_img-wrapper{

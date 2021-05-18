@@ -201,10 +201,10 @@ export default {
     border: 1px solid $gray-85;
   }
 
-  .status_td /deep/ .price_regular{
+  .status_td ::v-deep .price_regular{
     font-size: 13px;
   }
-  .status_td /deep/ .price_discount{
+  .status_td ::v-deep .price_discount{
     font-size: 13px;
   }
 </style>

@@ -34,40 +34,40 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .new-products /deep/ .product{
+    .new-products ::v-deep .product{
       display: flex;
       justify-content: space-between;
       align-content: center;
       margin: 5px 0;
     }
 
-    .new-products /deep/ .product_img-panel{
+    .new-products ::v-deep .product_img-panel{
       display: none
     }
 
-    .new-products /deep/ .product_img:nth-child(2){
+    .new-products ::v-deep .product_img:nth-child(2){
       display: none
     }
 
-    .new-products /deep/ .rating{
+    .new-products ::v-deep .rating{
       display: none
     }
 
-    .new-products /deep/ .product_discount{
+    .new-products ::v-deep .product_discount{
       display: none
     }
 
-    .new-products /deep/ .product_info{
+    .new-products ::v-deep .product_info{
       display: flex;
       flex-direction: column;
 
     }
 
-    .new-products /deep/ .product_img{
+    .new-products ::v-deep .product_img{
       width: 100%;
       height: auto;
     }
-    .new-products /deep/ .product_img-wrapper{
+    .new-products ::v-deep .product_img-wrapper{
       margin-right: 5px;
       width: 80px;
       min-width: 60px;

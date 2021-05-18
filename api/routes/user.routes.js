@@ -63,7 +63,7 @@ router.get('/isauth', async function (req, res) {
       const count = await User.countDocuments({ _id: mongoose.Types.ObjectId(decode) })
       const user = await User.find({ _id: mongoose.Types.ObjectId(decode) })
       if (count === 1) {
-        return res.status(200).json({ id: user[0]._id }).end()
+        return res.status(200).json({ id: user[0]._id, isAdmin: user[0].isAdmin }).end()
       }
       return res.status(404).end()
     } catch (err) {

@@ -74,17 +74,17 @@ export default {
       margin: 0 0 auto;
     }
 
-    .list /deep/ .quantity_option{
+    .list ::v-deep .quantity_option{
       margin: 0;
     }
 
-    .list /deep/ .price_regular{
+    .list ::v-deep .price_regular{
       font-size: 14px;
     }
-    .list /deep/ .price{
+    .list ::v-deep .price{
       margin: 0;
     }
-    .list_item /deep/ .select{
+    .list_item ::v-deep .select{
       width: 50px;
     }
     .list_item{

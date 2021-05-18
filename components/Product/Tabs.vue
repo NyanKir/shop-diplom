@@ -33,7 +33,6 @@ export default {
       return this.$props[this.currentTab.toLowerCase()]
     }
   }
-
 }
 </script>
 

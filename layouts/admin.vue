@@ -1,0 +1,87 @@
+<template>
+  <v-app dark app>
+    <v-navigation-drawer
+      app
+      permanent
+      expand-on-hover
+    >
+      <v-list>
+        <v-list-item class="px-2">
+          <v-list-item-avatar>
+            <v-img src="https://randomuser.me/api/portraits/women/85.jpg" />
+          </v-list-item-avatar>
+        </v-list-item>
+
+        <v-list-item link>
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              Sandra Adams
+            </v-list-item-title>
+            <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-divider />
+
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item link to="/admin/" nuxt>
+          <v-list-item-icon>
+            <v-icon>fa-home</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Home</v-list-item-title>
+        </v-list-item>
+        <v-list-item link to="/admin/blog" nuxt>
+          <v-list-item-icon>
+            <v-icon>fa-pen</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>My Blog</v-list-item-title>
+        </v-list-item>
+        <v-list-item link to="/admin/product" nuxt>
+          <v-list-item-icon>
+            <v-icon>fa-cheese</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Products</v-list-item-title>
+        </v-list-item>
+        <v-list-item link to="/admin/order" nuxt>
+          <v-list-item-icon>
+            <v-icon>fa-people-carry</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Orders</v-list-item-title>
+        </v-list-item>
+        <v-list-item link to="/admin/users" nuxt>
+          <v-list-item-icon>
+            <v-icon>fa-users</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Users</v-list-item-title>
+        </v-list-item>
+        <v-list-item link to="/admin/users" nuxt>
+          <v-list-item-icon>
+            <v-icon>fa-sign-out-alt</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Log out</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <!-- Sizes your content based upon application components -->
+    <v-main>
+      <Nuxt />
+    </v-main>
+  </v-app>
+</template>
+
+<script>
+export default {
+  name: 'Admin',
+  loading: false
+
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -60,6 +60,7 @@ export default {
       grid-template-columns: auto auto auto;
       grid-template-rows: auto auto auto;
       grid-gap: 30px;
+      margin: 40px 0;
     }
     .collage_huge{
       grid-column: 1/3;

@@ -15,7 +15,13 @@
     </div>
     <div class="carousel_overflow">
       <div ref="line" class="carousel_line" :style="{transform: 'translate('+ -start+'px)'}">
-        <Product v-for="product in products" :key="product._id" :product="product" class="carousel_el" />
+        <Product
+          v-for="product in products"
+          :key="product._id"
+          :product="product"
+          class="carousel_el"
+          :style="{minWidth: 'calc((100%/'+countInLine+') - 10px )'}"
+        />
       </div>
     </div>
   </div>
@@ -27,13 +33,21 @@ import Product from '@/components/Product/Gallery/Product'
 export default {
   name: 'Carousel',
   components: { Product },
-  props: ['title', 'data', 'productsId'],
+  props: {
+    title: String,
+    productsId: Array,
+    countInLine: {
+      type: Number,
+      default: 3
+    }
+  },
   data () {
     return {
       products: [],
       start: 0,
       end: undefined,
       countEl: 0
+
     }
   },
   async mounted () {
@@ -47,7 +61,7 @@ export default {
       })
       this.products = res.data
       this.end = this.$refs.line.offsetWidth
-      this.countEl = res.data.length - 3
+      this.countEl = res.data.length - this.countInLine
     } catch (e) {
       console.log(e)
     }
@@ -60,7 +74,7 @@ export default {
       }
     },
     prev () {
-      if (this.products.length - 3 !== this.countEl) {
+      if (this.products.length - this.countInLine !== this.countEl) {
         this.countEl += 1
         this.start = this.start - this.$refs.line.firstChild.offsetWidth - 10
       }
@@ -71,7 +85,7 @@ export default {
 
 <style scoped lang="scss">
   .carousel{
-    margin: 15px 0;
+    margin: 25px 0;
   }
   .carousel_title{
     font-size: 18px;
@@ -119,7 +133,7 @@ export default {
   }
 
   .carousel_el{
-    min-width: calc((100%/3) - 10px);
+    //min-width: calc((100%/3) - 10px);
     height: auto;
   }
 </style>
