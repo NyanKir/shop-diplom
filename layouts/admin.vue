@@ -82,6 +82,24 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #2f2f2f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1d1d1d;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #121212;
+}
 </style>

@@ -156,7 +156,7 @@
                         label="Price"
                         :rules="[
                           () => !!editedItem.price || 'This field is required',
-                          () => !!editedItem.price && Number.isInteger(+editedItem.price)|| 'Only digits'
+                          () => !!editedItem.price && !isNaN(+editedItem.price)|| 'Only digits'
                         ]"
                         outlined
                       />
@@ -193,7 +193,22 @@
                         @change="changeFile"
                       />
                     </v-col>
-
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="12"
+                    >
+                      <div class="d-flex flex-wrap align-center">
+                        <v-img
+                          v-for="(img,index) in editedItem.gallery"
+                          :key="index"
+                          max-height="150"
+                          max-width="150"
+                          :src="img"
+                          class="ma-2"
+                        />
+                      </div>
+                    </v-col>
                     <v-col
                       cols="12"
                       sm="12"
@@ -209,6 +224,7 @@
                         label="Description"
                       />
                     </v-col>
+
                     <v-col
                       cols="12"
                       md="6"
@@ -270,7 +286,7 @@
                             {{ subTitle }}
                             {{ values.count }}
                           </v-list-item-subtitle>
-                          <v-btn color="blue darken-1" @click="deleteFromFilter(title)">
+                          <v-btn color="red darken-1" @click="deleteFromFilter(title)">
                             Delete
                           </v-btn>
                         </v-list-item-content>
@@ -278,20 +294,26 @@
                     </v-col>
                     <v-col
                       cols="12"
-                      sm="6"
-                      md="6"
+                      sm="12"
+                      md="12"
                     >
                       Categories
-                      <v-checkbox
-                        v-for="(link,index) in links"
-                        :key="index"
-                        v-model="editedItem.categories"
-                        :rules="[
-                          () => editedItem.categories.length >0|| 'You should select one field',
-                        ]"
-                        :label="link"
-                        :value="link"
-                      />
+                      <div class="d-flex justify-space-between flex-wrap">
+                        <v-checkbox
+                          v-for="(link,index) in links"
+                          :key="index"
+                          v-model="editedItem.categories"
+                          class="chk"
+                          :rules="[
+                            () => editedItem.categories.length >0|| 'You should select one field',
+                          ]"
+                          :label="link"
+                          :value="link"
+                          :checked="editedItem.categories.some(el=>{
+                            return link.includes(el)
+                          })"
+                        />
+                      </div>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -308,6 +330,7 @@
                 Cancel
               </v-btn>
               <v-btn
+                v-if="editedIndex ===-1"
                 color="yellow darken-1"
                 text
                 @click="reset"
@@ -457,7 +480,14 @@ export default {
       this.links.push(e.href.replace('/category/', ''))
       e.child && Object.values(e.child).forEach(cb)
     }
+
     Object.values(this.$store.state.menu.links).forEach(cb)
+    this.links = this.links.map((el) => {
+      if (el.includes('/')) {
+        return el.split('/').pop()
+      }
+      return el
+    })
   },
 
   methods: {
@@ -523,8 +553,12 @@ export default {
       this.dialogDelete = true
     },
 
-    deleteItemConfirm () {
-      console.log(this.desserts[this.editedIndex - 1]._id)
+    async deleteItemConfirm () {
+      await this.$axios.delete('api/product', {
+        params: {
+          id: this.desserts[this.editedIndex]._id
+        }
+      })
       this.desserts.splice(this.editedIndex, 1)
       this.closeDelete()
     },
@@ -558,12 +592,7 @@ export default {
           price: this.editedItem.price,
           discountPrice: this.editedItem.discountPrice,
           description: this.editedItem.description,
-          categories: this.editedItem.categories.map((el) => {
-            if (el.includes('/')) {
-              return el.split('/').pop()
-            }
-            return el
-          }),
+          categories: this.editedItem.categories,
           gallery: this.editedItem.gallery,
           filters: this.editedItem.filters
         }), {
@@ -583,6 +612,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
+  .chk{
+    flex: 1 1 33%;
+  }
 </style>

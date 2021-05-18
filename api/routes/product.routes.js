@@ -102,4 +102,12 @@ router.get('/categories', async function (req, res) {
   res.status(200).json(doc[0]).end()
 })
 
+router.delete('/product', async function (req, res) {
+  try {
+    await Product.findOneAndRemove({ _id: mongoose.Types.ObjectId(req.query.id) })
+    res.status(200).end()
+  } catch (e) {
+    res.status(500).end()
+  }
+})
 module.exports = router
