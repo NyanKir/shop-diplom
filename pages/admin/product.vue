@@ -471,7 +471,6 @@ export default {
     formTitle () {
       return this.editedIndex === -1 ? 'New Product' : 'Edit Product'
     }
-
   },
 
   watch: {
@@ -522,6 +521,7 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
+
     checkFilter () {
       if (!this.filter.title) {
         return 'This is fields required'
@@ -531,6 +531,7 @@ export default {
       }
       return true
     },
+
     async changeFile (files) {
       const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader()
@@ -541,6 +542,7 @@ export default {
       const data = files.map(async el => await toBase64(el))
       this.editedItem.gallery = await Promise.all(data).then((el) => { return el })
     },
+
     addToFilter () {
       this.$refs.formFilter.validate()
       if (!this.validFilter) {
@@ -564,6 +566,7 @@ export default {
         quantity: 1
       }
     },
+
     deleteFromFilter (title) {
       const filters = { ...this.editedItem.filters }
       delete filters[title]
@@ -643,6 +646,7 @@ export default {
       await this.fetchData()
       await this.close()
     },
+
     reset () {
       this.$refs.form.resetValidation()
     }

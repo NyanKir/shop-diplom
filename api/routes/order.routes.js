@@ -23,9 +23,26 @@ router.get('/orders', async function (req, res) {
   res.status(200).json({ data: orders }).end()
 })
 router.get('/order', async function (req, res) {
+  if (req.query.all) {
+    const order = await Order.find({})
+    const cart = order.map(el => el.cart.map(p => mongoose.Types.ObjectId(p.id))).flat()
+    const products = (await Product.find({ _id: { $in: cart } }).exec())
+    return res.status(200).json({ order, products }).end()
+  }
   const order = await Order.find({ _id: mongoose.Types.ObjectId(req.query.id) })
   const products = (await Product.find({ _id: { $in: order[0].cart.map(el => mongoose.Types.ObjectId(el.id)) } }).exec())
   res.status(200).json({ order, products }).end()
 })
 
+router.post('/status', async function (req, res) {
+  try {
+    const order = await Order.findOne({ _id: mongoose.Types.ObjectId(req.body.id) })
+    order.status = { ...order.status, [req.body.status]: new Date() }
+    await Order.updateOne({ _id: mongoose.Types.ObjectId(req.body.id) }, { $set: order })
+    res.status(200).end()
+  } catch (e) {
+    console.log(e)
+    res.status(500).end()
+  }
+})
 module.exports = router

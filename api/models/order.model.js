@@ -9,7 +9,7 @@ const orderModel = new Schema({
       id: Schema.Types.ObjectId
     }
   ],
-  status: { pending: { type: Date, default: Date.now } },
+  status: { type: Object, default: { pending: Date.now } },
   address: {
     city: String,
     country: String,
