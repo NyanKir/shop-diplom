@@ -230,45 +230,53 @@
                       md="6"
                       sm="6"
                     >
-                      <v-text-field
-                        v-model="filter.title"
-                        label="Filter"
-                        outlined
-                        :rules="[
-                          () => !!filter.title || 'This field is required',
-                        ]"
-                      />
+                      <v-form
+                        ref="formFilter"
+                        v-model="validFilter"
+                      >
+                        <v-text-field
+                          ref="filterTitle"
+                          v-model="filter.title"
+                          label="Filter"
+                          outlined
+                          :rules="[
+                            checkFilter
+                          ]"
+                        />
 
-                      <v-text-field
-                        v-model="filter.name"
-                        label="Filter Name"
-                        outlined
-                        :rules="[
-                          () => !!filter.name || 'This field is required',
-                        ]"
-                      />
+                        <v-text-field
+                          ref="filterName"
+                          v-model="filter.name"
+                          label="Filter Name"
+                          :rules="[
+                            () => !!filter.name || 'This field is required',
+                          ]"
+                          outlined
+                        />
 
-                      <v-text-field
-                        v-model="filter.value"
-                        label="Filter Value"
-                        outlined
-                        :rules="[
-                          () => !!filter.value || 'This field is required',
-                        ]"
-                      />
+                        <v-text-field
+                          ref="filterValue"
+                          v-model="filter.value"
+                          label="Filter Value"
+                          :rules="[
+                            () => !!filter.value || 'This field is required',
+                          ]"
+                          outlined
+                        />
 
-                      <v-text-field
-                        v-model="filter.quantity"
-                        outlined
-                        label="Quantity"
-                        :rules="[
-                          () => !!filter.quantity || 'This field is required',
-                          () => !!filter.quantity && Number.isInteger(+filter.quantity)|| 'Only numbers'
-                        ]"
-                      />
-                      <v-btn color="blue darken-1" @click="addToFilter">
-                        Add
-                      </v-btn>
+                        <v-text-field
+                          ref="filterCount"
+                          v-model="filter.quantity"
+                          :rules="[
+                            () => !!filter.quantity && !Number.isInteger(+filter.quantity) || 'Only digits'
+                          ]"
+                          outlined
+                          label="Quantity"
+                        />
+                        <v-btn color="blue darken-1" @click="addToFilter">
+                          Add
+                        </v-btn>
+                      </v-form>
                     </v-col>
 
                     <v-col
@@ -401,10 +409,11 @@ export default {
       title: '',
       value: '',
       name: '',
-      quantity: 0
+      quantity: 1
     },
     expanded: [],
     valid: true,
+    validFilter: true,
     loading: false,
     dialog: false,
     dialogDelete: false,
@@ -513,6 +522,15 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
+    checkFilter () {
+      if (!this.filter.title) {
+        return 'This is fields required'
+      }
+      if (Object.keys(this.editedItem.filters).length === 0 && !this.filter.title) {
+        return 'You should create filter'
+      }
+      return true
+    },
     async changeFile (files) {
       const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader()
@@ -524,6 +542,11 @@ export default {
       this.editedItem.gallery = await Promise.all(data).then((el) => { return el })
     },
     addToFilter () {
+      this.$refs.formFilter.validate()
+      if (!this.validFilter) {
+        return true
+      }
+
       this.editedItem.filters = {
         ...this.editedItem.filters,
         [this.filter.title]: {
@@ -533,11 +556,12 @@ export default {
           }
         }
       }
+      this.$refs.formFilter.resetValidation()
       this.filter = {
         title: '',
         value: '',
         name: '',
-        quantity: 0
+        quantity: 1
       }
     },
     deleteFromFilter (title) {
@@ -580,17 +604,31 @@ export default {
     },
 
     async save () {
+      this.$refs.form.validate()
+      if (!this.valid) {
+        return true
+      }
       if (this.editedIndex > -1) {
+        await this.$axios.$patch('/api/product', JSON.stringify({
+          _id: this.desserts[this.editedIndex]._id,
+          title: this.editedItem.title,
+          price: +this.editedItem.price,
+          discountPrice: +this.editedItem.discountPrice,
+          description: this.editedItem.description,
+          categories: this.editedItem.categories,
+          gallery: this.editedItem.gallery,
+          filters: this.editedItem.filters
+        }), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
         Object.assign(this.desserts[this.editedIndex], this.editedItem)
       } else {
-        this.$refs.form.validate()
-        if (!this.valid) {
-          return true
-        }
         await this.$axios.$post('/api/product', JSON.stringify({
           title: this.editedItem.title,
-          price: this.editedItem.price,
-          discountPrice: this.editedItem.discountPrice,
+          price: +this.editedItem.price,
+          discountPrice: +this.editedItem.discountPrice,
           description: this.editedItem.description,
           categories: this.editedItem.categories,
           gallery: this.editedItem.gallery,

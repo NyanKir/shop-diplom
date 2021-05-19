@@ -110,4 +110,16 @@ router.delete('/product', async function (req, res) {
     res.status(500).end()
   }
 })
+router.patch('/product', async function (req, res) {
+  try {
+    const data = req.body
+    const _id = mongoose.Types.ObjectId(req.body._id)
+    delete data._id
+    console.log(data)
+    await Product.findOneAndUpdate({ _id }, { $set: data })
+    res.status(200).end()
+  } catch (e) {
+    res.status(500).end()
+  }
+})
 module.exports = router
