@@ -10,6 +10,7 @@ app.use(cookieParser())
 app.use(require('./routes/user.routes'))
 app.use(require('./routes/product.routes'))
 app.use(require('./routes/order.routes'))
+app.use(require('./routes/blog.routes'))
 
 module.exports = app
 

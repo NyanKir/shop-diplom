@@ -48,12 +48,6 @@
         </v-list-item>
         <v-list-item link to="/admin/users" nuxt>
           <v-list-item-icon>
-            <v-icon>fa-users</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Users</v-list-item-title>
-        </v-list-item>
-        <v-list-item link to="/admin/users" nuxt>
-          <v-list-item-icon>
             <v-icon>fa-sign-out-alt</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Log out</v-list-item-title>

@@ -34,7 +34,7 @@ export default {
   methods: {
     async fetchData () {
       const res = await this.$axios.$get('/api/sales')
-      const data = {
+      this.data = {
         labels: [0, ...res.data.map(el => el.price)],
         datasets: [{
           label: 'Sales',
@@ -45,9 +45,6 @@ export default {
         }]
 
       }
-      console.log(data)
-
-      this.data = data
     }
   }
 }
