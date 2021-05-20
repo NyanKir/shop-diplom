@@ -27,7 +27,6 @@ export default {
       }
     }
   }),
-
   created () {
     this.fetchData()
   },
@@ -45,6 +44,11 @@ export default {
         }]
 
       }
+    }
+  },
+  head () {
+    return {
+      title: 'Dashboard'
     }
   }
 }

@@ -14,11 +14,20 @@
       </div>
     </div>
     <div class="carousel_overflow">
-      <div ref="line" class="carousel_line" :style="{transform: 'translate('+ -start+'px)'}">
+      <div v-if="!blog" ref="line" class="carousel_line" :style="{transform: 'translate('+ -start+'px)'}">
         <Product
           v-for="product in products"
           :key="product._id"
           :product="product"
+          class="carousel_el"
+          :style="{minWidth: 'calc((100%/'+countInLine+') - 10px )'}"
+        />
+      </div>
+      <div v-else ref="line" class="carousel_line" :style="{transform: 'translate('+ -start+'px)'}">
+        <Blog
+          v-for="product in products"
+          :key="product._id"
+          :data="product"
           class="carousel_el"
           :style="{minWidth: 'calc((100%/'+countInLine+') - 10px )'}"
         />
@@ -29,16 +38,21 @@
 
 <script>
 import Product from '@/components/Product/Gallery/Product'
+import Blog from '@/components/Blog'
 
 export default {
   name: 'Carousel',
-  components: { Product },
+  components: { Product, Blog },
   props: {
     title: String,
     productsId: Array,
     countInLine: {
       type: Number,
       default: 3
+    },
+    blog: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -52,14 +66,25 @@ export default {
   },
   async mounted () {
     try {
+      if (!this.blog) {
+        const res = await this.$axios({
+          method: 'get',
+          url: '/api/product',
+          params: {
+            id: this.productsId
+          }
+        })
+        this.products = res.data
+        this.end = this.$refs.line.offsetWidth
+        this.countEl = res.data.length - this.countInLine
+        return
+      }
       const res = await this.$axios({
         method: 'get',
-        url: '/api/product',
-        params: {
-          id: this.productsId
-        }
+        url: '/api/blogs'
+
       })
-      this.products = res.data
+      this.products = res.data.blog
       this.end = this.$refs.line.offsetWidth
       this.countEl = res.data.length - this.countInLine
     } catch (e) {

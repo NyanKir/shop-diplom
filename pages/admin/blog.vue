@@ -71,6 +71,7 @@
                         ]"
                         outlined
                         label="Description"
+                        class="texta"
                       />
                     </v-col>
                     <v-col
@@ -161,6 +162,13 @@
         fa-trash
       </v-icon>
     </template>
+    <template v-slot:item.title="{ item }">
+      <div class="text-no-wrap">
+        <NuxtLink :to="{ path: '/blog/'+item._id}">
+          {{ item.title }}
+        </NuxtLink>
+      </div>
+    </template>
     <template v-slot:item.picture="{ item }">
       <v-img
         max-height="50"
@@ -168,8 +176,15 @@
         :src="item.picture"
       />
     </template>
+    <template v-slot:item.description="{ item }">
+      <p class="p">
+        {{ item.description }}
+      </p>
+    </template>
     <template v-slot:item.date="{ item }">
-      {{ new Date(item.date).toDateString() }}
+      <div class="text-no-wrap">
+        {{ new Date(item.date).toDateString() }}
+      </div>
     </template>
     <template v-slot:no-data>
       <v-btn
@@ -199,7 +214,7 @@ export default {
       },
       { text: 'Picture', value: 'picture' },
       { text: 'Description', value: 'description' },
-      { text: 'Date', value: 'date' },
+      { text: 'Date', value: 'date', width: '100' },
       { text: 'Actions', value: 'actions', sortable: false }
     ],
     desserts: [],
@@ -243,6 +258,7 @@ export default {
         reader.onload = () => resolve(reader.result)
         reader.onerror = error => reject(error)
       })
+      console.log(file)
       this.editedItem.picture = await toBase64(file)
     },
     async fetchData () {
@@ -324,13 +340,25 @@ export default {
       this.fetchData()
       this.close()
     }
+  },
+  head () {
+    return {
+      title: 'Blog'
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
 
-.chk{
-  flex: 1 1 33%;
-}
+  .p{
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    height: inherit;
+    white-space: break-spaces;
+  }
+  .texta{
+    white-space: break-spaces;
+  }
 </style>

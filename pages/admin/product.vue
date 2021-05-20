@@ -497,7 +497,6 @@ export default {
       return el
     })
   },
-
   methods: {
     async fetchData () {
       this.loading = true
@@ -649,6 +648,11 @@ export default {
 
     reset () {
       this.$refs.form.resetValidation()
+    }
+  },
+  head () {
+    return {
+      title: 'Products'
     }
   }
 }

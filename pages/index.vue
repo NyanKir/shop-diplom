@@ -15,6 +15,7 @@
     </div>
     <Collage />
     <Carousel title="Special Products" :products-id="productsId" :count-in-line="4" />
+    <Carousel title="From the Blog" :count-in-line="3" blog />
   </div>
 </template>
 <script>

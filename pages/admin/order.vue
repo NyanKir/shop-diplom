@@ -103,7 +103,6 @@
 <script>
 export default {
   name: 'Order',
-  layout: 'admin',
   data () {
     return {
       expanded: [],
@@ -163,7 +162,13 @@ export default {
       })
       this.fetchData()
     }
-  }
+  },
+  head () {
+    return {
+      title: 'Order'
+    }
+  },
+  layout: 'admin'
 }
 
 </script>
