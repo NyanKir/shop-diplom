@@ -6,12 +6,6 @@
       expand-on-hover
     >
       <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/women/85.jpg" />
-          </v-list-item-avatar>
-        </v-list-item>
-
         <v-list-item link>
           <v-list-item-content>
             <v-list-item-title class="title">
@@ -32,7 +26,7 @@
           <v-list-item-icon>
             <v-icon>fa-home</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Home</v-list-item-title>
+          <v-list-item-title>Dashboard</v-list-item-title>
         </v-list-item>
         <v-list-item link to="/admin/blog" nuxt>
           <v-list-item-icon>
@@ -67,7 +61,6 @@
       </v-list>
     </v-navigation-drawer>
 
-    <!-- Sizes your content based upon application components -->
     <v-main>
       <Nuxt />
     </v-main>

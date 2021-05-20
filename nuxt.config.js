@@ -46,7 +46,8 @@ export default {
   plugins: [
     '~/plugins/test.client.js',
     '~/plugins/logout.client.js',
-    '@plugins/v-mask.js'
+    '@plugins/v-mask.js',
+    '@plugins/charts.js'
   ],
 
   /*

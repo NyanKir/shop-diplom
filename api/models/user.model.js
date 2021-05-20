@@ -13,6 +13,10 @@ const user = new Schema({
     country: { type: String, default: 'Kazahstan' },
     state: { type: String, default: '' },
     code: { type: String, default: '' }
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 })
 module.exports = model('User', user)

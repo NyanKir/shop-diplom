@@ -45,4 +45,11 @@ router.post('/status', async function (req, res) {
     res.status(500).end()
   }
 })
+
+router.get('/sales', async function (req, res) {
+  const doc = await Order.find()
+
+  res.status(200).json({ data: doc.filter(el => !!el.status.accept) }).end()
+})
+
 module.exports = router
