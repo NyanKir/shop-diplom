@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Product from '~/components/Product/Gallery/Product'
+import Product from '@/components/Product/Gallery/GalleryProduct'
 
 export default {
   name: 'NewProducts',

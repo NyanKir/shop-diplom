@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Product from '@/components/Product/Gallery/Product'
+import Product from '@/components/Product/Gallery/GalleryProduct'
 import Blog from '@/components/Blog'
 
 export default {

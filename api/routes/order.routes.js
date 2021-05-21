@@ -10,7 +10,10 @@ router.post('/order', function (req, res) {
     address: req.body.address.address,
     description: req.body.description,
     cart: req.body.cart,
-    price: req.body.price
+    price: req.body.price,
+    status: {
+      pending: new Date()
+    }
   }
 
   const order = new Order(data)

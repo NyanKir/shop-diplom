@@ -41,6 +41,15 @@
       <font-awesome-icon :icon="['fas', 'trash']" size="lg" />
       Remove from cart
     </button>
+    <button
+      class="btn wish"
+      :class="{'wish__active': arrayOfWish.includes(product._id)}"
+      @click="arrayOfWish.includes(product._id)?
+        removeFromWishList(product._id):
+        addToWishList(product._id)"
+    >
+      <font-awesome-icon :icon="['fas', 'heart']" size="lg" />
+    </button>
   </div>
 </template>
 
@@ -76,6 +85,9 @@ export default {
     },
     updateProduct () {
       return !Object.values(this.options).every(el => Object.values(this.cartProduct[0].options).includes(el))
+    },
+    arrayOfWish () {
+      return this.$store.state.products.wish.wishes.map(el => el.id)
     }
   },
   mounted () {
@@ -84,6 +96,14 @@ export default {
     this.count = product?.count || 1
   },
   methods: {
+    addToWishList (id) {
+      this.$store.commit('products/wish/add', id)
+      this.$store.dispatch('user/showNotice', 'Success, you added product to wishlist')
+    },
+    removeFromWishList (id) {
+      this.$store.commit('products/wish/remove', id)
+      this.$store.dispatch('user/showNotice', 'Success, you removed product from wishlist')
+    },
     changeCountOption (count) {
       this.count = count
       if (this.cartProduct[0] !== undefined) {
@@ -93,7 +113,7 @@ export default {
     },
 
     addToCartList (id) {
-      if (Object.keys(this.options).length === 1 || !Object.keys(this.options).length) {
+      if (!Object.keys(this.options).length) {
         this.$store.dispatch('user/showNotice', 'Choose something :)')
         return
       }
@@ -143,7 +163,6 @@ export default {
 
   }
   .info_options ::v-deep .widget_wrap{
-    width: 250px;
     display: flex;
     justify-content: space-between;
 
@@ -160,7 +179,11 @@ export default {
     margin: 0;
   }
 
-  //@media (max-width: 992px ) {
-  //
-  //}
+  .wish{
+    min-width: 40px;
+    height: 45px;
+  }
+  .wish__active{
+    background: $black;
+  }
 </style>

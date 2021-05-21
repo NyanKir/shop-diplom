@@ -12,5 +12,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .tabs_description-tab{
+    white-space: break-spaces;
+  }
 </style>

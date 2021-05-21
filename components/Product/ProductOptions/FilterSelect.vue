@@ -38,7 +38,6 @@ export default {
 
 <style scoped>
   .select{
-    width: 150px;
   }
   .colors{
     display: flex;

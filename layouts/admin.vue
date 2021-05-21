@@ -22,11 +22,11 @@
         nav
         dense
       >
-        <v-list-item link to="/admin/" nuxt>
+        <v-list-item link to="/" nuxt>
           <v-list-item-icon>
-            <v-icon>fa-home</v-icon>
+            <v-icon>fa-sign-out-alt</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Dashboard</v-list-item-title>
+          <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
         <v-list-item link to="/admin/blog" nuxt>
           <v-list-item-icon>
@@ -45,12 +45,6 @@
             <v-icon>fa-people-carry</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Orders</v-list-item-title>
-        </v-list-item>
-        <v-list-item link to="/admin/users" nuxt>
-          <v-list-item-icon>
-            <v-icon>fa-sign-out-alt</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Log out</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

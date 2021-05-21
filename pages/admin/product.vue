@@ -190,6 +190,7 @@
                         :rules="[
                           () => !!editedItem.gallery.length || 'This field is required',
                         ]"
+                        :error-messages="galleryError"
                         @change="changeFile"
                       />
                     </v-col>
@@ -268,7 +269,7 @@
                           ref="filterCount"
                           v-model="filter.quantity"
                           :rules="[
-                            () => !!filter.quantity && !Number.isInteger(+filter.quantity) || 'Only digits'
+                            () => !!filter.quantity && Number.isInteger(+filter.quantity) || 'Only digits'
                           ]"
                           outlined
                           label="Quantity"
@@ -405,6 +406,7 @@ export default {
   name: 'Products',
   layout: 'admin',
   data: () => ({
+    galleryError: '',
     filter: {
       title: '',
       value: '',
@@ -538,6 +540,11 @@ export default {
         reader.onload = () => resolve(reader.result)
         reader.onerror = error => reject(error)
       })
+      if (files.some(el => el.size > 1000000)) {
+        this.galleryError = 'Size should be less than 1 MB!'
+        return
+      }
+      this.galleryError = ''
       const data = files.map(async el => await toBase64(el))
       this.editedItem.gallery = await Promise.all(data).then((el) => { return el })
     },
@@ -547,16 +554,29 @@ export default {
       if (!this.validFilter) {
         return true
       }
-
-      this.editedItem.filters = {
-        ...this.editedItem.filters,
-        [this.filter.title]: {
-          [this.filter.name]: {
-            value: this.filter.value,
-            count: +this.filter.quantity
+      if (this.editedItem.filters[this.filter.title]) {
+        this.editedItem.filters = {
+          ...this.editedItem.filters,
+          [this.filter.title]: {
+            ...this.editedItem.filters[this.filter.title],
+            [this.filter.name]: {
+              value: this.filter.value,
+              count: +this.filter.quantity
+            }
+          }
+        }
+      } else {
+        this.editedItem.filters = {
+          ...this.editedItem.filters,
+          [this.filter.title]: {
+            [this.filter.name]: {
+              value: this.filter.value,
+              count: +this.filter.quantity
+            }
           }
         }
       }
+
       this.$refs.formFilter.resetValidation()
       this.filter = {
         title: '',

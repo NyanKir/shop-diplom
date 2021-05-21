@@ -28,7 +28,7 @@
             </NuxtLink>
           </li>
           <li v-if="this.$store.state.user.isAdmin">
-            <NuxtLink to="/admin/" class="link fnt-weg-400 link__logout">
+            <NuxtLink to="/admin/blog" class="link fnt-weg-400 link__logout">
               <span>
                 <font-awesome-icon :icon="['fas', 'cog']" size="lg" class="dropdown_link-svg" />
                 Admin

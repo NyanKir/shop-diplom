@@ -14,7 +14,7 @@
 
 <script>
 import Error from '../../../layouts/error'
-import Product from './Product'
+import Product from './GalleryProduct'
 import Pagination from './Pagination'
 import Sorting from './Sorting'
 import ActiveFilters from './ActiveFilters'

@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Product from '@/components/Product/Gallery/Product'
+import Product from '@/components/Product/Gallery/GalleryProduct'
 import BreadCrumbs from '../components/BreadCrumbs'
 export default {
   name: 'Wishlist',

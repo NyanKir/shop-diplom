@@ -34,8 +34,37 @@
         </p>
       </div>
     </div>
-    <button class="btn">
-      Write your review
+    <form v-if="this.$store.state.user.isAdmin" class="review" @submit.prevent="sendReview">
+      <label for="rating" class="review_item">
+        Rating
+        <select id="rating" v-model="selected" class="rating">
+          <option v-for="i in 5" :key="i" :value="i">
+            {{ i }}
+          </option>
+        </select>
+      </label>
+      <label for="descr" class="review_item">
+        Description
+        <textarea
+          id="descr"
+          v-model="descr"
+          name=""
+          cols="10"
+          rows="5"
+          class="descr"
+        />
+        <span v-if="errorDesc">{{ errorDesc }}</span>
+      </label>
+
+      <button class="btn review_send" type="submit">
+        Write your review
+      </button>
+    </form>
+
+    <button v-else class="btn">
+      <NuxtLink to="/auth/signin" class="link">
+        <span>Log in</span>
+      </NuxtLink>
     </button>
   </div>
 </template>
@@ -45,15 +74,71 @@ import Rating from '../Rating'
 export default {
   name: 'TabRating',
   components: { Rating },
-  props: ['data']
+  props: ['data'],
+  data: () => ({
+    selected: 1,
+    descr: '',
+    errorDesc: ''
+  }),
+  methods: {
+    sendReview () {
+      if (this.descr.trim() === '') {
+        this.errorDesc = 'Sorry incorrect date'
+        return
+      }
+      this.errorDesc = ''
+      this.$axios.$post('api/product/review', {
+        id: this.$route.query.id,
+        rating: this.selected,
+        description: this.descr.trim(),
+        reviewFrom: this.$store.state.user.userId
+      })
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.btn{
-  margin: 0;
-}
+  .review{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review_item{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    select{
+      width: 50px;
+      border: 1px solid $gray-85;
+      -webkit-appearance: listbox;
+    }
+  }
+
+  .descr{
+    width: 100%;
+    border: 1px solid $gray-85;
+
+  }
+  .descr+span{
+    font-size: 14px;
+    color: red;
+  }
+  .btn{
+    margin: 0;
+    a{
+      color: $white;
+
+    }
+
+  }
+
+  .review_send{
+    margin-top: 10px;
+  }
   .p{
+    text-overflow: ellipsis;
+    overflow: hidden;
     font-size: 13px;
   }
   .p__date{

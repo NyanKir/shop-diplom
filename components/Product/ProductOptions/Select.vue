@@ -36,10 +36,10 @@ export default {
 }
 
 .select{
-  border-color: $gray-85;
+  -webkit-appearance: listbox;
+  border: 1px solid $gray-85 ;
   height: 2.5em;
   text-transform: capitalize;
-  width: 110px;
 }
 
 </style>

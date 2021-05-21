@@ -53,24 +53,24 @@
       <td :colspan="headers.length">
         <v-container>
           <v-row>
-            <v-col md="2" sm="4">
+            <v-col md="4" sm="4">
               Title
             </v-col>
-            <v-col md="3" sm="4">
+            <v-col md="4" sm="4">
               Options
             </v-col>
-            <v-col md="3" sm="1">
+            <v-col md="1" sm="1">
               Price
             </v-col>
-            <v-col md="2" sm="1">
+            <v-col md="1" sm="1">
               Count
             </v-col>
-            <v-col md="3" sm="2">
+            <v-col md="2" sm="2">
               Total
             </v-col>
           </v-row>
           <v-row v-for="(prod,index) in item.cart" :key="index" class="d-flex">
-            <v-col cols="12" md="2" sm="4">
+            <v-col cols="12" md="4" sm="4">
               <NuxtLink :to="'/product/'+products.filter(el=>el._id===prod.id)[0].title+'?id='+products.filter(el=>el._id===prod.id)[0]._id">
                 {{ products.filter(el=>el._id===prod.id)[0].title }}
 
@@ -79,20 +79,32 @@
                 </v-icon>
               </NuxtLink>
             </v-col>
-            <v-col cols="12" md="3" sm="4">
+            <v-col cols="12" md="4" sm="4">
               <div v-for="(options,value) in prod.options" :key="options">
                 {{ value }}
                 {{ options }}
               </div>
             </v-col>
-            <v-col cols="12" md="3" sm="1">
+            <v-col cols="12" md="1" sm="1">
               ${{ products.filter(el=>el._id===prod.id)[0].discountPrice || products.filter(el=>el._id===prod.id)[0].price }}
             </v-col>
-            <v-col cols="12" md="2" sm="1">
+            <v-col cols="12" md="1" sm="1">
               {{ prod.count }}
             </v-col>
-            <v-col cols="12" md="3" sm="2">
+            <v-col cols="12" md="2" sm="2">
               ${{ (products.filter(el=>el._id===prod.id)[0].discountPrice || products.filter(el=>el._id===prod.id)[0].price) * prod.count }}
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-list-item
+                v-for="(name,title) in item.address"
+                :key="title"
+              >
+                <v-list-item-content>
+                  <v-list-item-title>{{ title }} - {{ name }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
             </v-col>
           </v-row>
         </v-container>

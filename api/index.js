@@ -11,7 +11,7 @@ app.use(require('./routes/user.routes'))
 app.use(require('./routes/product.routes'))
 app.use(require('./routes/order.routes'))
 app.use(require('./routes/blog.routes'))
-
+app.disable('etag')
 module.exports = app
 
 const port = process.env.PORT

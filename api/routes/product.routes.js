@@ -66,40 +66,48 @@ router.get('/product', async function (req, res) {
 })
 
 router.get('/maxPrice', async function (req, res) {
-  const doc = await Product.aggregate([
-    {
-      $match: {
-        $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+  try {
+    const doc = await Product.aggregate([
+      {
+        $match: {
+          $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          maxPrice: { $max: '$price' }
+        }
       }
-    },
-    {
-      $group: {
-        _id: null,
-        maxPrice: { $max: '$price' }
-      }
-    }
-  ])
-  res.status(200).json({ price: doc[0].maxPrice }).end()
+    ])
+    res.status(200).json({ price: doc[0].maxPrice }).end()
+  } catch (e) {
+    res.status(500).end()
+  }
 })
 
 router.get('/categories', async function (req, res) {
-  const doc = await Product.aggregate([
-    {
-      $match: {
-        $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+  try {
+    const doc = await Product.aggregate([
+      {
+        $match: {
+          $expr: { $in: [decodeURI(req.query.select).toLowerCase(), '$categories'] }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          allFilters: { $push: { item: '$filters' } }
+        }
       }
-    },
-    {
-      $group: {
-        _id: null,
-        allFilters: { $push: { item: '$filters' } }
-      }
-    }
-  ])
-  doc[0].allFilters = doc[0].allFilters.map((el) => {
-    return { ...el.item }
-  })
-  res.status(200).json(doc[0]).end()
+    ])
+    doc[0].allFilters = doc[0].allFilters.map((el) => {
+      return { ...el.item }
+    })
+    res.status(200).json(doc[0]).end()
+  } catch (e) {
+    res.status(500).end()
+  }
 })
 
 router.delete('/product', async function (req, res) {
@@ -110,16 +118,30 @@ router.delete('/product', async function (req, res) {
     res.status(500).end()
   }
 })
+
 router.patch('/product', async function (req, res) {
   try {
     const data = req.body
     const _id = mongoose.Types.ObjectId(req.body._id)
     delete data._id
-    console.log(data)
     await Product.findOneAndUpdate({ _id }, { $set: data })
     res.status(200).end()
   } catch (e) {
     res.status(500).end()
   }
 })
+
+router.post('/product/review', async function (req, res) {
+  try {
+    const data = req.body
+    const _id = mongoose.Types.ObjectId(req.body.id)
+    delete data.id
+    data.reviewFrom = mongoose.Types.ObjectId(req.body.reviewFrom)
+    await Product.findOneAndUpdate({ _id }, { $push: { review: data } })
+    res.status(200).end()
+  } catch (e) {
+    res.status(500).end()
+  }
+})
+
 module.exports = router

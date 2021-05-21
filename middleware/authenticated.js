@@ -16,7 +16,7 @@ export default async function (context) {
     }
   }).catch((err) => {
     if (err.response.status) {
-      const conditions = ['/user/', '/checkout']
+      const conditions = ['/user/', '/checkout', '/admin']
 
       if (conditions.some(el => context.route.path.includes(el))) {
         context.store.dispatch('user/showNotice', 'Sorry, you need to log in :( ')
