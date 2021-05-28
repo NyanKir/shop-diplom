@@ -93,6 +93,9 @@ export default {
         description: this.descr.trim(),
         reviewFrom: this.$store.state.user.userId
       })
+      this.$store.dispatch('user/showNotice', 'Success, your review was accept!')
+      this.selected = 1
+      this.descr = ''
     }
   }
 }

@@ -4,10 +4,11 @@
       <h3 class="h3 carousel_title">
         {{ title }}
       </h3>
-      <div class="carousel_navig">
+      <div v-show="products.length !== countInLine" class="carousel_navig">
         <button class="carousel_navig-btn" @click="prev">
           <font-awesome-icon :icon="['fas', 'arrow-left']" size="lg" />
         </button>
+        &nbsp;
         <button class="carousel_navig-btn" @click="next">
           <font-awesome-icon :icon="['fas', 'arrow-right']" size="lg" />
         </button>

@@ -41,7 +41,13 @@ export default {
     min-width: 50px;
     margin: 0;
     padding: 10px 15px;
-    height: 38px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg{
+      width: 16px;
+    }
   }
   .mailing_label{
     display: flex;

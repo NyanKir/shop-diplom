@@ -1,49 +1,59 @@
 <template>
   <div class="collage">
     <div class="collage_item collage_huge">
-      <div class="collage_title">
-        <span class="collage_title-head">Big Deal</span>
-        <p class="collage_title-text">
-          Ceramic Products
-        </p>
-      </div>
-      <img src="cms-banner-1.jpg" alt="">
+      <NuxtLink to="/category/structural/silicon/ceramic%20foam?page=1">
+        <div class="collage_title">
+          <span class="collage_title-head">Big Deal</span>
+          <p class="collage_title-text">
+            Ceramic Products
+          </p>
+        </div>
+        <img src="cms-banner-1.jpg" alt="">
+      </NuxtLink>
     </div>
     <div class="collage_item collage_medium">
-      <div class="collage_title">
-        <span class="collage_title-head">Flat 50%</span>
-        <p class="collage_title-text">
-          Ceramic Poat
-        </p>
-      </div>
-      <img src="cms-banner-2.jpg" alt="">
+      <NuxtLink to="/category/structural/silicon/ceramic%20foam?page=1">
+        <div class="collage_title">
+          <span class="collage_title-head">Flat 50%</span>
+          <p class="collage_title-text">
+            Ceramic Poat
+          </p>
+        </div>
+        <img src="cms-banner-2.jpg" alt="">
+      </NuxtLink>
     </div>
     <div class="collage_item collage_medium collage_medium__double">
-      <div class="collage_title">
-        <span class="collage_title-head">New Offer</span>
-        <p class="collage_title-text">
-          Unique Art
-        </p>
-      </div>
-      <img src="cms-banner-5.jpg" alt="">
+      <NuxtLink to="/category/structural/silicon/ceramic%20foam?page=1">
+        <div class="collage_title">
+          <span class="collage_title-head">New Offer</span>
+          <p class="collage_title-text">
+            Unique Art
+          </p>
+        </div>
+        <img src="cms-banner-5.jpg" alt="">
+      </NuxtLink>
     </div>
     <div class="collage_item collage_tiny">
-      <div class="collage_title">
-        <span class="collage_title-head">Special</span>
-        <p class="collage_title-text">
-          Buy Bowl
-        </p>
-      </div>
-      <img src="cms-banner-3.jpg" alt="">
+      <NuxtLink to="/category/structural/silicon/ceramic%20foam?page=1">
+        <div class="collage_title">
+          <span class="collage_title-head">Special</span>
+          <p class="collage_title-text">
+            Buy Bowl
+          </p>
+        </div>
+        <img src="cms-banner-3.jpg" alt="">
+      </NuxtLink>
     </div>
     <div class="collage_item collage_tiny">
-      <div class="collage_title">
-        <span class="collage_title-head">New Deal</span>
-        <p class="collage_title-text">
-          Accessories
-        </p>
-      </div>
-      <img src="cms-banner-4.jpg" alt="">
+      <NuxtLink to="/category/structural/silicon/ceramic%20foam?page=1">
+        <div class="collage_title">
+          <span class="collage_title-head">New Deal</span>
+          <p class="collage_title-text">
+            Accessories
+          </p>
+        </div>
+        <img src="cms-banner-4.jpg" alt="">
+      </NuxtLink>
     </div>
   </div>
 </template>

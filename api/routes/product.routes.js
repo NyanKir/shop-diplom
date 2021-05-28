@@ -15,9 +15,9 @@ router.get('/products', async function (req, res) {
     return res.status(200).json({ data }).end()
   }
   let sort = { _id: 1 }
-  const typeSort = JSON.parse(req.query.query).sort
-  if (typeSort) {
-    switch (typeSort) {
+  const query = JSON.parse(req.query.query)
+  if (query.sort) {
+    switch (query.sort) {
       case 'high':
         sort = { totalScore: 1 }
         break
@@ -26,6 +26,14 @@ router.get('/products', async function (req, res) {
         break
     }
   }
+
+  const sortedQuery = Object.keys(query).reduce((acc, el) => {
+    if (!['price', 'page', 'sort'].includes(el)) {
+      return Object.assign(acc, { [el]: query[el] })
+    }
+    return acc
+  }, {})
+
   const doc = await Product.aggregate([
     {
       $match: {
@@ -48,12 +56,27 @@ router.get('/products', async function (req, res) {
         price: 1,
         gallery: 1,
         review: 1,
-        totalScore: 1
+        totalScore: 1,
+        filters: 1
       }
     }]).sort(sort)
-  res.json(doc).end()
-})
 
+  const data = doc.filter((el) => {
+    return Object.keys(sortedQuery).every((key) => {
+      if (el.filters[key]) {
+        if (typeof sortedQuery[key] === 'string') {
+          return !!el.filters[key][sortedQuery[key]]
+        }
+        return sortedQuery[key].every((k) => {
+          return !!el.filters[key][k]
+        })
+      }
+      return false
+    })
+  })
+
+  res.json(data).end()
+})
 router.get('/product', async function (req, res) {
   if (Array.isArray(req.query.id)) {
     const ids = req.query.id.map(el => mongoose.Types.ObjectId(JSON.parse(el).id))

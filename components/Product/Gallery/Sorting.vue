@@ -7,7 +7,6 @@
       <select id="sort" v-model="selected" name="sort" @change="changeSorting">
         <option value="high">Low to High</option>
         <option value="low">High to Low</option>
-        <option value="best">Best sellers</option>
         <option value="relevance">Relevance</option>
       </select>
     </label>
@@ -39,12 +38,14 @@ export default {
     padding: 5px 0;
     text-align: right;
   }
+
   .sorting_label{
     span{
       font-weight: 300;
     }
 
     select{
+      -webkit-appearance: listbox;
       font-family: 'Poppins', sans-serif;
       padding: 5px 6px;
       border: 1px solid $gray;

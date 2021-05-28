@@ -5,12 +5,12 @@
         v-if="what!=='color'"
         type="checkbox"
         class="checkbox"
-        :checked="checkChecked"
+        :checked="checked"
         @change="changeQuery(name,what,$event)"
       >
       <input
         v-else
-        :checked="checkChecked"
+        :checked="checked"
         type="checkbox"
         class="checkbox checkbox__color"
         :style="{'--backColor': item.value}"
@@ -33,20 +33,22 @@ export default {
       checked: false
     }
   },
-  computed: {
+  watch: {
+    $route () {
+      this.checked = this.$route.query[this.what]?.includes(this.name)
+    }
+  },
+  mounted () {
+    this.checked = this.checkChecked()
+  },
+  methods: {
     checkChecked () {
       if (!this.$route.query[this.what]) {
         return false
       }
-      return this.$route.query[this.what].includes(this.name)
-    }
-  },
-  watch: {
-    $route () {
 
-    }
-  },
-  methods: {
+      return this.$route.query[this.what] === this.name
+    },
     changeQuery (value, what, target) {
       if (!target.target.checked) {
         const result = this.$route.query[what].filter(el => el !== value)

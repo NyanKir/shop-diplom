@@ -6,7 +6,7 @@
       </h3>
       <li v-for="(filter,index) in getAllFilters" :key="index" class="active-filters_item">
         <span class="active-filters_item-text">
-          {{ filter.type.charAt(0).toUpperCase()+filter.type.slice(1) }} : {{ filter.type.charAt(0).toUpperCase()+filter.data.slice(1) }}
+          {{ filter.type.charAt(0).toUpperCase()+filter.type.slice(1) }} : {{ filter.data.charAt(0).toUpperCase()+filter.data.slice(1) }}
         </span>
         <button type="button" class="active-filters_item-btn">
           <font-awesome-icon :icon="['fas', 'times']" size="xs" @click="removeQuery(filter.type,filter.data)" />

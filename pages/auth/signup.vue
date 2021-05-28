@@ -191,6 +191,7 @@ export default {
   flex-direction: column;
 }
 .login-form_field-error{
+  width: 300px;
   font-size: 13px;
   color: #fa1414;
 }

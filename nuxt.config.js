@@ -46,8 +46,7 @@ export default {
   plugins: [
     '~/plugins/test.client.js',
     '~/plugins/logout.client.js',
-    '@plugins/v-mask.js',
-    '@plugins/charts.js'
+    '@plugins/v-mask.js'
   ],
 
   /*
@@ -96,7 +95,7 @@ export default {
     scss: ['./assets/*.scss']
   },
   // server: {
-  //   port: 3000, // default: 3000
+  //   port: 4000, // default: 3000
   //   host: 'localhost' // default: localhost,
   // },
   /*

@@ -2,17 +2,18 @@
   <div>
     <Slider />
     <ServiceBlock />
-    <div class="tabs">
-      <button
-        v-for="tab in tabs"
-        :key="tab"
-        :class="['tab_button', { active: currentTab === tab }]"
-        @click="currentTab = tab"
-      >
-        {{ tab }}
-      </button>
-      <Carousel :products-id="productsId" :count-in-line="4" class="carousel__margin-0" />
-    </div>
+    <!--    <div class="tabs">-->
+    <!--      <button-->
+    <!--        v-for="tab in tabs"-->
+    <!--        :key="tab"-->
+    <!--        :class="['tab_button', { active: currentTab === tab }]"-->
+    <!--        @click="currentTab = tab"-->
+    <!--      >-->
+    <!--        {{ tab }}-->
+    <!--      </button>-->
+    <!--    </div>-->
+    <Carousel :products-id="productsId" :count-in-line="4" class="carousel__margin-0" title="Featured" />
+
     <Collage />
     <Carousel title="Special Products" :products-id="productsId" :count-in-line="4" />
     <Carousel title="From the Blog" :count-in-line="3" blog />
@@ -34,7 +35,7 @@ export default {
         { id: '6082bdc7107a1c189c4dd480' },
         { id: '6082b7fc107a1c189c4dd47c' }],
       currentTab: 'Featured',
-      tabs: ['Featured', 'New Arrivals', 'Bestseller']
+      tabs: ['Featured']
     }
   },
   computed: {

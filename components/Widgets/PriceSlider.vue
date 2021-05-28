@@ -51,8 +51,8 @@ export default {
           this.value = res.data.price
           return
         }
-        this.maxValue = res.data.price
-        this.value = this.$route.query.price
+        this.maxValue = Math.ceil(res.data.price)
+        this.value = Math.ceil(this.$route.query.price)
       } catch (e) {
         console.error(e)
       }
