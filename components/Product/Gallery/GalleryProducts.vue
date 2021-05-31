@@ -1,7 +1,15 @@
 <template>
   <div class="gallery">
     <div v-if="products!=null">
-      <Sorting />
+      <div class="wrap">
+        <button class="btn btn__filters " @click="showMenu=!showMenu">
+          {{ showMenu?'Close':'Filters' }}
+        </button>
+        <Sorting />
+      </div>
+      <transition name="backInTop">
+        <MobileFilters v-show="showMenu" class="mobile-filters" />
+      </transition>
       <ActiveFilters v-if="haveQueries" />
       <div class="gallery_container">
         <Product v-for="product in productsOnPage" :key="product._id" :product="product" />
@@ -14,13 +22,14 @@
 
 <script>
 import Error from '../../../layouts/error'
+import MobileFilters from '../MobileFilters'
 import Product from './GalleryProduct'
 import Pagination from './Pagination'
 import Sorting from './Sorting'
 import ActiveFilters from './ActiveFilters'
 export default {
   name: 'GalleryProducts',
-  components: { ActiveFilters, Error, Sorting, Pagination, Product },
+  components: { MobileFilters, ActiveFilters, Error, Sorting, Pagination, Product },
   loading: {
     continuous: true
   },
@@ -29,7 +38,8 @@ export default {
       products: [],
       maxProducts: 6,
       countPages: 0,
-      forbiddenQueries: ['sort', 'page', 'price']
+      forbiddenQueries: ['sort', 'page', 'price'],
+      showMenu: false
     }
   },
   computed: {
@@ -87,11 +97,34 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
   }
+  .mobile-filters{
+    display: none;
+  }
 
+  .btn__filters{
+    margin: 0;
+    display: none;
+  }
+  .wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  //.mobile-filters
+  @media (max-width: 768px) {
+    .mobile-filters{
+      display: flex;
+      flex-direction: column;
+    }
+    .btn__filters{
+      display: block;
+    }
+  }
   @media (max-width: 580px) {
     .gallery_container {
       grid-template-columns: 1fr 1fr;
     }
+
   }
 
 </style>
