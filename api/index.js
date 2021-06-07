@@ -14,7 +14,7 @@ app.use(require('./routes/blog.routes'))
 app.disable('etag')
 module.exports = app
 
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 async function start () {
   await mongoose.connect(`mongodb+srv://diplom:${process.env.DB_PASS}@cluster.sksna.mongodb.net/shop-diplom?retryWrites=true&w=majority`, {
     useNewUrlParser: true,

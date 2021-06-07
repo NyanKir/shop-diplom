@@ -12,7 +12,7 @@ export default {
   */
   vue: {
     config: {
-      devtools: true
+      devtools: false
     }
   },
   head: {
@@ -95,7 +95,7 @@ export default {
     scss: ['./assets/*.scss']
   },
   server: {
-    port: 4000, // default: 3000
+    // port: '0', // default: 3000
     host: 'localhost' // default: localhost,
   },
   /*
