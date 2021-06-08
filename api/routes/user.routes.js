@@ -17,8 +17,7 @@ router.post('/user', [
     return true
   }),
   check('password').isLength({ min: 5, max: 24 }).matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/).withMessage('Password should contain at least one uppercase, lowercase and one special character')
-],
-function (req, res) {
+], function (req, res) {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array()[0] })
@@ -96,8 +95,7 @@ router.patch('/address', [
     .isLength({ min: 2 }).withMessage('Your state must be more than 2 characters')
     .matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
   check('code').not().isEmpty().trim().escape().isLength({ min: 6, max: 6 }).withMessage('Your code must contain 6 digits')
-],
-async function (req, res) {
+], async function (req, res) {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array()[0] })
@@ -119,8 +117,7 @@ async function (req, res) {
 router.patch('/user', [
   check('firstName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Name must be alphabetic.'),
   check('lastName').not().isEmpty().trim().escape().isLength({ min: 2 }).withMessage('Your last name must be more than 2 characters').isLength({ max: 24 }).withMessage('Your last name must be least than 24 characters').matches(/^[A-Za-z\s]+$/).withMessage('Last name must be alphabetic'),
-  check('email').isEmail().normalizeEmail({ gmail_remove_dots: false })],
-async function (req, res) {
+  check('email').isEmail().normalizeEmail({ gmail_remove_dots: false })], async function (req, res) {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array()[0] })
