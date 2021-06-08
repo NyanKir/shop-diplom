@@ -96,7 +96,7 @@ export default {
   },
   server: {
     // port: '0', // default: 3000
-    host: 'localhost' // default: localhost,
+    // host: 'localhost' // default: localhost,
   },
   /*
   ** Server Middleware
