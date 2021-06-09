@@ -106,4 +106,31 @@ export default {
   .link{
     color: $white;
   }
+
+  @media (min-width: 768px) {
+
+  }
+
+  @media (min-width: 992px) {
+
+  }
+  @media (min-width: 1250px){
+
+  }
+
+  @media (max-width: 767px){
+    .container_body{
+      flex-direction: column;
+
+      .list{
+        order: 2;
+      }
+      .aside{
+        width: 100%;
+        min-width: 100%;
+        order: 1;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
 </style>

@@ -5,6 +5,14 @@ export const state = () => ({
   showNotice: false,
   titleNotice: ''
 })
+export const getters = {
+  getAuth: (state) => {
+    return state.isAuth
+  },
+  getAdmin: (state) => {
+    return state.isAdmin
+  }
+}
 export const mutations = {
   changeAuthentication (state, bool = false) {
     state.isAuth = bool

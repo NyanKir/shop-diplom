@@ -11,7 +11,7 @@
       </span>
       <transition name="backInTop">
         <ul v-show="on" class="dropdown rm-indents">
-          <li v-if="!this.$store.state.user.isAuth">
+          <li v-if="!getAuth">
             <NuxtLink to="/auth/signin" class="link fnt-weg-400">
               <span>
                 <font-awesome-icon :icon="['fas', 'unlock-alt']" size="lg" class="dropdown_link-svg" />
@@ -27,7 +27,7 @@
               </span>
             </NuxtLink>
           </li>
-          <li v-if="this.$store.state.user.isAdmin">
+          <li v-if="getAdmin">
             <NuxtLink to="/admin/blog" class="link fnt-weg-400 link__logout">
               <span>
                 <font-awesome-icon :icon="['fas', 'cog']" size="lg" class="dropdown_link-svg" />
@@ -43,7 +43,7 @@
               </span>
             </NuxtLink>
           </li>
-          <li v-if="this.$store.state.user.isAuth">
+          <li v-if="getAuth">
             <span class="link fnt-weg-400 link__logout">
               <span @click="deleteCookie">
                 <font-awesome-icon :icon="['fas', 'sign-out-alt']" size="lg" class="dropdown_link-svg" />
@@ -72,10 +72,19 @@ export default {
       on: false
     }
   },
+  computed: {
+    getAuth () {
+      return this.$store.getters['user/getAuth']
+    },
+    getAdmin () {
+      return this.$store.getters['user/getAuth']
+    }
+  },
   watch: {
     $route () {
       this.on = false
     }
+
   },
   methods: {
     deleteCookie () {

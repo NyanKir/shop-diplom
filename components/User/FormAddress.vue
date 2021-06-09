@@ -85,5 +85,14 @@ export default {
 </script>
 
 <style scoped>
-
+@media (max-width: 767px) {
+  .input{
+    width: 100%;
+    max-width: 300px;
+  }
+  .login-form_label{
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
 </style>

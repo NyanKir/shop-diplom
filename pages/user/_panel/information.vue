@@ -143,4 +143,15 @@ export default {
   .login-form_label-text{
     font-size: 14px;
   }
+
+  @media (max-width: 767px) {
+    .input{
+      width: 100%;
+      max-width: 300px;
+    }
+    .login-form_label{
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
 </style>

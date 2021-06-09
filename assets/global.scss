@@ -71,7 +71,8 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 .login-form{
-  width: 550px;
+  width: 100%;
+  max-width: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,10 +84,20 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  min-width: 450px;
+  max-width: 450px;
+  width: 100%;
   margin-bottom: 20px;
 }
-
+@media (max-width: 767px) {
+  .input{
+    width: 100%;
+    max-width: 300px;
+  }
+  .login-form_label{
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
 .radiobutton{
   cursor: pointer;
 

@@ -211,4 +211,20 @@ export default {
     resize: vertical;
     width: 100%;
   }
+
+  @media (max-width: 767px){
+    .checkout_body{
+      flex-direction: column;
+
+      .checkout_steps{
+        order: 2;
+      }
+      .aside{
+        width: 100%;
+        min-width: 100%;
+        order: 1;
+        margin: 0 0 10px 0;
+      }
+    }
+  }
 </style>

@@ -128,4 +128,10 @@ export default {
   .panel_link{
     text-decoration: none;
   }
+  @media (max-width: 767px){
+    .panel {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+    }
+  }
 </style>

@@ -207,4 +207,7 @@ export default {
   .status_td ::v-deep .price_discount{
     font-size: 13px;
   }
+  .border{
+    overflow-x: auto;
+  }
 </style>
