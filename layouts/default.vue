@@ -34,7 +34,7 @@
 }
 @media (min-width: 1250px){
   .container {
-    max-width: $pc-size;
+    max-width: $pc-size;!important;
   }
 }
 
